@@ -1,8 +1,21 @@
 # Journey Tasks - Sophia Chan Capstone Project
 ## Table of Contents
-1. [Overview](##Overview)
-    - [Problem Space](###problem-space)
-    - [User Profile](###user-profile)
+1. [Overview](#overview)
+    - [Problem Space](#problem-space)
+    - [User Profile](#user-profile)
+    - [Features](#features)
+
+2. [Implementation](#implementation)
+    - [Tech Stack](#tech-stack)
+    - [APIs](#apis)
+        - [Google Calendar API](#google-calendar-api)
+        - [Outlook Calendar API](#outlook-calendar-api)
+    - [Sitemap](#sitemap)
+    - [](### Mockups
+    - [](### Data
+    - [](### Endpoints
+3. [](## Roadmap
+4. [](## Future Implementations
 
 ## Overview
 
