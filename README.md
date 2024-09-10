@@ -1,4 +1,4 @@
-# Journey Tasks - Sophia Chan Capstone Project
+# <img src="public/assets/logos/journeytask-white-logo-cropped.svg" width=25px height=25px > JourneyTask - Sophia Chan Capstone Project
 ## Table of Contents
 1. [Overview](#overview)
     - [Problem Space](#problem-space)
@@ -34,7 +34,7 @@ JouneyTaks address this by helping users organize tasks wihtin the context of th
 
 ### User Profile
 
-JourneyTasks is for:
+JourneyTask is for:
 - A user that wants to make a to-do lists but have it accessible from any device connected to the internet.
 - A user who juggles multiple responsibilities and needs help managing time-based tasks.
 - A user who needs help balancing school work, assignments, extracurriculars, and study time.
@@ -111,8 +111,8 @@ List technologies that will be used in your app, including any libraries to save
 - About page includes information for the user how to use JourneyTasks, information tips about how to be more productive and the idea about JourneyTasks.
 
 ### Mockups
-
-Provide visuals of your app's screens. You can use pictures of hand-drawn sketches, or wireframing tools like Figma.
+The site will be built using a mobile first approach
+![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
 
 ### Data
 
