@@ -247,6 +247,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 - Filter feature to filter only tasks for a day, week, month, or category
 - Nodemailer for email notifications of daily task summaries
 - OpenAI API for future AI scheduling
+
 | End Point   | Description              |
 | :--------   | :------------------------- |
 |coming soon  | this end point is for getting the calendar events of a user|
