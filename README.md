@@ -6,26 +6,25 @@ JourneyTask is a task management app that combines time planning with your to-do
 
 
 ### Problem Space
+Have you ever struggled with balancing to-do lists and calendars?
 
-Why is your app needed? Give any background information around any pain points or other reasons.
+Regular apps either focus on lists without accounting for the time required to complete tasks or on calendars without flexibility of task management.
+- When you make a to-do list there is either an extra step to go from the to-do list to the calendar.
+- Or if you only use calendar without to-do list, this does not account for completion of task.
+- Example of others having this [problem](https://answers.microsoft.com/en-us/msoffice/forum/all/how-can-i-integrate-the-to-do-tasks-into-the/9ba1819a-40e6-42da-9805-8f99a3cb0deb)
 
-I have found that when I make a to do list there is either an extra step to go from the to do list to the calendar. The goal is that on one page you can make your to do list and then also still see your calendar.
+JouneyTaks address this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
 
-The problem is that when you use Outlook or Google tasks they do not let you account for time to put into your calendar doing those tasks. Example of others having this problem https://answers.microsoft.com/en-us/msoffice/forum/all/how-can-i-integrate-the-to-do-tasks-into-the/9ba1819a-40e6-42da-9805-8f99a3cb0deb
-
-The second issue is that if you only use the calendar for your to do items is when you are scheduled for a meeting the time for that tasks is now lost so eventually this app will use AI to shift the tasks 'down' to the next available time and push all other tasks back.
-
-As a user you may find your self either loosing paper to do lists, not finding enough time to get your tasks done or just not getting your to do items done. JourneyTasks is designed to help the user manage their day so that a realistic expectation of what can be done in a day. For example if you make a to do list for 10 items today but have 5 meetings (30 min each) and each task takes 1 hour then you are not realisticly going to complete your tasks
+The goal is that on one page you can make your to do list and then also still see your calendar.
 
 ### User Profile
 
-Who will use your app? How will they use it? Add any special considerations that your app must take into account.
-
-People that like to make to do lists.
-
-Pros:
-- you can access your todo list from anywhere
--
+JourneyTasks is for:
+- A user that wants to make a to-do lists but have it accessible from any device connected to the internet.
+- A user who juggles multiple responsibilities and needs help managing time-based tasks.
+- A user who needs help balancing school work, assignments, extracurriculars, and study time.
+- A user who needs to coordinate family activities, personal tasks, and work commitments.
+- A neurodiverse user who needs flexible scheduling and better task organization.
 
 ### Features
 
@@ -38,7 +37,7 @@ List the functionality that your app will include. These can be written as user 
 2. Create Database
     - login/users (nice to have)
     - Goal (nice to have)
-    - To Do List (MVP)
+    - To Do List (MVP: id, user_id, task_name, start date, duration, end date, status )
     - Calendar?
 
 3. Import Calendar APIs
@@ -75,11 +74,26 @@ List technologies that will be used in your app, including any libraries to save
 
 ### APIs
 
-List any external sources of data that will be used in your app.
+#### Google Calendar API
+| End Point   | Description              |
+| :-------- | :------------------------- |
+|Get| this end point is for getting the calendar events of a user|
+
+
+#### Outlook Calendar API
+| End Point   | Description              |
+| :-------- | :------------------------- |
+|Get| this end point is for getting the calendar events of a user|
+
+
+
 
 ### Sitemap
 
 List the pages of your app with brief descriptions. You can show this visually, or write it out.
+
+![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
+Home page
 
 ### Mockups
 
@@ -122,3 +136,11 @@ Your project will be marked based on what you committed to in the above document
 -   Energy tracker/data tracker of what you do ~ helps improve efficency when you know what time of day you have more/less energy
 - Provide suggestions on duration based on past feedback about how long tasks have taken to complete.
 - Eventually this could be used by employers to better understand where bottlenecks are or where their employees are getting bogged down (such as meetings)
+- Categories for to do list
+- Filter feature to filter only tasks for a day, week, month, or category
+- Nodemailer for email notifications of daily task summaries
+
+#### OpenAI API for future AI scheduling
+| End Point   | Description              |
+| :--------   | :------------------------- |
+|coming soon  | this end point is for getting the calendar events of a user|
