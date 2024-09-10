@@ -1,4 +1,8 @@
 # Journey Tasks - Sophia Chan Capstone Project
+## Table of Contents
+1. [Overview](##Overview)
+    - [Problem Space](###problem-space)
+    - [User Profile](###user-profile)
 
 ## Overview
 
@@ -14,8 +18,6 @@ Regular apps either focus on lists without accounting for the time required to c
 - Example of others having this [problem](https://answers.microsoft.com/en-us/msoffice/forum/all/how-can-i-integrate-the-to-do-tasks-into-the/9ba1819a-40e6-42da-9805-8f99a3cb0deb)
 
 JouneyTaks address this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
-
-The goal is that on one page you can make your to do list and then also still see your calendar.
 
 ### User Profile
 
