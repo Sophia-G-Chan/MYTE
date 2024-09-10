@@ -112,7 +112,16 @@ List technologies that will be used in your app, including any libraries to save
 
 ### Mockups
 The site will be built using a mobile first approach
-![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
+
+| Home Page  | Calendar  | About      |
+| :--------  | :-------- |  :-------- |
+|
+![mock up example of the home page for mobile](public/assets/mobile/journeytask-home-mockup.png)
+|![mock up example of the calendar page for mobile](public/assets/mobile/journeytask-calendar-mockup.png)
+![mock up example of the calendar page for mobile](public/assets/mobile/journeytask-calendar-month-mockup.png)
+|![mock up example of the about page for mobile](public/assets/mobile/journeytask-about-mockup.png) |
+
+<blockquote class="imgur-embed-pub" lang="en" data-id="a/hNqi5WR" data-context="false" ></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
 
 ### Data
 
