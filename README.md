@@ -11,11 +11,11 @@
         - [Google Calendar API](#google-calendar-api)
         - [Outlook Calendar API](#outlook-calendar-api)
     - [Sitemap](#sitemap)
-    - [](### Mockups
-    - [](### Data
-    - [](### Endpoints
-3. [](## Roadmap
-4. [](## Future Implementations
+    - [Mockups](#mockups)
+    - [Data](#data)
+    - [Endpoints](#endpoints)
+3. [Roadmap](#roadmap)
+4. [Future Implementations](#future-implementations)
 
 ## Overview
 
