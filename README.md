@@ -100,15 +100,15 @@ List technologies that will be used in your app, including any libraries to save
 | :-------- | :------------------------- |
 |Get| this end point is for getting the calendar events of a user|
 
-
-
-
 ### Sitemap
 
-List the pages of your app with brief descriptions. You can show this visually, or write it out.
-
 ![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
-Home page
+
+- Home page displays the to-do list component and the user's calendar.
+    - to-do list component includes the user's task list with options to click to edit delete or mark complete.
+- Calendar page shows the calendar day/week/month view to schedule tasks
+- Stats page is part of the future implementation which will include completed tasks, larger goals and the journey diagram to see where tasks are in comparison to large goals and projects
+- About page includes information for the user how to use JourneyTasks, information tips about how to be more productive and the idea about JourneyTasks.
 
 ### Mockups
 
