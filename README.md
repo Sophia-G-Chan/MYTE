@@ -73,19 +73,22 @@ List the functionality that your app will include. These can be written as user 
 
 List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
 
-- client libraries
-    - react
-    - react-router-dom
-    - axios
-    - react-google-calendar
-    - react-week-calendar
-    - react-calendar
-    - tailwindscss
+The front end will be build using React.
+- Client libraries used are:
+    - <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
+    - [react-router-dom](https://www.npmjs.com/package/react-router-dom) which uses [react-router](https://www.npmjs.com/package/react-router)
+    - [axios](https://www.npmjs.com/package/axios
+    )
+    - [react-google-calendar](https://www.npmjs.com/package/react-google-calendar-api)
+    - [react-week-calendar](https://www.npmjs.com/package/react-week-calendar)
+    - [react-calendar](https://www.npmjs.com/package/react-calendar)
+    - tailwindscss <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a>
 
 - servers libraries
-    - knex
-    - express
-    - bycrypt for password hashing
+    - [knex](https://www.npmjs.com/package/knex)
+    - express <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
+    - node.js<a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
+    - Future Implementation: [bycrypt for password hashing](https://www.npmjs.com/package/bookshelf-bcryptjs)
 
 ### APIs
 
@@ -111,11 +114,13 @@ List technologies that will be used in your app, including any libraries to save
 - About page includes information for the user how to use JourneyTasks, information tips about how to be more productive and the idea about JourneyTasks.
 
 ### Mockups
-The site will be built using a mobile first approach
+The site will be built using a mobile first approach:
 
 | Mobile Home Page  | Mobile Calendar Page | Mobile About Page     |
 | :--------  | :-------- |  :-------- |
 | <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  |<img src='public/assets/mobile/journeytask-about-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px; height: auto;'> |
+
+Then desktop will be designed:
 
 | Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page | Tablet/Desktop About Page     |
 | :--------  | :-------- |  :-------- |
@@ -124,45 +129,124 @@ The site will be built using a mobile first approach
 ### Data
 
 Describe your data and the relationships between the data points. You can show this visually using diagrams, or write it out.
+- users
+- tasks
+- calendar events
+- task stats
 
 ### Endpoints
-
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
+#### Get all tasks
+
+```http
+  GET /tasks
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `api_key` | `string` |  **Required** Your API key |
+
+#### Adds a new task
+
+```http
+  POST /tasks
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `api_key` | `string` |  **Required** Your API key |
+#### Edits a task
+
+```http
+  PUT /tasks/:id
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `id` | `number` |  **Required** Id of a task is needed to edit a task |
+
+#### Removes a task from the task list
+
+```http
+  DELETE /tasks/:id
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `id` | `number` |  **Required** Id of a task is needed to delete a task |
 
 ## Roadmap
+- Day 1 (Sept 10): Set-up Front-End & Back-End apps
+    - Set up the React front-end and create basic components.
+    - Create github repo for front-end and back-end
+    - install dependencies and libraries
+    - create empty folders
+    - update git ignore to include necessary files (.env, node_modules)
+- Day 2 (Sept 11): Import Calendar API, Set up Database & Back-End
+    - Research and gain understanding of google calendar API vs outlook calendar API. Choose one to create a MVP with.
+    - using knex create migration file, seed data
+    - create back end server
+    - create express routes
+    - create different endpoints with functionality (see [endpoints](#endpoints))
+- Day 3 - 5 (Sept 12-14): Develop core to-do list features
+    - create color variables, media mixins
+    - likely Day 3-4 will have minimal work as the industry project is happening (24 hour hackathon)
+    - task creation
+    - form list the to-do list should be a form element where a user can create, edit, and delete an item in the list
+    - styling
+- Day 6 + 7 (Sept 15 + 16): Calendar feature
+    - load calendar data
+    - style calendar component
+- Day 8 (Sept 17): testing & About page
+    - testing for bugs
+    - Add information about the app, additional features the user can use
+- Day 9 (Sept 18): Add accessibility features
+    - Create a useContent for accessibility features
+    - create theme change functionality
+- Day 10 (Sept 19): further testing & refine UI
+    - further testing for bugs
+    - Create a list of items that needs to be fixed
+- Day 11 (Sept 20): Fix bugs & testing again
+    - leave time to fix bugs and testing again
+- Day 12 (Sept 21): Update README File for Back-End & Front-End
+    - include additional information for the user about how to access the app and use the code.
+    - if there is time and functionality Deploy app
+    - If there is extra time push to main and then crete further feature branches of future implementations.
+- ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
-Scope your project as a sprint. Break down the tasks that will need to be completed and map out timeframes for implementation working back from the capstone due date.
 
 ---
 
 ## Future Implementations
-Your project will be marked based on what you committed to in the above document. Here, you can list any additional features you may complete after the MVP of your application is built, or if you have extra time before the Capstone due date.
 
-- Additional pages/widgest
-    - weather
-    - pomodor timer
-    - sorting to do list based on Eisenhower Matrix (Urgent/Important, Not Urgent/important, Urgent/Unimportant, Not Urgent/Unimportant)
-    - Goals/ sub items/bigger goal relationships so that this can be used to visualize the journey to completing goals/large tasks
-    - Accesibilty toggle add-ons:
-        - Customize colors to user preference
-        - Blidness
-        - Visually impaired
-        - motor skill disorders
-        - colour blindness
-        - Epilepsy
-        - ADHD
-        - Learning
-        - Elder
+- Goals/ sub items/bigger goal relationships so that this can be used to visualize the journey to completing goals/large tasks
+- Current Weather feature displayed on calendar
+- Pomodoro timer page
+- Sorting Page
+    - Based on Eisenhower Matrix (Urgent/Important, Not Urgent/important, Urgent/Unimportant, Not Urgent/Unimportant)
+    - Or tasks can be sorted by categories. Will need to add Categories to the to do list component and database
+- Accessibility toggle add-ons:
+    - Customize colors to user preference
+    - Blindness read out loud feature
+    - Visually impaired
+    - motor skill disorders
+    - colour blindness
+    - Epilepsy
+    - ADHD
+    - Learning
+    - Elder
 
+- AI-assisted rescheduling
     - Utilize AI to help reschedule tasks to the next open slot - would need to shift all other tasks
--   Energy tracker/data tracker of what you do ~ helps improve efficency when you know what time of day you have more/less energy
-- Provide suggestions on duration based on past feedback about how long tasks have taken to complete.
-- Eventually this could be used by employers to better understand where bottlenecks are or where their employees are getting bogged down (such as meetings)
-- Categories for to do list
+-  Energy Tracker
+    - Understanding your energy levels during the day and with tasks helps improve efficency. When you feel more energized you are more able to complete more tasks and more difficult tasks.  Knowing what time of day you have more/less energy can help you better manage your time and tasks.
+- Stats page
+    -  Provide suggestions on duration based on past feedback about how long tasks have taken to complete.
+    - Eventually this could be used by employers to better understand where bottlenecks are or where their employees are getting bogged down (such as meetings)
+
 - Filter feature to filter only tasks for a day, week, month, or category
 - Nodemailer for email notifications of daily task summaries
-
-#### OpenAI API for future AI scheduling
+- OpenAI API for future AI scheduling
 | End Point   | Description              |
 | :--------   | :------------------------- |
 |coming soon  | this end point is for getting the calendar events of a user|
