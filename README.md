@@ -113,11 +113,13 @@ List technologies that will be used in your app, including any libraries to save
 ### Mockups
 The site will be built using a mobile first approach
 
-| Home Page  | Calendar  | About      |
+| Mobile Home Page  | Mobile Calendar Page | Mobile About Page     |
 | :--------  | :-------- |  :-------- |
-| ![mock up example of the home page for mobile](public/assets/mobile/journeytask-home-mockup.png) | ![mock up example of the calendar page for mobile](public/assets/mobile/journeytask-calendar-mockup.png)  ![mock up example of the calendar page for mobile](public/assets/mobile/journeytask-calendar-month-mockup.png) |![mock up example of the about page for mobile](public/assets/mobile/journeytask-about-mockup.png) |
+| <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  |<img src='public/assets/mobile/journeytask-about-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px; height: auto;'> |
 
-<blockquote class="imgur-embed-pub" lang="en" data-id="a/hNqi5WR" data-context="false" ></blockquote><script async src="//s.imgur.com/min/embed.js" charset="utf-8"></script>
+| Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page | Tablet/Desktop About Page     |
+| :--------  | :-------- |  :-------- |
+| <img src='public/assets/desktop/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'>  |<img src='public/assets/desktop/journeytask-about-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%; height: auto;'> |
 
 ### Data
 
