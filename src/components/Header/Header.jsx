@@ -1,10 +1,29 @@
 import './Header.scss'
+import logo from '../../../public/assets/logos/journeytask-logo.svg'
+import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <div>
+    <header className='flex border-b-2 border-neutral-700'>
+      <img src={logo} className='w-10 h-10 blue' />
+      <h2 className='grow'>JourneyTask</h2>
+      <nav>
+        <ul className='flex'>
+          <li className='p-2'>
+            <Link to='/calendar'>
+              Calendar
+            </Link>
+          </li>
+          <li className='p-2'>
+            <Link to='/'>
+              To Do List
+            </Link>
+          </li>
+        </ul>
 
-    </div>
+      </nav>
+
+    </header>
   )
 }
 
