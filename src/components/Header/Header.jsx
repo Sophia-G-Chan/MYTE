@@ -5,8 +5,11 @@ import { Link } from 'react-router-dom'
 function Header() {
   return (
     <header className='flex border-b-2 border-neutral-700'>
-      <img src={logo} className='w-10 h-10 blue' />
-      <h2 className='grow'>JourneyTask</h2>
+      <Link to='/' className='flex grow items-center'>
+        <img src={logo} className='w-10 h-10 blue' />
+        <h2 className='align-middle'>JourneyTask</h2>
+      </Link>
+
       <nav>
         <ul className='flex'>
           <li className='p-2'>
