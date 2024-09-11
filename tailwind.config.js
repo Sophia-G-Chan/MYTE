@@ -10,5 +10,7 @@ export default {
       'blue': '#1fb6ff'
     }
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
