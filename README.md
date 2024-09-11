@@ -53,11 +53,13 @@ JourneyTask is for:
 ## Implementation
 1. Basic components
     - Routes
+    - tailwind understanding and implementation
+
 2. Create Database
-    - login/users (nice to have)
-    - Goal (nice to have)
+    - login/users (for future implemenetation)
+    - Goal (for future implementation)
     - To Do List (MVP: id, user_id, task_name, start date, duration, end date, status )
-    - Calendar?
+    - Calendar database (not too sure if the API can be called and no data needs to be saved or if we need to save calendar events?)
 
 3. Import Calendar APIs
     - Google Calendar (MVP)
@@ -76,7 +78,7 @@ JourneyTask is for:
 ### Tech Stack
 
 - <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
-- <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
+- <a href="https://expressjs.com" target="_blank" rel="noreferrer"> express <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40" style="filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(16deg) brightness(100%) contrast(104%);"/> </a>
 - <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a>
 - Client libraries used are:
     - [react-router-dom](https://www.npmjs.com/package/react-router-dom) which uses [react-router](https://www.npmjs.com/package/react-router)
@@ -94,21 +96,29 @@ JourneyTask is for:
 
 - Google Calendar API
 - Outlook Calendar API
-    - Pro: this has good examples of what the data looks like
+
+- Limitations for Calendar APIs
+    - Both are limited by rate limits
+    - authenitication may be complex with tokens required
+    - sync issues
+    - real-time updates could be difficult
 
 ### APIs
 
 #### Google Calendar API
 | End Point   | Description              |
 | :-------- | :------------------------- |
-|Get| this end point is for getting the calendar events of a user|
-
+|GET| Returns an access control rule.|
+|POST| all my Creates an access control rule.|
+|DELETE | Deletes an access control rule. |
+|PATCH | Updates an access control rule. |
 
 #### Outlook Calendar API
 | End Point   | Description              |
 | :-------- | :------------------------- |
-|Get| this end point is for getting the calendar events of a user|
-
+|GET| all events in my calendar|
+|GET| all my calendars|
+|POST | schedule a meeting|
 ### Sitemap
 
 ![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
@@ -194,9 +204,9 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - create different endpoints with functionality (see [endpoints](#endpoints))
 - Day 3 - 5 (Sept 12-14): Develop core to-do list features
     - create color variables, media mixins in tailwind
-    - likely Day 3-4 will have minimal work as the industry project is happening (24 hour hackathon)
     - task creation
-    - form list the to-do list should be a form element where a user can create, edit, and delete an item in the list
+    - form
+        - the to-do list should be a form element where a user can create, edit, and delete an item in the list
     - styling
 - Day 6 + 7 (Sept 15 + 16): Calendar feature
     - load calendar data
@@ -218,7 +228,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - If there is extra time push to main and then crete further feature branches of future implementations.
 - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
-### Milestone 2: Add accessibility features
+### Milestone 2: Add Sign-In & accessibility features
 - allows the user to customize their to-do list
 
 ### Milestone 3: Add larger goal/projects to get Journey view/projection
