@@ -94,21 +94,29 @@ JourneyTask is for:
 
 - Google Calendar API
 - Outlook Calendar API
-    - Pro: this has good examples of what the data looks like
+
+- Limitations for Calendar APIs
+    - Both are limited by rate limits
+    - authenitication may be complex with tokens required
+    - sync issues
+    - real-time updates could be difficult
 
 ### APIs
 
 #### Google Calendar API
 | End Point   | Description              |
 | :-------- | :------------------------- |
-|Get| this end point is for getting the calendar events of a user|
-
+|GET| Returns an access control rule.|
+|POST| all my Creates an access control rule.|
+|DELETE | Deletes an access control rule. |
+|PATCH | Updates an access control rule. |
 
 #### Outlook Calendar API
 | End Point   | Description              |
 | :-------- | :------------------------- |
-|Get| this end point is for getting the calendar events of a user|
-
+|GET| all events in my calendar|
+|GET| all my calendars|
+|POST | schedule a meeting|
 ### Sitemap
 
 ![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
