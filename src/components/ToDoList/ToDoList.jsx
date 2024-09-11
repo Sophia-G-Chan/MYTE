@@ -2,7 +2,7 @@
 function ToDoList() {
   return (
     <div>
-      <form className='flex'>
+      <form className='flex min-h-96'>
         <label className='flex-col'>
           Task
           <input type='text' placeholder="TEST 1"></input>
