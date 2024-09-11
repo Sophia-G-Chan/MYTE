@@ -19,7 +19,7 @@
 
 ## Overview
 
-JourneyTask is a task management app that combines time planning with your to-do list. Unlike regular to-do lists, JourneyTask allows you to assign time estimates for tasks and seamlessly add them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
+JourneyTask is a task management app that combines time planning with your to-do list. Unlike regular to-do lists, JourneyTask allows you to assign time estimates for tasks and seamlessly adds them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
 
 
 ### Problem Space
@@ -30,21 +30,26 @@ Regular apps either focus on lists without accounting for the time required to c
 - Or if you only use calendar without to-do list, this does not account for completion of task.
 - Example of others having this [problem](https://answers.microsoft.com/en-us/msoffice/forum/all/how-can-i-integrate-the-to-do-tasks-into-the/9ba1819a-40e6-42da-9805-8f99a3cb0deb)
 
-JouneyTaks address this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
+JouneyTaks addresses this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
 
 ### User Profile
 
 JourneyTask is for:
 - A user that wants to make a to-do lists but have it accessible from any device connected to the internet.
-- A user who juggles multiple responsibilities and needs help managing time-based tasks.
+- A user who juggles multiple responsibilities and needs help managing time-based tasks at work.
+    - **special consideration** would be needed for extra security as large companies may not want a 3rd party app accessing their calendar data.
 - A user who needs help balancing school work, assignments, extracurriculars, and study time.
 - A user who needs to coordinate family activities, personal tasks, and work commitments.
-- A neurodiverse user who needs flexible scheduling and better task organization.
+- A neurodiverse user who needs flexible scheduling, better task organization, and customization.
 
 ### Features
 
-List the functionality that your app will include. These can be written as user stories or descriptions with related details. Do not describe _how_ these features are implemented, only _what_ needs to be implemented.
-- As a user I want to be able to...
+- As a user, I want to be able to add tasks to my to-do list
+- As a user, I want to be able to edit any task in my to-do list
+- As a user, I want to be able to read all my current tasks in my to-do list
+- As a user, I want to be able to delete a tasks in my to-do list.
+
+- As a user, I want to be able to see my scheduled tasks in a daily, weekly, or monthly calendar view
 
 ## Implementation
 1. Basic components
@@ -66,16 +71,15 @@ List the functionality that your app will include. These can be written as user 
     - Customize font size (toggle between small, medium, large)
     - Font family switch to dyslexia
     - Contrast view (black with neon font)
-    - accessible button moves anywhere on the screen
+    - Accessible button moves anywhere on the screen
 
 
 ### Tech Stack
 
-List technologies that will be used in your app, including any libraries to save time or provide more functionality. Be sure to research any potential limitations.
-
-The front end will be build using React.
+- <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
+- <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
+- <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a>
 - Client libraries used are:
-    - <a href="https://reactjs.org/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" alt="react" width="40" height="40"/> </a>
     - [react-router-dom](https://www.npmjs.com/package/react-router-dom) which uses [react-router](https://www.npmjs.com/package/react-router)
     - [axios](https://www.npmjs.com/package/axios
     )
@@ -86,9 +90,12 @@ The front end will be build using React.
 
 - servers libraries
     - [knex](https://www.npmjs.com/package/knex)
-    - express <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a>
     - node.js<a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
     - Future Implementation: [bycrypt for password hashing](https://www.npmjs.com/package/bookshelf-bcryptjs)
+
+- Google Calendar API
+- Outlook Calendar API
+    - Pro: this has good examples of what the data looks like
 
 ### APIs
 
@@ -110,29 +117,24 @@ The front end will be build using React.
 - Home page displays the to-do list component and the user's calendar.
     - to-do list component includes the user's task list with options to click to edit delete or mark complete.
 - Calendar page shows the calendar day/week/month view to schedule tasks
-- Stats page is part of the future implementation which will include completed tasks, larger goals and the journey diagram to see where tasks are in comparison to large goals and projects
-- About page includes information for the user how to use JourneyTasks, information tips about how to be more productive and the idea about JourneyTasks.
+- (Future Implementation) Stats page is part of the future implementation which will include completed tasks, larger goals and the journey diagram to see where tasks are in comparison to large goals and projects
+- (Future Implementation) About page includes information for the user how to use JourneyTask, information tips about how to be more productive and the idea about JourneyTask.
 
 ### Mockups
 The site will be built using a mobile first approach:
 
-| Mobile Home Page  | Mobile Calendar Page | Mobile About Page     |
-| :--------  | :-------- |  :-------- |
-| <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  |<img src='public/assets/mobile/journeytask-about-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px; height: auto;'> |
+| Mobile Home Page  | Mobile Calendar Page      |
+| :--------  | :-------- |
+| <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  | |
 
 Then desktop will be designed:
 
-| Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page | Tablet/Desktop About Page     |
-| :--------  | :-------- |  :-------- |
-| <img src='public/assets/desktop/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'>  |<img src='public/assets/desktop/journeytask-about-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%; height: auto;'> |
+| Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page  |
+| :--------  | :--------  |
+| <img src='public/assets/desktop/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> |
 
 ### Data
-
-Describe your data and the relationships between the data points. You can show this visually using diagrams, or write it out.
-- users
-- tasks
-- calendar events
-- task stats
+![image of a data map with three tables users, tasks, calendar_events](public/assets/sql-diagram.png)
 
 ### Endpoints
 List endpoints that your server will implement, including HTTP methods, parameters, and example responses.
@@ -176,6 +178,9 @@ List endpoints that your server will implement, including HTTP methods, paramete
 | `id` | `number` |  **Required** Id of a task is needed to delete a task |
 
 ## Roadmap
+### Milestone 1: create a minimum viable product
+- MVP = where a user can add a task, edit a task, delete task, and view this from a list or calendar.
+
 - Day 1 (Sept 10): Set-up Front-End & Back-End apps
     - Set up the React front-end and create basic components.
     - Create github repo for front-end and back-end
@@ -189,7 +194,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - create express routes
     - create different endpoints with functionality (see [endpoints](#endpoints))
 - Day 3 - 5 (Sept 12-14): Develop core to-do list features
-    - create color variables, media mixins
+    - create color variables, media mixins in tailwind
     - likely Day 3-4 will have minimal work as the industry project is happening (24 hour hackathon)
     - task creation
     - form list the to-do list should be a form element where a user can create, edit, and delete an item in the list
@@ -213,6 +218,30 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - if there is time and functionality Deploy app
     - If there is extra time push to main and then crete further feature branches of future implementations.
 - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
+
+### Milestone 2: Add accessibility features
+- allows the user to customize their to-do list
+
+### Milestone 3: Add larger goal/projects to get Journey view/projection
+- completing one tasks of a larger goal/project will show the percentage completed of the larger goal.
+
+### Milestone 4: Add AI integration
+- integrate AI model to help users move tasks if they are invited to meeting or task is taking longer
+- smart complete for tasks in a project, this might be allowing the user to create re-usable work flows that remember the tasks in a project so that when a user creates the same project again it knows what tasks are needed and dependent on each other.
+
+### Milestone 5: integrate data analysis
+- Research appropriate types of analysis that could be used such as a python library?
+- suggested durations based on tasks name
+
+### Milestone 6: add additional widgets
+- current time in calendar app
+- task management resources such as Pomodor timer, sort page
+- email notifications
+
+### Milestone 7: Collaboration
+- implement a feature to allow users to collaborate across different users the tasks
+
+
 
 
 ---
@@ -251,3 +280,14 @@ List endpoints that your server will implement, including HTTP methods, paramete
 | End Point   | Description              |
 | :--------   | :------------------------- |
 |coming soon  | this end point is for getting the calendar events of a user|
+
+### Features
+- As a user, I want to be able to see completed tasks
+- As a user, I want to be able to read about how to use the to-do list
+- As a user, I want to be able to customize my to-do list to make it my own based on my preferences and needs
+- As a user, I want to be able to better manage my tasks utilizing data analysis of when I am productive based on energy levels and how long tasks are taking.
+- As a user, I want to be able to receive notifications for tasks or summary of important tasks.
+- As a user, I want to be able to prioritize tasks.
+- As a user, I want to be able to marks tasks "in progress" or "completed" to better track my progress
+- As a user, I want to be able to set recurring tasks for daily, weekly, or monthly schedules.
+- As a user, I want to be able to collaborate on larger projects and tasks.
