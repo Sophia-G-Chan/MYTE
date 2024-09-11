@@ -228,27 +228,6 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - If there is extra time push to main and then crete further feature branches of future implementations.
 - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
-### Milestone 2: Add Sign-In & accessibility features
-- allows the user to customize their to-do list
-
-### Milestone 3: Add larger goal/projects to get Journey view/projection
-- completing one tasks of a larger goal/project will show the percentage completed of the larger goal.
-
-### Milestone 4: Add AI integration
-- integrate AI model to help users move tasks if they are invited to meeting or task is taking longer
-- smart complete for tasks in a project, this might be allowing the user to create re-usable work flows that remember the tasks in a project so that when a user creates the same project again it knows what tasks are needed and dependent on each other.
-
-### Milestone 5: integrate data analysis
-- Research appropriate types of analysis that could be used such as a python library?
-- suggested durations based on tasks name
-
-### Milestone 6: add additional widgets
-- current time in calendar app
-- task management resources such as Pomodor timer, sort page
-- email notifications
-
-### Milestone 7: Collaboration
-- implement a feature to allow users to collaborate across different users the tasks
 
 
 
@@ -300,3 +279,27 @@ List endpoints that your server will implement, including HTTP methods, paramete
 - As a user, I want to be able to marks tasks "in progress" or "completed" to better track my progress
 - As a user, I want to be able to set recurring tasks for daily, weekly, or monthly schedules.
 - As a user, I want to be able to collaborate on larger projects and tasks.
+
+## Roadmap
+
+### Milestone 2: Add Sign-In & accessibility features
+- allows the user to customize their to-do list
+
+### Milestone 3: Add larger goal/projects to get Journey view/projection
+- completing one tasks of a larger goal/project will show the percentage completed of the larger goal.
+
+### Milestone 4: Add AI integration
+- integrate AI model to help users move tasks if they are invited to meeting or task is taking longer
+- smart complete for tasks in a project, this might be allowing the user to create re-usable work flows that remember the tasks in a project so that when a user creates the same project again it knows what tasks are needed and dependent on each other.
+
+### Milestone 5: integrate data analysis
+- Research appropriate types of analysis that could be used such as a python library?
+- suggested durations based on tasks name
+
+### Milestone 6: add additional widgets
+- current time in calendar app
+- task management resources such as Pomodor timer, sort page
+- email notifications
+
+### Milestone 7: Collaboration
+- implement a feature to allow users to collaborate across different users the tasks
