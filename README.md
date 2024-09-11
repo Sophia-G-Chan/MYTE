@@ -53,11 +53,13 @@ JourneyTask is for:
 ## Implementation
 1. Basic components
     - Routes
+    - tailwind understanding and implementation
+
 2. Create Database
-    - login/users (nice to have)
-    - Goal (nice to have)
+    - login/users (for future implemenetation)
+    - Goal (for future implementation)
     - To Do List (MVP: id, user_id, task_name, start date, duration, end date, status )
-    - Calendar?
+    - Calendar database (not too sure if the API can be called and no data needs to be saved or if we need to save calendar events?)
 
 3. Import Calendar APIs
     - Google Calendar (MVP)
