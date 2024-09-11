@@ -2,8 +2,8 @@ import React from 'react'
 
 function Calendar() {
   return (
-    <div>
-      <h1>Calendar</h1>
+    <div className='rounded border-2 border-blue'>
+      <h1>Calendar Component</h1>
     </div>
   )
 }
