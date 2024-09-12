@@ -10,6 +10,7 @@ import enUS from 'date-fns/locale/en-US'
 import toastCalendar from '@toast-ui/calendar'
 import '@toast-ui/calendar/dist/toastui-calendar.min.css'
 import './Calendar.scss'
+import 'react-datepicker/dist/react-datepicker.css'
 
 const locales = {
   'en-US': enUS,
@@ -27,18 +28,20 @@ const events = [
   {
     title: "big project",
     allDay: true,
-    start: new Date(2024,9,11),
-    end: new Date(2024,9,22)
+    start: new Date(2024,8, 11),
+    end: new Date(2024,8, 22)
   },
   {
     title: "test",
-    start: new Date(2024,9,13),
-    end: new Date(2024,9,13)
+    allDay: false,
+    start: new Date(2024, 8, 13, 15, 30, 0),
+    end: new Date(2024, 8, 13, 18, 30, 0)
   }
 ]
 console.log(events)
 
 function CalendarComponent() {
+
   const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allEvents, setAllEvents] = useState(events);
 
@@ -79,8 +82,14 @@ function CalendarComponent() {
 
 
       </div> */}
-
-      <Calendar localizer={localizer} events={events} startAccessor='start' endAccessor="end" style={{ height: 500, margin: "50px" }} />
+      <label className='flex-col'>
+        Task
+        <input type='text' placeholder="TEST 1" value={newEvent.title} onChange={(e) => setNewEvent({ ...newEvent, title: e.target.value })}></input>
+      </label>
+      <DatePicker placeholderText='Start Date' style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+      <DatePicker placeholderText='End Date' style={{ marginRight: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+        <button style={{marginTop: "10px"}} onClick={handleAddEvent}>Add event</button>
+      <Calendar localizer={localizer} events={allEvents} startAccessor='start' endAccessor="end" style={{ height: 500, margin: "50px" }} />
     </div>
   )
 }
