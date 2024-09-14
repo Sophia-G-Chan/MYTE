@@ -16,8 +16,8 @@ function ToDoList() {
     <div>
       <form className='flex min-h-96'>
         <label className='flex-col'>
-          Task Name
-          <input type='text' placeholder="TEST 1"></input>
+          Task
+          <input type='text' placeholder="TEST 1" ></input>
         </label>
         <label>
           Start Date
