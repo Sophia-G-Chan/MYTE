@@ -18,6 +18,12 @@ class Api {
             console.log('Unable to get all tasks')
         }
     }
+
+    //TODO: POST
+
+     //TODO: edit
+
+      //TODO: delete
 }
 
 export {
