@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Api } from "../../api/Api"
 
 function ToDoList() {
   const api = new Api();
-  const [allTasks, setAllTasks] = useState([]);
 
   const getAllTasks = async () => {
-    const { data } = await api.getAllTasks();
+    const data = await api.getAllTasks();
     console.log(data)
     console.log('getAllTask function is running')
-    setAllTasks(data);
-    console.log(allTasks)
   }
   useEffect(() => {
-    getAllTasks()
+    getAllTasks
   }, [])
-
   return (
     <div>
       <form className='flex min-h-96'>
