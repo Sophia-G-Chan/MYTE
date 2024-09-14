@@ -1,11 +1,27 @@
+import { useEffect, useState } from "react";
+import { Api } from "../../api/Api"
 
 function ToDoList() {
+  const api = new Api();
+  const [allTasks, setAllTasks] = useState([]);
+
+  const getAllTasks = async () => {
+    const { data } = await api.getAllTasks();
+    console.log(data)
+    console.log('getAllTask function is running')
+    setAllTasks(data);
+    console.log(allTasks)
+  }
+  useEffect(() => {
+    getAllTasks()
+  }, [])
+
   return (
     <div>
       <form className='flex min-h-96'>
         <label className='flex-col'>
           Task
-          <input type='text' placeholder="TEST 1"></input>
+          <input type='text' placeholder="TEST 1" ></input>
         </label>
         <label>
           Start Date
@@ -24,6 +40,11 @@ function ToDoList() {
           <input type='text' placeholder="TEST 3"></input>
         </label>
       </form>
+      {allTasks?.map((task) => {
+        return (
+          <p key={task.task_id} >{task.task_name}</p>
+        )
+      })}
     </div>
   )
 }
