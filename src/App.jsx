@@ -4,7 +4,7 @@ import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
 import Home from "./pages/Home/Home"
 import NotFound from "./pages/NotFound"
-import Calendar from "./components/Calendar/Calendar"
+import CalendarPage from "./pages/CalendarPage/CalendarPage.jsx"
 import { useSession, useSupabaseClient, useSessionContext } from "@supabase/auth-helpers-react"
 import DateTimePicker from "react-datetime-picker"
 import axios from "axios"
@@ -93,20 +93,6 @@ function App() {
         {session ?
           <>
             <h3>Hey there {session.user.email}</h3>
-            <p>Start of your task</p>
-            <div>
-
-              <DateTimePicker style={{ width: 'auto' }} onChange={setStart} value={start} />
-            </div>
-            <p>End date and time of your task</p>
-            <DateTimePicker onChange={setEnd} value={end} />
-            <p>Task</p>
-            <input type='text' onChange={(event) => setEventName(event.target.value)} />
-            <p>Description</p>
-            <input type='text' onChange={(event) => setEventDescription(event.target.value)} />
-            <br></br>
-            <button onClick={() => createCalendarEvent()}> Create Calendar Event</button>
-            <br></br>
             <button onClick={() => googleSignOut()}>Sign Out</button>
           </>
           :
@@ -119,7 +105,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Home allTasks={allTasks} />} />
-          <Route path="/calendar" element={<Calendar allTasks={allTasks} />} />
+          <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
         <Footer />

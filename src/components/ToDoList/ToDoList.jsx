@@ -5,11 +5,14 @@ import { TasksContext } from "../../App";
 
 function ToDoList() {
   const formRef = useRef();
+
+  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
   const [allTasks, setAllTasks] = useContext(TasksContext);
 
   const handleAddChange = (event) => {
     event.preventDefault();
     console.log("button has been clicked")
+
     setAllTasks();
   }
 
@@ -27,13 +30,13 @@ function ToDoList() {
         </label>
         <label className='flex-col h-01'>
           Start Date & Time
-          <input type='text' placeholder="TEST 2"></input>
+
           <DateTimePicker disableClock={false} placeholderText='Start Date' style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-          <DateTimePicker placeholderText='End Date' style={{ marginRight: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
+
         </label>
         <label className='flex-col h-01'>
           End Date & Time
-          <input type='text' placeholder="TEST 3"></input>
+          <DateTimePicker placeholderText='End Date' style={{ marginRight: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
         </label>
         <label className='flex-col h-01 '>
           Description
