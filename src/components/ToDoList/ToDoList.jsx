@@ -1,65 +1,141 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
-import DateTimePicker from 'react-datetime-picker';
 import { TasksContext } from "../../App";
+import saveIcon from "../../assets/icons/save.svg"
+import deleteIcon from "../../assets/icons/delete.svg"
+import './ToDoList.scss'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 function ToDoList() {
-  const formRef = useRef();
+	const formRef = useRef();
+	const api = new Api();
+	const [allTasks, setAllTasks] = useContext(TasksContext) || [];
+	const [startDate, setStartDate] = useState(new Date())
+	const [endDate, setEndDate] = useState(new Date())
 
-  const [newEvent, setNewEvent] = useState({ title: "", start: "", end: "" });
-  const [allTasks, setAllTasks] = useContext(TasksContext);
+	const [newTask, setNewTask] = useState({
+		task_name: "",
+		description: "",
+		start: startDate,
+		end: endDate,
+		status: false
+	})
 
-  const handleAddChange = (event) => {
-    event.preventDefault();
-    console.log("button has been clicked")
+	const handleInputChange = (event) => {
+		const { name, value, type, checked } = event.target;
+		setNewTask((previousState) => ({
+			...previousState,
+			[name]: type === 'checkbox' ? checked : value,
+		}))
+	}
 
-    setAllTasks();
-  }
+	const editTask = (task_id) => {
+		console.log(`you want to edit ${task_id}`)
+	}
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+		console.log("button has been clicked")
+
+		const taskData = {
+			user_id: 1,
+			task_name: newTask.task_name,
+			description: newTask.description,
+			start_date_and_time: newTask.start.toISOString(),
+			end_date_and_time: newTask.end.toISOString(),
+			status:  "In Progress"
+		}
+		console.log(taskData.start_date_and_time)
+		console.log(taskData.end_date_and_time)
+		try {
+			const response  = await api.addATask(taskData);
+			setAllTasks(prevTasks => [...prevTasks, response]);
+			formRef.current.reset()
+		} catch (error) {
+			console.log('there is an error getting the POST api', error)
+		}
+	}
+
+	const handleDelete = async (taskId) =>{
+		try {
+			await api.deleteATask(taskId);
+		}catch(error){
+			console.error("Failed to delete task")
+		}
+
+	}
+	useEffect(() => {
+		setNewTask((previousState) => ({
+			...previousState,
+			start: startDate,
+			end: endDate
+		}))
+	}, [allTasks, startDate, endDate])
+
+	return (
+		<div>
+			<form className='flex min-h-auto' ref={formRef}>
+				<label className='flex-col h-01 '>
+					Complete
+					<input
+						type='checkbox'
+						name="status"
+						checked={newTask.status}
+						onChange={handleInputChange}>
+					</input>
+				</label>
+				<label className='flex-col h-01' >
+					Task
+					<input
+						type='text'
+						name="task_name"
+						value={newTask.task_name}
+						placeholder="Task Name"
+						onChange={handleInputChange}>
+					</input>
+				</label>
+				<label className='flex-col h-01'>
+					Start Date & Time
+					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate} onChange={setStartDate} />
+
+				</label>
+				<label className='flex-col h-01'>
+					End Date & Time
+					<DateTimePicker selected={endDate} onChange={setEndDate} />
+				</label>
+				<label className='flex-col h-01 '>
+					Description
+					<input
+						type='text'
+						name="description"
+						value={newTask.description}
+						placeholder="Description"
+						className="grow"
+						onChange={handleInputChange}>
+					</input>
+				</label>
+				<button onClick={handleSubmit}>Add task</button>
+			</form>
+
+			{allTasks?.map((task) => {
+				return (
+					<form>
+						<input type='checkbox' ></input>
+						<input type='text' key={task.task_id} value={task.task_name} onChange={() => console.log("TODO still")} ></input>
+						<input type='text' key={task.start_date_and_time} value={task.start_date_and_time} onChange={() => console.log("TODO still")}></input>
+						<input type='text' placeholder="need to add calculation to calculate duration"></input>
+						<input type='text' key={task.description} value={task.description} onChange={() => console.log("TODO still")}></input>
+						<div>
+							<img src={saveIcon} alt='save icon'  onClick={() => editTask(task.task_id)} />
+							<img src={deleteIcon} alt='trash bin icon' onClick={() => handleDelete(task.task_id)}  />
+						</div>
+					</form>
+				)
+			})}
 
 
-  return (
-    <div>
-      <form className='flex min-h-auto' ref={formRef}>
-        <label className='flex-col h-01 '>
-          Complete
-          <input type='checkbox' ></input>
-        </label>
-        <label className='flex-col h-01' >
-          Task
-          <input type='text' placeholder="TEST 1" ></input>
-        </label>
-        <label className='flex-col h-01'>
-          Start Date & Time
-
-          <DateTimePicker disableClock={false} placeholderText='Start Date' style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
-
-        </label>
-        <label className='flex-col h-01'>
-          End Date & Time
-          <DateTimePicker placeholderText='End Date' style={{ marginRight: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
-        </label>
-        <label className='flex-col h-01 '>
-          Description
-          <input type='text' placeholder="TEST 3" className="grow"></input>
-        </label>
-        <button onClick={handleAddChange}>Add task</button>
-      </form>
-
-      {allTasks?.map((task) => {
-        return (
-          <form>
-            <input type='checkbox' ></input>
-            <input type='text' key={task.task_id} value={task.task_name} onChange={() => console.log("TODO still")} ></input>
-            <input type='text' key={task.start_date_and_time} value={task.start_date_and_time} onChange={() => console.log("TODO still")}></input>
-            <input type='text'  placeholder="need to add calculation to calculate duration"></input>
-            <input type='text' key={task.description}  value={task.description} onChange={() => console.log("TODO still")}></input>
-          </form>
-        )
-      })}
-
-
-    </div>
-  )
+		</div>
+	)
 }
 
 export default ToDoList

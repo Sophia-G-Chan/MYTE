@@ -27,7 +27,7 @@ function CalendarComponent({allTasks}) {
   const [allEvents, setAllEvents] = useState([]);
 
   useEffect(() => {
-    const transformTasks = allTasks.map(task => ({
+    const transformTasks = allTasks?.map(task => ({
       title: task.task_name,
       start: new Date(task.start_date_and_time),
       end: new Date(task.end_date_and_time)
