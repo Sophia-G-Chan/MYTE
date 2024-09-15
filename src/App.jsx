@@ -6,9 +6,13 @@ import Home from "./pages/Home/Home"
 import NotFound from "./pages/NotFound"
 import CalendarPage from "./pages/CalendarPage/CalendarPage.jsx"
 import { useSession, useSupabaseClient, useSessionContext } from "@supabase/auth-helpers-react"
-import DateTimePicker from "react-datetime-picker"
+import * as React from 'react';
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider.js';
+
 import axios from "axios"
 import { Api } from "./api/Api.js"
+
 
 export const TasksContext = createContext();
 
@@ -87,28 +91,32 @@ function App() {
     await supabase.auth.signOut();
   }
   return (
-    <TasksContext.Provider value={[ allTasks, setAllTasks ]}>
+    <TasksContext.Provider value={[allTasks, setAllTasks]}>
 
-      <div style={{ width: "400px", margin: "30px auto" }}>
-        {session ?
-          <>
-            <h3>Hey there {session.user.email}</h3>
-            <button onClick={() => googleSignOut()}>Sign Out</button>
-          </>
-          :
-          <>
-            <button onClick={() => googleSignIn()}>Sign In with Google</button>
-          </>
-        }
-      </div>
+
       <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home allTasks={allTasks} />} />
-          <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-        <Footer />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+
+          <Header />
+          <div style={{ width: "400px", margin: "30px auto" }}>
+            {session ?
+              <>
+                <h3>Hey there {session.user.email}</h3>
+                <button onClick={() => googleSignOut()}>Sign Out</button>
+              </>
+              :
+              <>
+                <button onClick={() => googleSignIn()}>Sign In with Google</button>
+              </>
+            }
+          </div>
+          <Routes>
+            <Route path="/" element={<Home allTasks={allTasks} />} />
+            <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </LocalizationProvider>
       </BrowserRouter>
 
     </TasksContext.Provider>

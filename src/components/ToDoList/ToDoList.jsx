@@ -1,13 +1,15 @@
-import { useContext, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
-import DateTimePicker from 'react-datetime-picker';
 import { TasksContext } from "../../App";
-
+import saveIcon from "../../assets/icons/save.svg"
+import deleteIcon from "../../assets/icons/delete.svg"
+import './ToDoList.scss'
+import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const [allTasks, setAllTasks] = useContext(TasksContext);
+	const [allTasks, setAllTasks] = useContext(TasksContext) || [];
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -25,7 +27,10 @@ function ToDoList() {
 			...previousState,
 			[name]: type === 'checkbox' ? checked : value,
 		}))
-		console.log(newTask)
+	}
+
+	const editTask = (task_id) => {
+		console.log(`you want to edit ${task_id}`)
 	}
 
 	const handleSubmit = async (event) => {
@@ -38,15 +43,27 @@ function ToDoList() {
 			description: newTask.description,
 			start_date_and_time: newTask.start.toISOString(),
 			end_date_and_time: newTask.end.toISOString(),
-			status: newTask.status ? "Complete" : "In Progress"
+			status:  "In Progress"
 		}
+		console.log(taskData.start_date_and_time)
+		console.log(taskData.end_date_and_time)
 		try {
-			const { data } = await api.addATask(taskData);
+			const {data}  = await api.addATask(taskData);
+			console.log(data)
 			setAllTasks(data);
+			formRef.reset()
 		} catch (error) {
 			console.log('there is an error getting the POST api', error)
 		}
 	}
+
+	useEffect(() => {
+		setNewTask((previousState) => ({
+			...previousState,
+			start: startDate,
+			end: endDate
+		}))
+	}, [allTasks, startDate, endDate])
 
 	return (
 		<div>
@@ -72,12 +89,12 @@ function ToDoList() {
 				</label>
 				<label className='flex-col h-01'>
 					Start Date & Time
-					<DateTimePicker disableClock={false} selected={newTask.start} onChange={setStartDate} />
+					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate} onChange={setStartDate} />
 
 				</label>
 				<label className='flex-col h-01'>
 					End Date & Time
-					<DateTimePicker disableClock={false} selected={newTask.end} onChange={setEndDate} />
+					<DateTimePicker selected={endDate} onChange={setEndDate} />
 				</label>
 				<label className='flex-col h-01 '>
 					Description
@@ -101,6 +118,10 @@ function ToDoList() {
 						<input type='text' key={task.start_date_and_time} value={task.start_date_and_time} onChange={() => console.log("TODO still")}></input>
 						<input type='text' placeholder="need to add calculation to calculate duration"></input>
 						<input type='text' key={task.description} value={task.description} onChange={() => console.log("TODO still")}></input>
+						<div>
+							<img src={saveIcon} alt='save icon'  onClick={() => editTask(task.task_id)} />
+							<img src={deleteIcon} alt='trash bin icon' />
+						</div>
 					</form>
 				)
 			})}
