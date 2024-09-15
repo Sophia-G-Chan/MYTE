@@ -19,9 +19,7 @@ class Api {
     //TODO: POST
     async addATask (task) {
         try{
-            console.log(task)
             const response = await axios.post(`${this.baseUrl}/tasks`, task, { headers: { 'Content-Type': 'application/json' }});
-            console.log(response)
             return response.data
         } catch (error) {
             console.log('Unable to add task', error)
@@ -31,6 +29,13 @@ class Api {
      //TODO: edit
 
       //TODO: delete
+    async deleteATask (taskId){
+        try{
+            await axios.delete(`${this.baseUrl}/tasks/${taskId}`)
+        } catch (error){
+            console.log(`Failed to delete task item with id: ${taskId}`)
+        }
+    }
 }
 
 export {

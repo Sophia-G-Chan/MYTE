@@ -49,9 +49,6 @@ function ToDoList() {
 		console.log(taskData.end_date_and_time)
 		try {
 			const response  = await api.addATask(taskData);
-			console.log(response)
-			console.log(response.data)
-
 			setAllTasks(prevTasks => [...prevTasks, response]);
 			formRef.current.reset()
 		} catch (error) {
@@ -59,6 +56,14 @@ function ToDoList() {
 		}
 	}
 
+	const handleDelete = async (taskId) =>{
+		try {
+			await api.deleteATask(taskId);
+		}catch(error){
+			console.error("Failed to delete task")
+		}
+
+	}
 	useEffect(() => {
 		setNewTask((previousState) => ({
 			...previousState,
@@ -122,7 +127,7 @@ function ToDoList() {
 						<input type='text' key={task.description} value={task.description} onChange={() => console.log("TODO still")}></input>
 						<div>
 							<img src={saveIcon} alt='save icon'  onClick={() => editTask(task.task_id)} />
-							<img src={deleteIcon} alt='trash bin icon' />
+							<img src={deleteIcon} alt='trash bin icon' onClick={() => handleDelete(task.task_id)}  />
 						</div>
 					</form>
 				)
