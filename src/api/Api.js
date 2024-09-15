@@ -17,6 +17,14 @@ class Api {
     }
 
     //TODO: POST
+    async addATask (task) {
+        try{
+            const {data} = await axios.post(`${this.baseUrl}/tasks`, task);
+            return data
+        } catch (error) {
+            console.log('Unable to add task')
+        }
+    }
 
      //TODO: edit
 
