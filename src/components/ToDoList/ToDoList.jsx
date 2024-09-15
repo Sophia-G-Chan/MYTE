@@ -1,22 +1,22 @@
-import { useEffect, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { Api } from "../../api/Api"
+import DateTimePicker from 'react-datetime-picker';
+import { TasksContext } from "../../App";
 
 function ToDoList() {
-  const api = new Api();
-  const [allTasks, setAllTasks] = useState([]);
+  const formRef = useRef();
+  const [allTasks, setAllTasks] = useContext(TasksContext);
 
-  const getAllTasks = async () => {
-    const { data } = await api.getAllTasks();
-    setAllTasks(data);
+  const handleAddChange = (event) => {
+    event.preventDefault();
+    console.log("button has been clicked")
+    setAllTasks();
   }
 
-  useEffect(() => {
-    getAllTasks()
-  }, [])
 
   return (
     <div>
-      <form className='flex min-h-auto'>
+      <form className='flex min-h-auto' ref={formRef}>
         <label className='flex-col h-01 '>
           Complete
           <input type='checkbox' ></input>
@@ -28,15 +28,18 @@ function ToDoList() {
         <label className='flex-col h-01'>
           Start Date & Time
           <input type='text' placeholder="TEST 2"></input>
+          <DateTimePicker disableClock={false} placeholderText='Start Date' style={{ marginRight: "10px" }} selected={newEvent.start} onChange={(start) => setNewEvent({ ...newEvent, start })} />
+          <DateTimePicker placeholderText='End Date' style={{ marginRight: "10px" }} selected={newEvent.end} onChange={(end) => setNewEvent({ ...newEvent, end })} />
         </label>
         <label className='flex-col h-01'>
-          Duration
+          End Date & Time
           <input type='text' placeholder="TEST 3"></input>
         </label>
         <label className='flex-col h-01 '>
           Description
           <input type='text' placeholder="TEST 3" className="grow"></input>
         </label>
+        <button onClick={handleAddChange}>Add task</button>
       </form>
 
       {allTasks?.map((task) => {
