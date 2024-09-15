@@ -48,10 +48,12 @@ function ToDoList() {
 		console.log(taskData.start_date_and_time)
 		console.log(taskData.end_date_and_time)
 		try {
-			const {data}  = await api.addATask(taskData);
-			console.log(data)
-			setAllTasks(data);
-			formRef.reset()
+			const response  = await api.addATask(taskData);
+			console.log(response)
+			console.log(response.data)
+
+			setAllTasks(prevTasks => [...prevTasks, response]);
+			formRef.current.reset()
 		} catch (error) {
 			console.log('there is an error getting the POST api', error)
 		}

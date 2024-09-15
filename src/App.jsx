@@ -23,7 +23,6 @@ function App() {
 
   const getAllTasks = async () => {
     const { data } = await api.getAllTasks();
-    console.log(data)
     setAllTasks(data);
   }
 
