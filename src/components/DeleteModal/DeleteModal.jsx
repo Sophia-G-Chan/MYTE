@@ -1,5 +1,5 @@
 import './DeleteModal.scss';
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { TasksContext } from "../../App";
 import { Api } from "../../api/Api.js"
 import CloseIcon from '../../assets/icons/close.svg';
@@ -13,10 +13,7 @@ function DeleteModal({ taskId, task_name }) {
     const { setAllTasks, getAllTasks } = useContext(TasksContext);
     const api = new Api();
 
-    const openModal = () => {
-        console.log('opening modal')
-        setIsOpen(true);
-    }
+    const openModal = () => setIsOpen(true);
 
     const closeModal = () => setIsOpen(false);
 
@@ -29,6 +26,18 @@ function DeleteModal({ taskId, task_name }) {
             console.error("Failed to delete task")
         }
     }
+
+    useEffect(() => {
+        if (isOpen){
+            document.body.style.overflow = 'hidden';
+        } else {
+            document.body.style.overflow = 'unset'
+        }
+
+        return () => {
+            document.body.style.overflow = 'unset'
+        }
+    }, [isOpen])
     return (
         <div className='w-d'>
             <img className='cursor-pointer' src={DeleteIcon} onClick={openModal} />

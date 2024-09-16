@@ -16,7 +16,6 @@ class Api {
         }
     }
 
-    //TODO: POST
     async addATask (task) {
         try{
             const response = await axios.post(`${this.baseUrl}/tasks`, task, { headers: { 'Content-Type': 'application/json' }});
@@ -27,8 +26,13 @@ class Api {
     }
 
      //TODO: edit
+    async editATask (taskId, task) {
+        const response = await axios.put(`${this.baseUrl}/tasks/${taskId}`, task)
+        return response.data
+    } catch (error){
+        console.log(`Failed to edit a task item with id: ${taskId}`)
+    }
 
-      //TODO: delete
     async deleteATask (taskId){
         try{
             await axios.delete(`${this.baseUrl}/tasks/${taskId}`)

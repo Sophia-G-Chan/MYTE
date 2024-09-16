@@ -9,7 +9,7 @@ import './ToDoList.scss'
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const {allTasks, setAllTasks} = useContext(TasksContext);
+	const { allTasks, setAllTasks } = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -21,7 +21,7 @@ function ToDoList() {
 		status: false
 	})
 
-	const handleInputChange = (event) => {
+	const handleNewTaskInputChange = (event) => {
 		const { name, value, type, checked } = event.target;
 		setNewTask((previousState) => ({
 			...previousState,
@@ -29,13 +29,51 @@ function ToDoList() {
 		}))
 	}
 
-	const editTask = (task_id) => {
-		console.log(`you want to edit ${task_id}`)
+	const handleExistingInputChange = (event, taskId) => {
+		const { name, value, type, checked } = event.target;
+		setAllTasks((previousTasks) => {
+
+			if(!previousTasks) return previousTasks;
+
+			const updatedTasks = previousTasks.map((task) =>
+				task.task_id === taskId
+					? { ...task, [name]: type === 'checkbox' ? checked : value }
+					: task
+			)
+		console.log(updatedTasks)
+		return updatedTasks
+		})
+	}
+
+	const editTask = async (task_id) => {
+		const taskToEdit = allTasks.find(task => task.task_id === task_id)
+		if (!taskToEdit) return;
+
+		console.log(taskToEdit.start_date_and_time)
+		console.log(taskToEdit.end_date_and_time)
+		const startDate = taskToEdit.start_date_and_time instanceof Date ? taskToEdit.start_date_and_time: new Date(taskToEdit.start_date_and_time);
+		const endDate = taskToEdit.end_date_and_time instanceof Date ? taskToEdit.end_date_and_time: new Date(taskToEdit.end_date_and_time);
+
+		const taskData = {
+			user_id: 1,
+			task_name: taskToEdit.task_name,
+			description: taskToEdit.description,
+			start_date_and_time: startDate.toISOString(),
+			end_date_and_time: endDate.toISOString(),
+			status: taskToEdit.status ? "Complete" : "In Progress"
+		}
+
+		try {
+			const response = await api.editATask(task_id, taskData);
+			setAllTasks(prevTasks => prevTasks.map(task => task.task_id === task_id ? response : task));
+
+		} catch (error) {
+			console.log('there is an error getting the POST api', error)
+		}
 	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
-		console.log("button has been clicked")
 
 		const taskData = {
 			user_id: 1,
@@ -43,12 +81,10 @@ function ToDoList() {
 			description: newTask.description,
 			start_date_and_time: newTask.start.toISOString(),
 			end_date_and_time: newTask.end.toISOString(),
-			status:  "In Progress"
+			status: "In Progress"
 		}
-		console.log(taskData.start_date_and_time)
-		console.log(taskData.end_date_and_time)
 		try {
-			const response  = await api.addATask(taskData);
+			const response = await api.addATask(taskData);
 			setAllTasks(prevTasks => [...prevTasks, response]);
 			formRef.current.reset()
 		} catch (error) {
@@ -62,7 +98,9 @@ function ToDoList() {
 			start: startDate,
 			end: endDate
 		}))
-	}, [allTasks, startDate, endDate])
+	}, [ startDate, endDate])
+
+
 
 	return (
 		<div>
@@ -73,7 +111,7 @@ function ToDoList() {
 						type='checkbox'
 						name="status"
 						checked={newTask.status}
-						onChange={handleInputChange}>
+						onChange={handleNewTaskInputChange}>
 					</input>
 				</label>
 				<label className='flex-col h-01' >
@@ -83,7 +121,7 @@ function ToDoList() {
 						name="task_name"
 						value={newTask.task_name}
 						placeholder="Task Name"
-						onChange={handleInputChange}>
+						onChange={handleNewTaskInputChange}>
 					</input>
 				</label>
 				<label className='flex-col h-01'>
@@ -102,24 +140,26 @@ function ToDoList() {
 						name="description"
 						value={newTask.description}
 						placeholder="Description"
-						className="grow"
-						onChange={handleInputChange}>
+						onChange={handleNewTaskInputChange}>
 					</input>
 				</label>
 				<button onClick={handleSubmit}>Add task</button>
 			</form>
 
 			{allTasks?.map((task) => {
+				console.log(task.status)
 				return (
 					<form key={`form_${task.task_id}`}>
-						<input type='checkbox' ></input>
-						<input type='text' key={task.task_id} value={task.task_name} onChange={() => console.log("TODO still")} ></input>
-						<input type='text' key={task.start_date_and_time} value={task.start_date_and_time} onChange={() => console.log("TODO still")}></input>
-						<input type='text' placeholder="need to add calculation to calculate duration"></input>
-						<input type='text' key={task.description} value={task.description} onChange={() => console.log("TODO still")}></input>
+						<input type='checkbox' name="status" checked={task.status === "In Progress" ? false : true} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+						<input type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+
+						<input type='text' name="start_date_and_time" value={task.start_date_and_time || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+
+						<input type='text' name="end_date_and_time" value={task.end_date_and_time || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+						<input type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
 						<div>
-							<img src={saveIcon} alt='save icon'  onClick={() => editTask(task.task_id)} />
-							<DeleteModal key={`delete_${task.task_id}`} taskId={task.task_id} task_name={task.task_name} />
+							<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} />
+							<DeleteModal  taskId={task.task_id} task_name={task.task_name} />
 						</div>
 					</form>
 				)
