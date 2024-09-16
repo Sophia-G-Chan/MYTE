@@ -1,15 +1,15 @@
 import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
 import { TasksContext } from "../../App";
-import saveIcon from "../../assets/icons/save.svg"
-import deleteIcon from "../../assets/icons/delete.svg"
-import './ToDoList.scss'
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import DeleteModal from "../DeleteModal/DeleteModal";
+import saveIcon from "../../assets/icons/save.svg"
+import './ToDoList.scss'
 
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const [allTasks, setAllTasks] = useContext(TasksContext) || [];
+	const {allTasks, setAllTasks} = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -56,14 +56,6 @@ function ToDoList() {
 		}
 	}
 
-	const handleDelete = async (taskId) =>{
-		try {
-			await api.deleteATask(taskId);
-		}catch(error){
-			console.error("Failed to delete task")
-		}
-
-	}
 	useEffect(() => {
 		setNewTask((previousState) => ({
 			...previousState,
@@ -74,7 +66,7 @@ function ToDoList() {
 
 	return (
 		<div>
-			<form className='flex min-h-auto' ref={formRef}>
+			<form className='flex min-h-auto' ref={formRef} key="form">
 				<label className='flex-col h-01 '>
 					Complete
 					<input
@@ -119,7 +111,7 @@ function ToDoList() {
 
 			{allTasks?.map((task) => {
 				return (
-					<form>
+					<form key={`form_${task.task_id}`}>
 						<input type='checkbox' ></input>
 						<input type='text' key={task.task_id} value={task.task_name} onChange={() => console.log("TODO still")} ></input>
 						<input type='text' key={task.start_date_and_time} value={task.start_date_and_time} onChange={() => console.log("TODO still")}></input>
@@ -127,7 +119,7 @@ function ToDoList() {
 						<input type='text' key={task.description} value={task.description} onChange={() => console.log("TODO still")}></input>
 						<div>
 							<img src={saveIcon} alt='save icon'  onClick={() => editTask(task.task_id)} />
-							<img src={deleteIcon} alt='trash bin icon' onClick={() => handleDelete(task.task_id)}  />
+							<DeleteModal key={`delete_${task.task_id}`} taskId={task.task_id} task_name={task.task_name} />
 						</div>
 					</form>
 				)

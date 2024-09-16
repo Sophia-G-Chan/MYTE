@@ -13,9 +13,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/L
 import axios from "axios"
 import { Api } from "./api/Api.js"
 
-
 export const TasksContext = createContext();
-
 
 function App() {
   const api = new Api();
@@ -90,12 +88,9 @@ function App() {
     await supabase.auth.signOut();
   }
   return (
-    <TasksContext.Provider value={[allTasks, setAllTasks]}>
-
-
+    <TasksContext.Provider value={{allTasks, setAllTasks, getAllTasks}}>
       <BrowserRouter>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
-
           <Header />
           <div style={{ width: "400px", margin: "30px auto" }}>
             {session ?
