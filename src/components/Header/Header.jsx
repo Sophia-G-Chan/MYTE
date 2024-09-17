@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 function Header() {
   return (
-    <header className='flex border-b-2 border-neutral-700'>
+    <header className='flex border-b-2 border-neutral-700 items-center'>
       <img src="/assets/logos/journeytask-logo.svg" className='w-10 h-10 blue' />
       <h2 className='grow'>JourneyTask</h2>
       <nav>
