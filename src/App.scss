@@ -6,16 +6,14 @@
 
 html {
     font-family: "Wotfard";
+    color: #3d4043;
 }
-// input{
-//     border: none;
-//     &:focus{
-//         outline: none;
-//         border: none;
-//         background-color: rgb(243, 237, 237);
-//     }
-//     &:active{
-//         border: none;
-//         outline: none;
-//     }
-// }
+
+#root{
+    @apply w-full;
+    box-sizing: border-box;
+}
+
+.icon {
+    filter: var(--filter-effect);
+}

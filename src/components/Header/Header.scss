@@ -1,0 +1,16 @@
+@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
+
+header {
+    border-bottom: rgb(218, 220, 224) 1px solid;
+}
+
+
+.custom-header {
+    @apply flex flex-col justify-center w-full ;
+    align-items: center;
+
+    @include tablet {
+        @apply flex flex-row justify-between;
+    }
+}

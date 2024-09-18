@@ -1,2 +1,12 @@
+@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
 @import 'react-big-calendar/lib/sass/styles';
 @import 'react-big-calendar/lib/addons/dragAndDrop/styles'; // if using DnD
+
+.rbc-calendar{
+    margin: 0 !important;
+
+    @include tablet {
+        margin: 2rem !important;
+    }
+}

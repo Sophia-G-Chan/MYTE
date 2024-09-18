@@ -119,8 +119,8 @@ function ToDoList() {
 
 
 	return (
-		<div>
-			<form className='flex min-h-auto' ref={formRef} key="form">
+		<div className="box-border">
+			<form className='custom-form' ref={formRef} key="form">
 				<label className='flex-col h-01 '>
 					Complete
 					<input
@@ -169,8 +169,8 @@ function ToDoList() {
 					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
 
 					return (
-						<li className=" border-2 border-blue rounded mb-1">
-							<form key={`form_${task.task_id}`} className="flex items-center">
+						<li className=" border-2 border-blue rounded mb-1 w-full">
+							<form key={`form_${task.task_id}`} className="flex items-center custom-form">
 								<input type='checkbox' name="status" checked={task.status === "Completed"} onChange={(e) => handleExistingInputChange(e, task.task_id)}
 									className="border-2 border-blue"></input>
 								<input type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>

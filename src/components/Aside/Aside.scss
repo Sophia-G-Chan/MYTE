@@ -1,0 +1,24 @@
+@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
+
+.custom-aside{
+    @apply w-full h-auto p-4 flex gap-2;
+
+
+    @include tablet {
+        @apply flex flex-col;
+        position: sticky;
+        top: 0;
+        height: 50vh;
+        width: 30%;
+    }
+
+    &__section{
+        @apply flex gap-2;
+
+    @include tablet {
+        @apply flex flex-col;
+
+    }
+    }
+}

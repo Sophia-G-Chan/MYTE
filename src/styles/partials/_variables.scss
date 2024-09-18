@@ -1,2 +1,27 @@
 $tablet-breakpoint: 768px;
 $desktop-breakpoint: 1280px;
+
+.theme-light {
+	--background-color: #FFFFFF;
+	--text-color: #323232;
+    --button-color: #0095FF;
+    --button-color-hover:  #0065AD;
+    --form-color: #AFAFAF;
+    --form-hover-color: #AFAFAF;
+    --line-color: #E1E1E1;
+    --form--background: #FAFAFA;
+    --delete--opacity: 0.5;
+    --filter-effect:  brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(321%) hue-rotate(161deg) brightness(90%) contrast(83%);
+}
+.theme-dark {
+	--background-color: #323232;
+	--text-color: #FFFFFF;
+    --button-color: #0065AD;
+    --button-color-hover: #0095FF;
+    --form-color: #FAFAFA;
+    --form-hover-color: #f9f9f9;
+    --line-color: #AFAFAF;
+    --form--background: rgb(36, 36, 36);
+    --delete--opacity: 0;
+    --filter-effect: none;
+   }

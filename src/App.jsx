@@ -95,7 +95,7 @@ function App() {
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
             <Header />
-            <div style={{ width: "400px", margin: "30px auto" }}>
+            <div style={{ width: "180px", margin: "30px auto" }}>
               {session ?
                 <>
                   <h3>Hey there {session.user.email}</h3>

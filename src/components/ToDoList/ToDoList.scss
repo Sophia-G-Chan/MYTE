@@ -1,3 +1,22 @@
-.task__datetime{
+@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
+
+.task__datetime {
     font-family: "Wotfard";
+}
+
+.custom-form {
+    @apply h-auto  flex flex-col gap-2;
+    align-items: flex-start;
+    min-width: 18.75rem;
+    width: 10rem;
+
+    @include tablet {
+        @apply flex flex-row;
+        height: 50vh;
+    }
+}
+
+.react-datetime-picker__inputGroup{
+    min-width: 0 !important;
 }

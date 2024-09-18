@@ -1,0 +1,12 @@
+@use "../../styles/partials/mixins" as *;
+@use '../../styles/partials/variables' as *;
+
+.custom-home{
+    @apply flex flex-col justify-center w-full;
+    align-items: center;
+
+    @include tablet {
+        @apply flex flex-row;
+        align-items: flex-start;
+    }
+}
