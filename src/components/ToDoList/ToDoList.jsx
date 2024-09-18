@@ -2,7 +2,6 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
 import { TasksContext } from "../../App";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import dayjs from "dayjs";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import saveIcon from "../../assets/icons/save.svg"
@@ -141,7 +140,7 @@ function ToDoList() {
 						onChange={handleNewTaskInputChange}>
 					</input>
 				</label>
-				<label className='flex-col h-01'>
+				<label className='flex-col h-01 task__datetime'>
 					Start Date & Time
 					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
 

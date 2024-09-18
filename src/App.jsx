@@ -1,3 +1,4 @@
+import './App.scss'
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useEffect, useState, createContext } from "react";
 import Header from "./components/Header/Header"
@@ -9,7 +10,8 @@ import { useSession, useSupabaseClient, useSessionContext } from "@supabase/auth
 import * as React from 'react';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider.js';
-
+import { fontTheme } from "./utils/utility";
+import { ThemeProvider } from "@mui/material";
 import axios from "axios"
 import { Api } from "./api/Api.js"
 
@@ -88,31 +90,32 @@ function App() {
     await supabase.auth.signOut();
   }
   return (
-    <TasksContext.Provider value={{allTasks, setAllTasks, getAllTasks}}>
-      <BrowserRouter>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <Header />
-          <div style={{ width: "400px", margin: "30px auto" }}>
-            {session ?
-              <>
-                <h3>Hey there {session.user.email}</h3>
-                <button onClick={() => googleSignOut()}>Sign Out</button>
-              </>
-              :
-              <>
-                <button onClick={() => googleSignIn()}>Sign In with Google</button>
-              </>
-            }
-          </div>
-          <Routes>
-            <Route path="/" element={<Home allTasks={allTasks} />} />
-            <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-          <Footer />
-        </LocalizationProvider>
-      </BrowserRouter>
-
+    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks }}>
+      <ThemeProvider theme={fontTheme}>
+        <BrowserRouter>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <Header />
+            <div style={{ width: "400px", margin: "30px auto" }}>
+              {session ?
+                <>
+                  <h3>Hey there {session.user.email}</h3>
+                  <button onClick={() => googleSignOut()}>Sign Out</button>
+                </>
+                :
+                <>
+                  <button onClick={() => googleSignIn()}>Sign In with Google</button>
+                </>
+              }
+            </div>
+            <Routes>
+              <Route path="/" element={<Home allTasks={allTasks} />} />
+              <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+            <Footer />
+          </LocalizationProvider>
+        </BrowserRouter>
+      </ThemeProvider>
     </TasksContext.Provider>
   )
 }
