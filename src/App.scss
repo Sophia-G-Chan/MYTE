@@ -17,3 +17,31 @@ html {
 .icon {
     filter: var(--filter-effect);
 }
+
+input{
+    border: none;
+
+    &:active{
+        border: none ;
+        outline: none;
+        box-shadow: none;
+    }
+    &:focus{
+        //border: 2px solid blue !important ;
+        outline: none  !important;
+        box-shadow: none !important;
+        border-radius: .25rem;
+        background-color: grey;
+    }
+}
+
+form{
+    &:active{
+        border: none;
+        outline: none;
+    }
+    &:focus{
+        border: none;
+        outline: none;
+    }
+}

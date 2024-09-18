@@ -7,7 +7,6 @@
 
 .custom-form {
     @apply h-auto flex flex-col gap-2;
-    align-items: flex-start;
     min-width: 18.75rem;
     width: 10rem;
 
@@ -17,10 +16,20 @@
     }
 }
 
+.save-icon{
+    filter: var(--filter-save-effect);
+}
+
 .react-datetime-picker__inputGroup{
     min-width: 0 !important;
+    border: none;
 }
 
 .MuiInputBase-input{
     padding: 0.65rem !important;
+}
+
+.custom-check{
+    border: 2px solid var(--text-color) !important;
+    border-radius: 2px;
 }

@@ -28,7 +28,6 @@ function ToDoList() {
 			...previousState,
 			[name]: type === 'checkbox' ? checked : value,
 		}))
-
 	}
 
 	const handleExistingInputChange = (event, taskId) => {
@@ -101,7 +100,6 @@ function ToDoList() {
 
 			setStartDate(null);
 			setEndDate(null);
-
 			formRef.current.reset()
 		} catch (error) {
 			console.log('there is an error getting the POST api', error)
@@ -115,8 +113,6 @@ function ToDoList() {
 			end: endDate
 		}))
 	}, [startDate, endDate])
-
-
 
 	return (
 		<div className="box-border">
@@ -169,11 +165,11 @@ function ToDoList() {
 					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
 
 					return (
-						<li className="bg-slate-100 rounded mb-3 w-full">
-							<form key={`form_${task.task_id}`} className="flex items-center custom-form">
+						<li key={`list_${task.task_id}`} className="flex items-center rounded mb-3 w-full odd:bg-slate-100  even:bg-white ">
+							<form className="flex items-center justify-center custom-form">
 								<input type='checkbox' name="status" checked={task.status === "Completed"} onChange={(e) => handleExistingInputChange(e, task.task_id)}
-									className="border-2 border-blue"></input>
-								<input type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+									className="custom-check"></input>
+								<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 								<DateTimePicker
 									value={startDate}
 									onChange={(newValue) => setStartDate(newValue)}
@@ -181,9 +177,12 @@ function ToDoList() {
 								<DateTimePicker
 									value={endDate}
 									onChange={(newValue) => setEndDate(newValue)}
-								/><input type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
-								<div className="flex" key={`bottom_${task.task_id}`}>
-									<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer icon" />
+								/>
+								<input className="bg-inherit " type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+								<div className="flex justify-center items-center w-28" key={`bottom_${task.task_id}`} >
+									<div className="w-full">
+										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer filter save-effect save-icon w-8" />
+									</div>
 									<DeleteModal taskId={task.task_id} task_name={task.task_name} />
 								</div>
 							</form>

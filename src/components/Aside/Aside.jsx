@@ -2,6 +2,7 @@ import todayIcon from '../../assets/icons/calendar_today.svg'
 import sevenDayIcon from '../../assets/icons/date_range.svg'
 import listIcon from '../../assets/icons/list.svg'
 import doneIcon from '../../assets/icons/done_all.svg'
+import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
@@ -26,6 +27,10 @@ function Aside() {
                 <button className='flex'>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     Completed
+                </button>
+                <button className='flex'>
+                    <img src={editIcon} alt="done icon" className='icon' />
+                    Personalize
                 </button>
             </section>
         </aside>

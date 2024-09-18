@@ -1,15 +1,7 @@
-.delete-modal{
-    // position:fixed;
-    // display: flex;
-    // //top: 0;
-    // //left: 0;
-    // width: 100%;
-    // height: 100%;
-    // align-items: center;
-    // justify-content: center;
-    // z-index: 100;
+.delete-icon{
+    filter: var(--filter-delete-effect)
+}
 
-    &__modal{
-        z-index: 10000000;
-    }
+.ReactModal__Overlay{
+    z-index: 10;
 }

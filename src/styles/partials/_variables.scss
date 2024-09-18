@@ -12,6 +12,8 @@ $desktop-breakpoint: 1280px;
     --form--background: #FAFAFA;
     --delete--opacity: 0.5;
     --filter-effect:  brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(321%) hue-rotate(161deg) brightness(90%) contrast(83%);
+    --filter-save-effect:  brightness(0) saturate(100%) invert(39%) sepia(69%) saturate(5923%) hue-rotate(137deg) brightness(106%) contrast(87%);
+    --filter-delete-effect:   brightness(0) saturate(100%) invert(8%) sepia(98%) saturate(7428%) hue-rotate(6deg) brightness(91%) contrast(108%);
 }
 .theme-dark {
 	--background-color: #323232;
@@ -24,4 +26,7 @@ $desktop-breakpoint: 1280px;
     --form--background: rgb(36, 36, 36);
     --delete--opacity: 0;
     --filter-effect: none;
+    --filter-save-effect: brightness(0) saturate(100%) invert(71%) sepia(15%) saturate(1403%) hue-rotate(93deg) brightness(98%) contrast(94%);
+    --filter-delete-effect: brightness(0) saturate(100%) invert(28%) sepia(44%) saturate(6736%) hue-rotate(348deg) brightness(86%) contrast(141%);
+
    }

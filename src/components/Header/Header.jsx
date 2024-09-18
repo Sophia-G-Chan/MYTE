@@ -28,13 +28,13 @@ function Header() {
 	const session = useSession();
 	const supabase = useSupabaseClient();
 	const { isLoading } = useSessionContext();
-	console.log(config.clientId)
-	console.log(config.apiKey)
-	console.log(import.meta.env.VITE_API_URL)
+
 	if (isLoading) {
 		return <></>
 	}
 
+	console.log(session)
+	// console.log(session.user.user_metadata.picture)
 	const createCalendarEvent = async () => {
 		const event = {
 			'summary': eventName,
@@ -94,38 +94,39 @@ return (
 			<h2 className=' text-3xl'>JourneyTask</h2>
 		</Link>
 		<nav className='flex'>
-			<ul className='flex gap-4'>
-				<li className='p-2 '>
-					<Link to='/calendar' className='flex items-center'>
+			<ul className='flex gap-4 w-full'>
+				<li className='p-2 flex items-center justify-end '>
+					<Link to='/calendar' className='flex items-center justify-end'>
 						<img src={calendarIcon} alt="icon image of calendar" className='icon' />
 						Calendar
 					</Link>
 				</li>
-				<li className='p-2'>
-					<Link to='/' className='flex items-center'>
+				<li className='p-2 flex items-center justify-end'>
+					<Link to='/' className='flex items-center justify-end'>
 						<img src={taskIcon} alt="icon image of calendar" className='icon' />
 						To Do List
 					</Link>
 				</li>
 				<li className='flex items-center'>
-					{/* {session ?
-						<>
-							<h3>Hey there {session.user.email}</h3>
+					{session ?
+						<div className='flex flex-col items-center w-281' >
+							<img className="rounded-full w-8 h-8" src={session.user.user_metadata.picture}/>
+							<h4>{session.user.user_metadata.name}</h4>
 							<button onClick={() => googleSignOut()}>Sign Out</button>
-						</>
+						</div>
 						:
 						<>
 							<button onClick={() => googleSignIn()}>Sign In</button>
 						</>
-					} */}
-					<button
+					}
+					{/* <button
 						onClick={(e) => handleItemClick(e, 'sign-in')}>
 						sign-in
 					</button>
 					<button
 						onClick={(e) => handleItemClick(e, 'sign-out')}>
 						sign-out
-					</button>
+					</button> */}
 				</li>
 			</ul>
 		</nav>

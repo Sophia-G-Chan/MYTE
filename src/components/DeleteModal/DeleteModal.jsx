@@ -39,11 +39,11 @@ function DeleteModal({ taskId, task_name }) {
         }
     }, [isOpen])
     return (
-        <div className='w-d'>
-            <img className='cursor-pointer icon' src={DeleteIcon} onClick={openModal} />
+        <div className='w-full'>
+            <img className='cursor-pointer delete-icon w-8' src={DeleteIcon} onClick={openModal} />
             <div className='delete-modal'>
                 <ReactModal isOpen={isOpen} onRequestClose={closeModal} contentLabel='Delete Task Modal' shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true} >
-                    <div className='delete-modal__top'>
+                    <div className='delete-modal__top text-center'>
                         <img src={CloseIcon} alt='x to represent close' className='cursor-pointer' onClick={() => closeModal()} />
                     </div>
                     <p className='delete-modal__title'>
