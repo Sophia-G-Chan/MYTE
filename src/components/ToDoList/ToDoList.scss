@@ -6,17 +6,21 @@
 }
 
 .custom-form {
-    @apply h-auto  flex flex-col gap-2;
+    @apply h-auto flex flex-col gap-2;
     align-items: flex-start;
     min-width: 18.75rem;
     width: 10rem;
 
     @include tablet {
         @apply flex flex-row;
-        height: 50vh;
+        width: auto;
     }
 }
 
 .react-datetime-picker__inputGroup{
     min-width: 0 !important;
+}
+
+.MuiInputBase-input{
+    padding: 0.65rem !important;
 }

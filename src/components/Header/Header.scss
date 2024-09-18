@@ -11,6 +11,6 @@ header {
     align-items: center;
 
     @include tablet {
-        @apply flex flex-row justify-between;
+        @apply flex flex-row justify-between pl-1 pr-2;
     }
 }

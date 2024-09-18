@@ -37,7 +37,7 @@ function CalendarComponent({allTasks}) {
 
 
   return (
-    <div className='rounded border-2 border-blue'>
+    <div className='rounded'>
       <Calendar localizer={localizer} events={allEvents} startAccessor='start' endAccessor="end" style={{ height: 500, margin: "50px" }} />
     </div>
   )

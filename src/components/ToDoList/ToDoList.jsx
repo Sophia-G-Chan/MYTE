@@ -120,7 +120,7 @@ function ToDoList() {
 
 	return (
 		<div className="box-border">
-			<form className='custom-form' ref={formRef} key="form">
+			<form className='custom-form mb-3' ref={formRef} key="form">
 				<label className='flex-col h-01 '>
 					Complete
 					<input
@@ -169,7 +169,7 @@ function ToDoList() {
 					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
 
 					return (
-						<li className=" border-2 border-blue rounded mb-1 w-full">
+						<li className="bg-slate-100 rounded mb-3 w-full">
 							<form key={`form_${task.task_id}`} className="flex items-center custom-form">
 								<input type='checkbox' name="status" checked={task.status === "Completed"} onChange={(e) => handleExistingInputChange(e, task.task_id)}
 									className="border-2 border-blue"></input>
@@ -182,8 +182,8 @@ function ToDoList() {
 									value={endDate}
 									onChange={(newValue) => setEndDate(newValue)}
 								/><input type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
-								<div className="flex">
-									<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer" />
+								<div className="flex" key={`bottom_${task.task_id}`}>
+									<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer icon" />
 									<DeleteModal taskId={task.task_id} task_name={task.task_name} />
 								</div>
 							</form>
