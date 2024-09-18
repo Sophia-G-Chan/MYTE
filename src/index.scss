@@ -2,15 +2,15 @@
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-input{
-    border: none;
-    &:focus{
-        outline: none;
-        border: none;
-        background-color: rgb(243, 237, 237);
-    }
-    &:active{
-        border: none;
-        outline: none;
-    }
-}
+// input{
+//     border: none;
+//     &:focus{
+//         outline: none;
+//         border: none;
+//         background-color: rgb(243, 237, 237);
+//     }
+//     &:active{
+//         border: none;
+//         outline: none;
+//     }
+// }

@@ -2,6 +2,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
 import { TasksContext } from "../../App";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import dayjs from "dayjs";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import saveIcon from "../../assets/icons/save.svg"
 import './ToDoList.scss'
@@ -27,21 +29,27 @@ function ToDoList() {
 			...previousState,
 			[name]: type === 'checkbox' ? checked : value,
 		}))
+
 	}
 
 	const handleExistingInputChange = (event, taskId) => {
-		const { name, value, type, checked } = event.target;
+		const { name, type, checked } = event.target;
 		setAllTasks((previousTasks) => {
-
 			if (!previousTasks) return previousTasks;
 
-			const updatedTasks = previousTasks.map((task) =>
-				task.task_id === taskId
-					? { ...task, [name]: type === 'checkbox' ? checked : value }
-					: task
-			)
-			console.log(updatedTasks)
-			return updatedTasks
+			return previousTasks.map((task) => {
+				if (task.task_id === taskId) {
+					if (type === 'checkbox') {
+						return {
+							...task,
+							status: checked ? "Completed" : "In Progress"
+						};
+					} else {
+						return { ...task, [name]: event.target.value }
+					}
+				}
+				return task;
+			})
 		})
 	}
 
@@ -49,8 +57,6 @@ function ToDoList() {
 		const taskToEdit = allTasks.find(task => task.task_id === task_id)
 		if (!taskToEdit) return;
 
-		console.log(taskToEdit.start_date_and_time)
-		console.log(taskToEdit.end_date_and_time)
 		const startDate = taskToEdit.start_date_and_time instanceof Date ? taskToEdit.start_date_and_time : new Date(taskToEdit.start_date_and_time);
 		const endDate = taskToEdit.end_date_and_time instanceof Date ? taskToEdit.end_date_and_time : new Date(taskToEdit.end_date_and_time);
 
@@ -78,14 +84,25 @@ function ToDoList() {
 		const taskData = {
 			user_id: 1,
 			task_name: newTask.task_name,
-			description: newTask.description,
-			start_date_and_time: newTask.start.toISOString(),
-			end_date_and_time: newTask.end.toISOString(),
+			description: newTask.description || "",
+			start_date_and_time: newTask.start ? newTask.start.toISOString() : null,
+			end_date_and_time: newTask.end ? newTask.end.toISOString() : null,
 			status: "In Progress"
 		}
 		try {
 			const response = await api.addATask(taskData);
 			setAllTasks(prevTasks => [...prevTasks, response]);
+			setNewTask({
+				task_name: "",
+				description: "",
+				start: null,
+				end: null,
+				status: false
+			})
+
+			setStartDate(null);
+			setEndDate(null);
+
 			formRef.current.reset()
 		} catch (error) {
 			console.log('there is an error getting the POST api', error)
@@ -126,12 +143,12 @@ function ToDoList() {
 				</label>
 				<label className='flex-col h-01'>
 					Start Date & Time
-					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate} onChange={setStartDate} />
+					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
 
 				</label>
 				<label className='flex-col h-01'>
 					End Date & Time
-					<DateTimePicker selected={endDate} onChange={setEndDate} />
+					<DateTimePicker selected={endDate || null} onChange={setEndDate} />
 				</label>
 				<label className='flex-col h-01 '>
 					Description
@@ -147,19 +164,27 @@ function ToDoList() {
 			</form>
 			<ul>
 				{allTasks?.map((task) => {
-					console.log(task.status)
+					if (!task) return null;
+
+					const startDate = task.start_date_and_time ? dayjs(task.start_date_and_time) : null;
+					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
+
 					return (
-						<li className=" border-2 border-blue">
+						<li className=" border-2 border-blue rounded mb-1">
 							<form key={`form_${task.task_id}`} className="flex items-center">
-								<input type='checkbox' name="status" checked={task.status === "In Progress" ? false : true} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+								<input type='checkbox' name="status" checked={task.status === "Completed"} onChange={(e) => handleExistingInputChange(e, task.task_id)}
+									className="border-2 border-blue"></input>
 								<input type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
-
-								<input type='text' name="start_date_and_time" value={task.start_date_and_time || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
-
-								<input type='text' name="end_date_and_time" value={task.end_date_and_time || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
-								<input type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+								<DateTimePicker
+									value={startDate}
+									onChange={(newValue) => setStartDate(newValue)}
+								/>
+								<DateTimePicker
+									value={endDate}
+									onChange={(newValue) => setEndDate(newValue)}
+								/><input type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
 								<div className="flex">
-									<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} />
+									<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer" />
 									<DeleteModal taskId={task.task_id} task_name={task.task_name} />
 								</div>
 							</form>
