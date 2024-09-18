@@ -1,16 +1,12 @@
 import { Link } from 'react-router-dom'
 import './Header.scss'
-import logo from '../../../public/assets/logos/journeytask-logo.svg'
-// import calendarIcon from '../../assets/icons/'
+
 
 function Header() {
   return (
-    <header className='flex border-b-2 border-neutral-700'>
-      <Link to='/' className='flex grow items-center'>
-        <img src={logo} className='w-10 h-10 blue' />
-        <h2 className='align-middle'>JourneyTask</h2>
-      </Link>
-
+    <header className='flex border-b-2 border-neutral-700 items-center'>
+      <img src="/assets/logos/journeytask-logo.svg" className='w-10 h-10 blue' />
+      <h2 className='grow'>JourneyTask</h2>
       <nav>
         <ul className='flex'>
           <li className='p-2'>
