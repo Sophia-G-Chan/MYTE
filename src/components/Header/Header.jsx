@@ -1,6 +1,7 @@
+import { Link } from 'react-router-dom'
 import './Header.scss'
 import logo from '../../../public/assets/logos/journeytask-logo.svg'
-import { Link } from 'react-router-dom'
+// import calendarIcon from '../../assets/icons/'
 
 function Header() {
   return (
