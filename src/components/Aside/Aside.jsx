@@ -64,14 +64,18 @@ function Aside() {
                     <img src={listIcon} alt="list icon" className='icon' />
                     Lists
                 </button>
-                <ul className={`list-disc pl-6 ${showList ? "flex flex-col" : "hidden"}`}>
-                    {lists.map((listItem) => {
-                        return (
-                        <li>{listItem.list_name}</li>
-                    )
-                    })}
-                </ul>
-                <button className='flex my-4' onClick={() => setFilterType("Complete")}>
+                <form>
+                    <ul className={` ${showList ? "flex flex-col" : "hidden"}`}>
+                        {lists.map((listItem) => {
+                            return (
+                                <li className='my-1.5 ml-4 flex items-center'>
+                                    <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
+                                    {listItem.list_name}</li>
+                            )
+                        })}
+                    </ul>
+                </form>
+                <button className='flex my-5' onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     Completed
                 </button>

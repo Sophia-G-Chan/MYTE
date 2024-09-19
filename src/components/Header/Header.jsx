@@ -99,7 +99,7 @@ function Header() {
 		<header className='custom-header'>
 			<Link to='/' className='flex items-center'>
 				<img src="/assets/logos/journeytask-logo.svg" className='w-20 h-20' />
-				<h2 className=' text-3xl'>JourneyTask</h2>
+				<h2 className=' text-3xl'>MYTE</h2>
 			</Link>
 			<nav className='flex'>
 				<ul className='flex gap-4 w-full'>
