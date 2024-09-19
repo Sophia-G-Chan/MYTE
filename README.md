@@ -29,7 +29,7 @@ Regular apps either focus on lists without accounting for the time required to c
 - Or if you only use calendar without to-do list, this does not account for completion of task.
 - Example of others having this [problem](https://answers.microsoft.com/en-us/msoffice/forum/all/how-can-i-integrate-the-to-do-tasks-into-the/9ba1819a-40e6-42da-9805-8f99a3cb0deb)
 
-JouneyTaks addresses this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
+MYTE addresses this by helping users organize tasks wihtin the context of their busy schedules, avoiding task overload while accounting for both meetings and personal tasks.
 
 ### User Profile
 
@@ -285,7 +285,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 ### Milestone 2: Add Sign-In & accessibility features
 - allows the user to customize their to-do list
 
-### Milestone 3: Add larger goal/projects to get Journey view/projection
+### Milestone 3: Add larger goal/projects to get completed percent view/projection
 - completing one tasks of a larger goal/project will show the percentage completed of the larger goal.
 
 ### Milestone 4: Add AI integration
