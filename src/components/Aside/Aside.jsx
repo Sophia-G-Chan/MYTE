@@ -47,42 +47,45 @@ function Aside() {
     }, [filterType, allTasks])
 
     return (
-        <aside className='custom-aside'>
-            <section className='custom-aside__section mb-3 border-solid border-b-2 border-border-grey'>
-                <button className='flex my-4' onClick={() => setFilterType("Today")}>
+        <aside className='w-full h-auto p-4 flex flex-row items-center justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:w-3/12 tablet:items-start'>
+            <section className='flex flex-row tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
+                <button className='flex tablet:my-4' onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
-                    Today
+                    <span className='hidden tablet:block'>Today</span>
                 </button>
-                <button className='flex my-4' onClick={() => setFilterType("Next7Days")}>
+                <button className='flex items-center tablet:my-4' onClick={() => setFilterType("Next7Days")}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
-                    Next 7 days
+                    <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
             </section>
-            <section className='custom-aside__section '>
-                <button className='flex' onClick={toggleList}>
+            <section className='flex flex-row tablet:flex-col '>
+                <button className='flex items-center' onClick={toggleList}>
                     <img src={listIcon} alt="list icon" className='icon' />
-                    Lists
+                    <span className='hidden tablet:block'>Lists</span>
                 </button>
                 <form>
-                    <ul className={` ${showList ? "flex flex-col" : "hidden"}`}>
-                        {lists.map((listItem) => {
-                            return (
-                                <li className='my-1.5 ml-4 flex items-center' key={listItem.id}>
-                                    <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
+                    <ul className={`relative ${showList ? "hidden" : "flex flex-col"}`}>
+                        <div className='absolute w-full h-full top-10 right-10 tablet:static'>
+                            {lists.map((listItem) => {
+                                return (
+                                    <li className='tablet:my-1.5 tablet:ml-4 flex items-center' key={listItem.id}>
+                                        <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
 
-                                    {listItem.list_name}
-                                </li>
-                            )
-                        })}
+                                        {listItem.list_name}
+                                    </li>
+                                )
+                            })}
+                        </div>
+
                     </ul>
                 </form>
-                <button className='flex my-5' onClick={() => setFilterType("Complete")}>
+                <button className='flex items-center tablet:my-5' onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
-                    Completed
+                    <span className='hidden tablet:block'>Completed</span>
                 </button>
-                <button className='flex my-4'>
+                <button className='flex tablet:my-4'>
                     <img src={editIcon} alt="done icon" className='icon' />
-                    Personalize
+                    <span className='hidden tablet:block'>Personalize</span>
                 </button>
             </section>
         </aside>

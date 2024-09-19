@@ -5,8 +5,12 @@
 
 .rbc-calendar{
     margin: 0 !important;
+    font-size: .875rem;
+    line-height: normal;
 
     @include tablet {
         margin: 2rem !important;
+        font-size: 1rem;
+        line-height: 1.5rem;
     }
 }

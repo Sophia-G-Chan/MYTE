@@ -14,7 +14,7 @@ import aboutIcon from '../../assets/icons/info.svg'
 const config = {
 	clientId: import.meta.env.VITE_CLIENT_ID,
 	apiKey: import.meta.env.VITE_API_KEY,
-	scope: "https://www.googleapis.com/auth/calendar",
+	scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
 	discoveryDocs: [
 		"https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
 	],
@@ -37,8 +37,18 @@ function Header() {
 		return <></>
 	}
 
-	console.log(session)
-	// console.log(session.user.user_metadata.picture)
+	const fetchCalendarEvents = async (accessToken) => {
+		const response = await axios.get(
+			'https://www.googleapis.com/calendar/v3/calendars/primary/events',
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+		console.log(response);
+	};
+
 	const createCalendarEvent = async () => {
 		const event = {
 			'summary': eventName,
@@ -70,9 +80,10 @@ function Header() {
 			provider: "google",
 			options: {
 				scopes: "https://www.googleapis.com/auth/calendar",
-
 			}
 		});
+
+
 		if (error) {
 			alert('Error logging in with Google provider with Supabase')
 			console.log(error)
