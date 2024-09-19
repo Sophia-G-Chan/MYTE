@@ -1,3 +1,6 @@
+import { useContext, useState, useEffect } from 'react'
+import { TasksContext } from "../../App";
+import { Api } from "../../api/Api"
 import todayIcon from '../../assets/icons/calendar_today.svg'
 import sevenDayIcon from '../../assets/icons/date_range.svg'
 import listIcon from '../../assets/icons/list.svg'
@@ -6,29 +9,70 @@ import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
+    const { allTasks, setAllTasks } = useContext(TasksContext);
+    const [filteredTasks, setFilteredTasks] = useState(allTasks);
+    const [lists, setLists] = useState([]);
+    const [showList, setShowList] = useState(true)
+    const api = new Api();
+
+    const filterTasks = (allTasks, filterType) => {
+        const today = new Date();
+        const next7Days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        switch (filterType) {
+            case "Today":
+                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString());
+            case "Next7Days":
+                return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today);
+            case "completed":
+                return allTasks.filter(task => task.status === "Completed")
+            default:
+                return allTasks;
+        }
+    }
+
+    const toggleList = () => {
+        setShowList(!showList);
+    }
+    const getLists = async () => {
+        const { data } = await api.getLists();
+        setLists(data);
+    }
+
+    useEffect(() => {
+        getLists()
+    }, [])
+
+    console.log(lists)
     return (
         <aside className='custom-aside'>
-            <section className='custom-aside__section'>
-                <button className='flex'>
+            <section className='custom-aside__section mb-3 border-solid border-b-2 border-border-grey'>
+                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Today"))}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     Today
                 </button>
-                <button className='flex'>
+                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Next7Days"))}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
                     Next 7 days
                 </button>
             </section>
-            <section>
-                <button className='flex'>
+            <section className='custom-aside__section '>
+                <button className='flex' onClick={toggleList}>
                     <img src={listIcon} alt="list icon" className='icon' />
                     Lists
                 </button>
-                {/* TODO: load the goal data and map it here there should be an empty list for the current goal */}
-                <button className='flex'>
+                <ul className={`list-disc pl-6 ${showList ? "flex flex-col" : "hidden"}`}>
+                    {lists.map((listItem) => {
+                        return (
+                        <li>{listItem.list_name}</li>
+                    )
+                    })}
+                </ul>
+                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Completed"))}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     Completed
                 </button>
-                <button className='flex'>
+                <button className='flex my-4'>
                     <img src={editIcon} alt="done icon" className='icon' />
                     Personalize
                 </button>
