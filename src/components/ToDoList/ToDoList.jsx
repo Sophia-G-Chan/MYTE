@@ -136,8 +136,9 @@ function ToDoList() {
 	}, [startDate, endDate])
 
 	return (
-		<div className="box-border mt-6">
+		<div className="box-border mt-6 mb-20">
 			<form>
+
 				<input type="text" placeholder="List Name"></input>
 			</form>
 			<form className='custom-form mb-3' ref={formRef} key="form">
@@ -214,9 +215,6 @@ function ToDoList() {
 					)
 				})}
 			</ul>
-
-
-
 		</div>
 	)
 }

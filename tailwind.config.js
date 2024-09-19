@@ -16,6 +16,10 @@ export default {
       },
       filter: {
         "save-effect": 'var(--filter-save-effect)',
+      },
+      screens: {
+        "tablet": '768px',
+        "desktop": '1280px',
       }
     },
   },
