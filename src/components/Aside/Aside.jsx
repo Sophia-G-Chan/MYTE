@@ -28,7 +28,6 @@ function Aside() {
             default:
                 return allTasks.filter(task => task.status !== "Complete");
         }
-
     }
 
     const toggleList = () => {
@@ -70,7 +69,9 @@ function Aside() {
                             return (
                                 <li className='my-1.5 ml-4 flex items-center'>
                                     <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
-                                    {listItem.list_name}</li>
+
+                                    {listItem.list_name}
+                                </li>
                             )
                         })}
                     </ul>
