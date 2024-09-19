@@ -22,6 +22,7 @@ function App() {
   const [allTasks, setAllTasks] = useState([]);
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [filterType, setFilterType] = useState('All')
+  const [defaultView, setDefaultView] = useState('month');
 
   const getAllTasks = async () => {
     const { data } = await api.getAllTasks();
@@ -33,7 +34,7 @@ function App() {
   }, [])
 
   return (
-    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks, filteredTasks, setFilteredTasks, filterType, setFilterType }}>
+    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks, filteredTasks, setFilteredTasks, filterType, setFilterType, defaultView, setDefaultView }}>
       <ThemeProvider theme={fontTheme}>
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

@@ -9,7 +9,7 @@ import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
-    const { allTasks, setFilteredTasks, filterType, setFilterType } = useContext(TasksContext);
+    const { allTasks, setFilteredTasks, filterType, setFilterType, defaultView, setDefaultView } = useContext(TasksContext);
     const [lists, setLists] = useState([]);
     const [showList, setShowList] = useState(true)
     const api = new Api();
@@ -20,8 +20,13 @@ function Aside() {
 
         switch (filterType) {
             case "Today":
-                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString());
+                setDefaultView("day")
+                console.log(defaultView)
+
+                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString())
             case "Next7Days":
+                setDefaultView("week")
+                console.log(defaultView)
                 return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today);
             case "Complete":
                 return allTasks.filter(task => task.status === "Complete")

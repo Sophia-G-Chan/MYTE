@@ -7,7 +7,7 @@ import './HomePage.scss'
 function Home({ allTasks }) {
 
   useEffect(() => {
-    document.title = "JourneyTask"
+    document.title = "MYTE - Tasks"
   }, [])
   return (
     <div className='custom-home'>

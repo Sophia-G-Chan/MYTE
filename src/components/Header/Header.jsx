@@ -1,41 +1,30 @@
 import { Link } from 'react-router-dom'
 import { TasksContext } from "../../App";
-import { useState, useContext, ReactNode, SyntheticEvent } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import './Header.scss'
 import calendarIcon from '../../assets/icons/calendar_month.svg'
 import taskIcon from '../../assets/icons/task.svg'
 import { useSession, useSupabaseClient, useSessionContext } from "@supabase/auth-helpers-react"
 import axios from "axios"
-import { Api } from "../../api/Api.js"
-import ApiCalendar from 'react-google-calendar-api'
 import aboutIcon from '../../assets/icons/info.svg'
-
-const config = {
-	clientId: import.meta.env.VITE_CLIENT_ID,
-	apiKey: import.meta.env.VITE_API_KEY,
-	scope: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
-	discoveryDocs: [
-		"https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest",
-	],
-};
 
 function Header() {
 	const navigate = useNavigate();
-	const api = new Api();
-	const [start, setStart] = useState(new Date());
-	const [end, setEnd] = useState(new Date());
-	const [eventName, setEventName] = useState("");
-	const [eventDescription, setEventDescription] = useState("");
-	const apiCalendar = new ApiCalendar(config)
+	const {setDefaultView} = useContext(TasksContext)
 	const session = useSession();
 	const supabase = useSupabaseClient();
 	const { isLoading } = useSessionContext();
 	const { setFilterType } = useContext(TasksContext);
 
-	if (isLoading) {
-		return <></>
-	}
+	useEffect(() => {
+		if(session){
+			const accessToken = session.provider_token;
+			if (accessToken) {
+				fetchCalendarEvents(accessToken)
+			}
+		}
+	}, [session])
 
 	const fetchCalendarEvents = async (accessToken) => {
 		const response = await axios.get(
@@ -49,44 +38,23 @@ function Header() {
 		console.log(response);
 	};
 
-	const createCalendarEvent = async () => {
-		const event = {
-			'summary': eventName,
-			'description': eventDescription,
-			'start': {
-				'dateTime': start.toISOString(),
-				'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-			},
-			'end': {
-				'dateTime': end.toISOString(),
-				'timeZone': Intl.DateTimeFormat().resolvedOptions().timeZone
-			}
-		}
-		try {
-			const response = await axios.post(`https://www.googleapis.com/calendar/v3/calendars/primary/events`, event,
-				{
-					headers: {
-						'Authorization': "Bearer " + session.access_token,
-						"Content-Type": "application/json"
-					}
-				},
-			)
-		} catch (error) {
-			console.error("there was an error posting your task", error)
-		}
-	}
 	const googleSignIn = async () => {
-		const { error } = await supabase.auth.signInWithOAuth({
+		const { data, error } = await supabase.auth.signInWithOAuth({
 			provider: "google",
 			options: {
-				scopes: "https://www.googleapis.com/auth/calendar",
+				scopes: "https://www.googleapis.com/auth/calendar https://www.googleapis.com/auth/calendar.readonly",
+				redirectTo: window.location.origin
 			}
 		});
-
 
 		if (error) {
 			alert('Error logging in with Google provider with Supabase')
 			console.log(error)
+		} else {
+			const accessToken = data?.provider_token;
+			if (accessToken) {
+				fetchCalendarEvents(accessToken)
+			}
 		}
 	}
 
@@ -94,18 +62,15 @@ function Header() {
 		await supabase.auth.signOut();
 	}
 
-	const handleItemClick = (event, name) => {
-		if (name === 'sign-in') {
-			apiCalendar.handleAuthClick()
-		} else if (name === 'sign-out') {
-			apiCalendar.handleSignoutClick();
-		}
-	}
 	const handleAllTasksClick = () => {
 		setFilterType("All")
+		setDefaultView("month")
 		navigate('/')
 	}
 
+	if (isLoading) {
+		return <></>
+	}
 	return (
 		<header className='custom-header '>
 			<Link to='/' className='flex items-center'>
@@ -135,7 +100,7 @@ function Header() {
 					<li className='flex items-center'>
 						{session ?
 							<div className='flex flex-col items-center w-281' >
-								<img className="rounded-full w-8 h-8" src={session.user.user_metadata.picture} />
+								<img className="rounded-full w-8 h-8" src={session?.user.user_metadata.picture} />
 								<button onClick={() => googleSignOut()}>Sign Out</button>
 							</div>
 							:

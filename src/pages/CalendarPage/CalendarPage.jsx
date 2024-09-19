@@ -3,10 +3,10 @@ import Calendar from '../../components/Calendar/Calendar'
 import { TasksContext } from "../../App";
 
 function CalendarPage() {
-    const {allTasks, setAllTasks} = useContext(TasksContext);
+    const {allTasks} = useContext(TasksContext);
 
     useEffect(() => {
-        document.title = "JourneyTask - Calendar"
+        document.title = "MYTE - Calendar"
     }, [])
     return (
         <div>
