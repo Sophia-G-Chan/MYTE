@@ -9,7 +9,7 @@ import { useSession, useSupabaseClient, useSessionContext } from "@supabase/auth
 import axios from "axios"
 import { Api } from "../../api/Api.js"
 import ApiCalendar from 'react-google-calendar-api'
-
+import aboutIcon from '../../assets/icons/info.svg'
 
 const config = {
 	clientId: import.meta.env.VITE_CLIENT_ID,
@@ -114,6 +114,12 @@ function Header() {
 							<img src={taskIcon} alt="icon image of calendar" className='icon' />
 							All Tasks
 						</a>
+					</li>
+					<li className='p-2 flex items-center justify-end '>
+						<Link to='/about' className='flex items-center justify-end'>
+							<img src={aboutIcon} alt="icon of i to signify information when clicking here" className='icon' />
+							About
+						</Link>
 					</li>
 					<li className='flex items-center'>
 						{session ?

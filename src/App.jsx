@@ -3,7 +3,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import { useEffect, useState, createContext } from "react";
 import Header from "./components/Header/Header"
 import Footer from "./components/Footer/Footer"
-import Home from "./pages/Home/Home"
+import Home from "./pages/HomePage/HomePage.jsx"
 import NotFound from "./pages/NotFound"
 import CalendarPage from "./pages/CalendarPage/CalendarPage.jsx"
 import * as React from 'react';
@@ -13,6 +13,7 @@ import { fontTheme } from "./utils/utility";
 import { ThemeProvider } from "@mui/material";
 import axios from "axios"
 import { Api } from "./api/Api.js"
+import AboutPage from './pages/AboutPage/AboutPage.jsx';
 
 export const TasksContext = createContext();
 
@@ -40,6 +41,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home allTasks={allTasks} />} />
               <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
+              <Route path="/about" element={<AboutPage/>} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />

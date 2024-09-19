@@ -67,7 +67,7 @@ function Aside() {
                     <ul className={` ${showList ? "flex flex-col" : "hidden"}`}>
                         {lists.map((listItem) => {
                             return (
-                                <li className='my-1.5 ml-4 flex items-center'>
+                                <li className='my-1.5 ml-4 flex items-center' key={listItem.id}>
                                     <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
 
                                     {listItem.list_name}

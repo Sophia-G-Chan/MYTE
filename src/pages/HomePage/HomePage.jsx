@@ -2,7 +2,7 @@ import ToDoList from '../../components/ToDoList/ToDoList';
 import Calendar from '../../components/Calendar/Calendar';
 import { useEffect } from 'react';
 import Aside from '../../components/Aside/Aside';
-import './Home.scss'
+import './HomePage.scss'
 
 function Home({ allTasks }) {
 

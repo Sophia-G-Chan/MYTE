@@ -136,7 +136,10 @@ function ToDoList() {
 	}, [startDate, endDate])
 
 	return (
-		<div className="box-border">
+		<div className="box-border mt-6">
+			<form>
+				<input type="text" placeholder="List Name"></input>
+			</form>
 			<form className='custom-form mb-3' ref={formRef} key="form">
 				<label className='flex-col h-01 '>
 					Complete
