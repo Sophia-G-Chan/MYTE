@@ -1,4 +1,4 @@
-# <img src="public/assets/logos/journeytask-white-logo-cropped.svg" width=25px height=25px > JourneyTask - Sophia Chan Capstone Project
+# <img src="public/assets/logos/MYTE-white-logo-cropped.svg" width=25px height=25px > MYTE - Sophia Chan Capstone Project
 ## Table of Contents
 1. [Overview](#overview)
     - [Problem Space](#problem-space)
@@ -18,7 +18,7 @@
 4. [Future Implementations](#future-implementations)
 
 ## Overview
-JourneyTask is a task management app that combines time planning with your to-do list. Unlike regular to-do lists, JourneyTask allows you to assign time estimates for tasks and seamlessly adds them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
+MYTE is a task management app that combines time planning with your to-do list. MYTE stands for manage your time effectively. Unlike regular to-do lists, MYTE allows you to assign time estimates for tasks and seamlessly adds them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
 
 
 ### Problem Space
@@ -33,7 +33,7 @@ JouneyTaks addresses this by helping users organize tasks wihtin the context of 
 
 ### User Profile
 
-JourneyTask is for:
+MYTE is for:
 - A user that wants to make a to-do lists but have it accessible from any device connected to the internet.
 - A user who juggles multiple responsibilities and needs help managing time-based tasks at work.
     - **special consideration** would be needed for extra security as large companies may not want a 3rd party app accessing their calendar data.
@@ -121,26 +121,26 @@ JourneyTask is for:
 |POST | schedule a meeting|
 ### Sitemap
 
-![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/journeytask-sitemap.png)
+![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/MYTE-sitemap.png)
 
 - Home page displays the to-do list component and the user's calendar.
     - to-do list component includes the user's task list with options to click to edit delete or mark complete.
 - Calendar page shows the calendar day/week/month view to schedule tasks
 - (Future Implementation) Stats page is part of the future implementation which will include completed tasks, larger goals and the journey diagram to see where tasks are in comparison to large goals and projects
-- (Future Implementation) About page includes information for the user how to use JourneyTask, information tips about how to be more productive and the idea about JourneyTask.
+- (Future Implementation) About page includes information for the user how to use MYTE, information tips about how to be more productive and the idea about MYTE.
 
 ### Mockups
 The site will be built using a mobile first approach:
 
 | Mobile Home Page  | Mobile Calendar Page      |
 | :--------  | :-------- |
-| <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  | |
+| <img src='public/assets/mobile/MYTE-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/MYTE-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  | |
 
 Then desktop will be designed:
 
 | Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page  |
 | :--------  | :--------  |
-| <img src='public/assets/desktop/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> |
+| <img src='public/assets/desktop/MYTE-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/MYTE-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> |
 
 ### Data
 ![image of a data map with three tables users, tasks, calendar_events](public/assets/sql-diagram.png)

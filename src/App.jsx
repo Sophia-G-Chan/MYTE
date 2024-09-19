@@ -19,6 +19,8 @@ export const TasksContext = createContext();
 function App() {
   const api = new Api();
   const [allTasks, setAllTasks] = useState([]);
+  const [filteredTasks, setFilteredTasks] = useState([]);
+  const [filterType, setFilterType] = useState('All')
 
   const getAllTasks = async () => {
     const { data } = await api.getAllTasks();
@@ -29,10 +31,8 @@ function App() {
     getAllTasks()
   }, [])
 
-
-
   return (
-    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks }}>
+    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks, filteredTasks, setFilteredTasks, filterType, setFilterType }}>
       <ThemeProvider theme={fontTheme}>
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

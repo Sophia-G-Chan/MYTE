@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
-import { useState, ReactNode, SyntheticEvent } from "react";
+import { TasksContext } from "../../App";
+import { useState, useContext, ReactNode, SyntheticEvent } from "react";
+import { useNavigate } from 'react-router-dom';
 import './Header.scss'
 import calendarIcon from '../../assets/icons/calendar_month.svg'
 import taskIcon from '../../assets/icons/task.svg'
@@ -19,6 +21,7 @@ const config = {
 };
 
 function Header() {
+	const navigate = useNavigate();
 	const api = new Api();
 	const [start, setStart] = useState(new Date());
 	const [end, setEnd] = useState(new Date());
@@ -28,6 +31,7 @@ function Header() {
 	const session = useSession();
 	const supabase = useSupabaseClient();
 	const { isLoading } = useSessionContext();
+	const { setFilterType } = useContext(TasksContext);
 
 	if (isLoading) {
 		return <></>
@@ -79,47 +83,51 @@ function Header() {
 		await supabase.auth.signOut();
 	}
 
-    const handleItemClick = (event, name) => {
-		if(name === 'sign-in') {
-		apiCalendar.handleAuthClick()
-	} else if (name === 'sign-out') {
-		apiCalendar.handleSignoutClick();
+	const handleItemClick = (event, name) => {
+		if (name === 'sign-in') {
+			apiCalendar.handleAuthClick()
+		} else if (name === 'sign-out') {
+			apiCalendar.handleSignoutClick();
+		}
 	}
-}
+	const handleAllTasksClick = () => {
+		setFilterType("All")
+		navigate('/')
+	}
 
-return (
-	<header className='custom-header'>
-		<Link to='/' className='flex items-center'>
-			<img src="/assets/logos/journeytask-logo.svg" className='w-20 h-20' />
-			<h2 className=' text-3xl'>JourneyTask</h2>
-		</Link>
-		<nav className='flex'>
-			<ul className='flex gap-4 w-full'>
-				<li className='p-2 flex items-center justify-end '>
-					<Link to='/calendar' className='flex items-center justify-end'>
-						<img src={calendarIcon} alt="icon image of calendar" className='icon' />
-						Calendar
-					</Link>
-				</li>
-				<li className='p-2 flex items-center justify-end'>
-					<Link to='/' className='flex items-center justify-end'>
-						<img src={taskIcon} alt="icon image of calendar" className='icon' />
-						To Do List
-					</Link>
-				</li>
-				<li className='flex items-center'>
-					{session ?
-						<div className='flex flex-col items-center w-281' >
-							<img className="rounded-full w-8 h-8" src={session.user.user_metadata.picture}/>
-							<h4>{session.user.user_metadata.name}</h4>
-							<button onClick={() => googleSignOut()}>Sign Out</button>
-						</div>
-						:
-						<>
-							<button onClick={() => googleSignIn()}>Sign In</button>
-						</>
-					}
-					{/* <button
+	return (
+		<header className='custom-header'>
+			<Link to='/' className='flex items-center'>
+				<img src="/assets/logos/journeytask-logo.svg" className='w-20 h-20' />
+				<h2 className=' text-3xl'>JourneyTask</h2>
+			</Link>
+			<nav className='flex'>
+				<ul className='flex gap-4 w-full'>
+					<li className='p-2 flex items-center justify-end '>
+						<Link to='/calendar' className='flex items-center justify-end'>
+							<img src={calendarIcon} alt="icon image of calendar" className='icon' />
+							Calendar
+						</Link>
+					</li>
+					<li className='p-2 flex items-center justify-end cursor-pointer'>
+						<a onClick={handleAllTasksClick} className='flex items-center justify-end'>
+							<img src={taskIcon} alt="icon image of calendar" className='icon' />
+							All Tasks
+						</a>
+					</li>
+					<li className='flex items-center'>
+						{session ?
+							<div className='flex flex-col items-center w-281' >
+								<img className="rounded-full w-8 h-8" src={session.user.user_metadata.picture} />
+								<h4>{session.user.user_metadata.name}</h4>
+								<button onClick={() => googleSignOut()}>Sign Out</button>
+							</div>
+							:
+							<>
+								<button onClick={() => googleSignIn()}>Sign In</button>
+							</>
+						}
+						{/* <button
 						onClick={(e) => handleItemClick(e, 'sign-in')}>
 						sign-in
 					</button>
@@ -127,12 +135,12 @@ return (
 						onClick={(e) => handleItemClick(e, 'sign-out')}>
 						sign-out
 					</button> */}
-				</li>
-			</ul>
-		</nav>
+					</li>
+				</ul>
+			</nav>
 
-	</header>
-)
+		</header>
+	)
 }
 
 export default Header

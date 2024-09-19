@@ -10,7 +10,7 @@ import './ToDoList.scss'
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const { allTasks, setAllTasks } = useContext(TasksContext);
+	const { allTasks, setAllTasks, filteredTasks } = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -40,7 +40,7 @@ function ToDoList() {
 					if (type === 'checkbox') {
 						return {
 							...task,
-							status: checked ? "Completed" : "In Progress"
+							status: checked ? "Complete" : "In Progress"
 						};
 					} else {
 						return { ...task, [name]: event.target.value }
@@ -49,6 +49,27 @@ function ToDoList() {
 				return task;
 			})
 		})
+	}
+
+	const handleCheck = async (taskId, newStatus) => {
+		setAllTasks((prevTasks) => {
+			return prevTasks.map(task => task.task_id === taskId ? { ...task, status: newStatus ? "Complete" : "In Progress"} : task )
+		});
+		try{
+			const taskToEdit = allTasks.find(task => task.task_id === taskId)
+			if (!taskToEdit){
+				return;
+			} else{
+				const updatedTask = {
+					...taskToEdit,
+					status: newStatus ? "Complete" : "In Progress"
+				}
+				await api.editATask(taskId, updatedTask)
+			}
+
+		}catch (err) {
+			console.error('Error updating task status', error)
+		}
 	}
 
 	const editTask = async (task_id) => {
@@ -123,7 +144,7 @@ function ToDoList() {
 						type='checkbox'
 						name="status"
 						checked={newTask.status}
-						onChange={handleNewTaskInputChange}>
+						onChange={handleCheck}>
 					</input>
 				</label>
 				<label className='flex-col h-01' >
@@ -158,7 +179,7 @@ function ToDoList() {
 				<button onClick={handleSubmit}>Add task</button>
 			</form>
 			<ul>
-				{allTasks?.map((task) => {
+				{filteredTasks?.map((task) => {
 					if (!task) return null;
 
 					const startDate = task.start_date_and_time ? dayjs(task.start_date_and_time) : null;
@@ -167,7 +188,7 @@ function ToDoList() {
 					return (
 						<li key={`list_${task.task_id}`} className="flex items-center rounded mb-3 w-full odd:bg-slate-100  even:bg-white ">
 							<form className="flex items-center justify-center custom-form">
-								<input type='checkbox' name="status" checked={task.status === "Completed"} onChange={(e) => handleExistingInputChange(e, task.task_id)}
+								<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked)}
 									className="custom-check"></input>
 								<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 								<DateTimePicker

@@ -9,8 +9,7 @@ import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
-    const { allTasks, setAllTasks } = useContext(TasksContext);
-    const [filteredTasks, setFilteredTasks] = useState(allTasks);
+    const { allTasks, setFilteredTasks, filterType, setFilterType } = useContext(TasksContext);
     const [lists, setLists] = useState([]);
     const [showList, setShowList] = useState(true)
     const api = new Api();
@@ -24,11 +23,12 @@ function Aside() {
                 return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString());
             case "Next7Days":
                 return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today);
-            case "completed":
-                return allTasks.filter(task => task.status === "Completed")
+            case "Complete":
+                return allTasks.filter(task => task.status === "Complete")
             default:
-                return allTasks;
+                return allTasks.filter(task => task.status !== "Complete");
         }
+
     }
 
     const toggleList = () => {
@@ -43,15 +43,18 @@ function Aside() {
         getLists()
     }, [])
 
-    console.log(lists)
+    useEffect(() => {
+        setFilteredTasks(filterTasks(allTasks, filterType));
+    }, [filterType, allTasks])
+
     return (
         <aside className='custom-aside'>
             <section className='custom-aside__section mb-3 border-solid border-b-2 border-border-grey'>
-                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Today"))}>
+                <button className='flex my-4' onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     Today
                 </button>
-                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Next7Days"))}>
+                <button className='flex my-4' onClick={() => setFilterType("Next7Days")}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
                     Next 7 days
                 </button>
@@ -68,7 +71,7 @@ function Aside() {
                     )
                     })}
                 </ul>
-                <button className='flex my-4' onClick={() => setFilteredTasks(filterTasks(allTasks, "Completed"))}>
+                <button className='flex my-4' onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     Completed
                 </button>
