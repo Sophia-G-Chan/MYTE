@@ -31,6 +31,9 @@ const localizer = dateFnsLocalizer({
 function CalendarComponent({ allTasks }) {
 	const { defaultView, setDefaultView } = useContext(TasksContext)
 	const [allEvents, setAllEvents] = useState([]);
+	const [googleEvents, setGoogleEvents] = useState([])
+	const storedCalendarData = localStorage.getItem('calendarData');
+
 
 	useEffect(() => {
 		const transformTasks = allTasks?.map(task => ({
@@ -39,6 +42,21 @@ function CalendarComponent({ allTasks }) {
 			end: new Date(task.end_date_and_time)
 		}));
 		setAllEvents(transformTasks);
+
+		if (storedCalendarData) {
+			const parsedData= JSON.parse(storedCalendarData);
+			console.log(parsedData)
+
+			const transformGoogleEvents = parsedData?.filter(event => event.status === 'confirmed').map(event => (
+				({
+					title: event.summary,
+					start: new Date(event.start.dateTime || event.start.date ),
+					end: new Date(event.end.dateTime || event.end.date),
+					allDay: !event.start.dateTime,
+				})
+			))
+			setGoogleEvents(transformGoogleEvents)
+		}
 	}, [allTasks])
 
 
@@ -46,7 +64,7 @@ function CalendarComponent({ allTasks }) {
 		<div className='rounded mt-5 mb-10'>
 			<DnDCalendar
 				localizer={localizer}
-				events={allEvents}
+				events={googleEvents}
 				startAccessor='start'
 				endAccessor="end"
 				view={defaultView}

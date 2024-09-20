@@ -73,7 +73,7 @@ function Aside() {
                         <div className='absolute w-full h-full top-10 right-10 tablet:static'>
                             {lists.map((listItem) => {
                                 return (
-                                    <li className='tablet:my-1.5 tablet:ml-4 flex items-center' key={listItem.id}>
+                                    <li className='tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button' key={listItem.id}>
                                         <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
 
                                         {listItem.list_name}

@@ -12,6 +12,10 @@ header {
     @include tablet {
         @apply flex flex-row justify-between pl-1 pr-2;
     }
+
+    &__active {
+        filter: brightness(0) saturate(100%) invert(47%) sepia(38%) saturate(6799%) hue-rotate(185deg) brightness(103%) contrast(101%);
+    }
 }
 
 .custom-shadow {

@@ -54,13 +54,13 @@ function ToDoList() {
 
 	const handleCheck = async (taskId, newStatus) => {
 		setAllTasks((prevTasks) => {
-			return prevTasks.map(task => task.task_id === taskId ? { ...task, status: newStatus ? "Complete" : "In Progress"} : task )
+			return prevTasks.map(task => task.task_id === taskId ? { ...task, status: newStatus ? "Complete" : "In Progress" } : task)
 		});
-		try{
+		try {
 			const taskToEdit = allTasks.find(task => task.task_id === taskId)
-			if (!taskToEdit){
+			if (!taskToEdit) {
 				return;
-			} else{
+			} else {
 				const updatedTask = {
 					...taskToEdit,
 					status: newStatus ? "Complete" : "In Progress"
@@ -68,7 +68,7 @@ function ToDoList() {
 				await api.editATask(taskId, updatedTask)
 			}
 
-		}catch (err) {
+		} catch (err) {
 			console.error('Error updating task status', error)
 		}
 	}
@@ -141,38 +141,46 @@ function ToDoList() {
 			<form>
 				<input type="text" placeholder="List Name"></input>
 			</form>
+			<div className="flex gap-32 ml-16">
+				<h2>Task</h2>
+				<h2>Start</h2>
+				<h2>End</h2>
+				<h2>Description</h2>
+			</div>
 			<form className='custom-form ml-5 mb-3' ref={formRef} key="form">
-				<label className='flex-col h-01' >
+				<label className='h-1' htmlFor="task_name">
 					Task
-					<input
-						type='text'
-						name="task_name"
-						value={newTask.task_name}
-						placeholder="Task Name"
-						onChange={handleNewTaskInputChange}>
-					</input>
 				</label>
-				<label className='flex-col h-01 task__datetime'>
-					Start Date & Time
-					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
+				<input
+					type='text'
+					name="task_name"
+					value={newTask.task_name}
+					placeholder="Task Name"
+					onChange={handleNewTaskInputChange}
+					className="w-36 h-10 p-4">
+				</input>
 
+				<label className=' h-1 task__datetime'>
+					Start
 				</label>
-				<label className='flex-col h-01'>
-					End Date & Time
-					<DateTimePicker selected={endDate || null} onChange={setEndDate} />
+				<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
+				<label className='h-1'>
+					End
 				</label>
-				<label className='flex-col h-01 '>
+				<DateTimePicker selected={endDate || null} onChange={setEndDate} />
+				<label className='h-1 '>
 					Description
+				</label>
 					<input
 						type='text'
 						name="description"
 						value={newTask.description}
 						placeholder="Description"
-						onChange={handleNewTaskInputChange}>
+						onChange={handleNewTaskInputChange}
+						className="w-full tablet:w-52 h-10 p-4">
 					</input>
-				</label>
 				<button onClick={handleSubmit} className="w-12 min-w-12 rounded-full h-12 px-2 mt-3 mr-1 custom-button animation-up">
-					<img className="w-12 h-12 " src={addIcon}/>
+					<img className="w-12 h-12 " src={addIcon} />
 				</button>
 			</form>
 			<ul>

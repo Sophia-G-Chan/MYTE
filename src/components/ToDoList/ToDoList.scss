@@ -42,3 +42,19 @@
         background-color: var(--button-color-hover);
     }
 }
+
+.css-lc42l8-MuiInputBase-input-MuiOutlinedInput-input {
+    display: none !important;
+}
+
+.react-datetime-picker__wrapper {
+    border: 0px !important;
+    border: none !important;
+    outline: none !important;
+    width: 1px !important;
+    margin: none !important;
+}
+
+.MuiButtonBase-root{
+    padding: 0.5rem 0.5rem 0.5rem 0 !important;
+}

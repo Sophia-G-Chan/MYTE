@@ -9,7 +9,7 @@ input{
     border-radius: .25rem;
 
     &:hover{
-        background-color: var(--form-hover-color);
+        background-color: var(--aside-button-color);
         border-radius: .25rem;
     }
 
@@ -19,11 +19,21 @@ input{
         box-shadow: none;
     }
     &:focus{
-        //border: 2px solid blue !important ;
         outline: none  !important;
         box-shadow: none !important;
         border-radius: .25rem;
         background-color: var(--form-background);
+    }
+}
+input[type='checkbox']{
+    accent-color: var(--button-color);
+    border-radius: 0.5rem;
+    margin-left: 1rem;
+    border-color: var(--line-color);
+
+    &:hover{
+        width: 1rem;
+        background-color: var(--aside-button-color);
     }
 }
 

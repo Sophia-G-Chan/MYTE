@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { TasksContext } from "../../App";
 import { useContext, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
@@ -11,6 +11,7 @@ import aboutIcon from '../../assets/icons/info.svg'
 
 function Header() {
 	const navigate = useNavigate();
+	const location = useLocation();
 	const {setDefaultView} = useContext(TasksContext)
 	const session = useSession();
 	const supabase = useSupabaseClient();
@@ -20,6 +21,7 @@ function Header() {
 	useEffect(() => {
 		if(session){
 			const accessToken = session.provider_token;
+			localStorage.setItem('providerToken', accessToken)
 			if (accessToken) {
 				fetchCalendarEvents(accessToken)
 			}
@@ -35,6 +37,7 @@ function Header() {
 				},
 			}
 		);
+		localStorage.setItem('calendarData',JSON.stringify(response.data.items))
 		console.log(response);
 	};
 
@@ -68,6 +71,12 @@ function Header() {
 		navigate('/')
 	}
 
+	const handlCalendarClick = () => {
+		setFilterType("All")
+		setDefaultView("month")
+		navigate('/calendar')
+	}
+
 	if (isLoading) {
 		return <></>
 	}
@@ -79,21 +88,21 @@ function Header() {
 			</Link>
 			<nav className='flex'>
 				<ul className='flex gap-4 w-full items-end'>
-					<li className='p-2 flex '>
-						<Link to='/calendar' className='flex items-center justify-end animation-up custom-shadow'>
+					<li className={`p-2 flex cursor-pointer ${location.pathname === '/calendar' ? 'custom-header__active' : ''}`}>
+						<a onClick={handlCalendarClick}  className='flex items-center justify-end animation-up custom-shadow'>
 							<img src={calendarIcon} alt="icon image of calendar" className='icon' />
 							<span className='hidden tablet:block'>Calendar</span>
-						</Link>
-					</li>
-					<li className='p-2 flex cursor-pointer'>
-						<a onClick={handleAllTasksClick} className='flex items-center justify-end animation-up custom-shadow'>
-							<img src={taskIcon} alt="icon image of calendar" className='icon' />
-							<span className='hidden tablet:block'>All Tasks</span>
 						</a>
 					</li>
-					<li className='p-2 flex justify-end '>
+					<li className={`p-2 flex cursor-pointer ${location.pathname === '/' ? 'custom-header__active' : ''}`}>
+						<a onClick={handleAllTasksClick} className='flex items-center justify-end animation-up custom-shadow'>
+							<img src={taskIcon} alt="icon image of calendar" className='icon' />
+							<span className='hidden tablet:block'>Tasks</span>
+						</a>
+					</li>
+					<li className={`p-2 flex cursor-pointer ${location.pathname === '/about' ? 'custom-header__active' : ''}`}>
 						<Link to='/about' className='flex items-center justify-end animation-up custom-shadow'>
-							<img src={aboutIcon} alt="icon of i to signify information when clicking here" className='icon custom-shadow' />
+							<img src={aboutIcon} alt="icon of i to signify information when clicking here" className='icon' />
 							<span className='hidden tablet:block'>About</span>
 						</Link>
 					</li>
