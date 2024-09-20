@@ -23,11 +23,11 @@ function Aside() {
                 setDefaultView("day")
                 console.log(defaultView)
 
-                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString())
+                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString() && task.status !== "Complete")
             case "Next7Days":
                 setDefaultView("week")
                 console.log(defaultView)
-                return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today);
+                return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today  && task.status !== "Complete");
             case "Complete":
                 return allTasks.filter(task => task.status === "Complete")
             default:

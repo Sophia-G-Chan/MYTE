@@ -41,7 +41,7 @@ function App() {
             <Header />
             <Routes>
               <Route path="/" element={<Home allTasks={allTasks} />} />
-              <Route path="/calendar" element={<CalendarPage allTasks={allTasks} />} />
+              <Route path="/calendar" element={<CalendarPage />} />
               <Route path="/about" element={<AboutPage/>} />
               <Route path="*" element={<NotFound />} />
             </Routes>

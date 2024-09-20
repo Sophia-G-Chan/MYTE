@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef, useState } from "react";
 import { Api } from "../../api/Api"
 import { TasksContext } from "../../App";
 import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
+import { editTask, handleCheck } from "../../utils/taskUtils";
 import dayjs from "dayjs";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import saveIcon from "../../assets/icons/save.svg"
@@ -52,51 +53,6 @@ function ToDoList() {
 		})
 	}
 
-	const handleCheck = async (taskId, newStatus) => {
-		setAllTasks((prevTasks) => {
-			return prevTasks.map(task => task.task_id === taskId ? { ...task, status: newStatus ? "Complete" : "In Progress" } : task)
-		});
-		try {
-			const taskToEdit = allTasks.find(task => task.task_id === taskId)
-			if (!taskToEdit) {
-				return;
-			} else {
-				const updatedTask = {
-					...taskToEdit,
-					status: newStatus ? "Complete" : "In Progress"
-				}
-				await api.editATask(taskId, updatedTask)
-			}
-
-		} catch (err) {
-			console.error('Error updating task status', error)
-		}
-	}
-
-	const editTask = async (task_id) => {
-		const taskToEdit = allTasks.find(task => task.task_id === task_id)
-		if (!taskToEdit) return;
-
-		const startDate = taskToEdit.start_date_and_time instanceof Date ? taskToEdit.start_date_and_time : new Date(taskToEdit.start_date_and_time);
-		const endDate = taskToEdit.end_date_and_time instanceof Date ? taskToEdit.end_date_and_time : new Date(taskToEdit.end_date_and_time);
-
-		const taskData = {
-			user_id: 1,
-			task_name: taskToEdit.task_name,
-			description: taskToEdit.description,
-			start_date_and_time: startDate.toISOString(),
-			end_date_and_time: endDate.toISOString(),
-			status: taskToEdit.status ? "In Progress" : "Complete"
-		}
-
-		try {
-			const response = await api.editATask(task_id, taskData);
-			setAllTasks(prevTasks => prevTasks.map(task => task.task_id === task_id ? response : task));
-
-		} catch (error) {
-			console.log('there is an error getting the POST api', error)
-		}
-	}
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -193,7 +149,7 @@ function ToDoList() {
 					return (
 						<li key={`list_${task.task_id}`} className="flex items-center rounded mb-3 w-full odd:bg-slate-100  even:bg-white ">
 							<form className="flex items-center justify-center custom-form">
-								<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked)}
+								<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
 									className="custom-check"></input>
 								<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 								<DateTimePicker
@@ -207,7 +163,7 @@ function ToDoList() {
 								<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
 								<div className="flex justify-center items-center w-28" key={`bottom_${task.task_id}`} >
 									<div className="w-full">
-										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer filter save-effect save-icon w-8" />
+										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id, allTasks, setAllTasks)} className="cursor-pointer filter save-effect save-icon w-8" />
 									</div>
 									<DeleteModal taskId={task.task_id} task_name={task.task_name} />
 								</div>
