@@ -54,19 +54,19 @@ function Aside() {
     return (
         <aside className='w-full h-auto p-4 flex flex-row items-center justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:w-3/12 tablet:items-start'>
             <section className='flex flex-row tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
-                <button className='flex tablet:my-4' onClick={() => setFilterType("Today")}>
+                <button className='flex custom-aside__button tablet:my-4' onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     <span className='hidden tablet:block'>Today</span>
                 </button>
-                <button className='flex items-center tablet:my-4' onClick={() => setFilterType("Next7Days")}>
+                <button className='flex items-center custom-aside__button  tablet:my-4' onClick={() => setFilterType("Next7Days")}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
                     <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
             </section>
-            <section className='flex flex-row tablet:flex-col '>
-                <button className='flex items-center' onClick={toggleList}>
+            <section className='w-full flex flex-row  tablet:flex-col '>
+                <button className='flex items-center custom-aside__button' onClick={toggleList}>
                     <img src={listIcon} alt="list icon" className='icon' />
-                    <span className='hidden tablet:block'>Lists</span>
+                    <span className='hidden tablet:block  '>Lists</span>
                 </button>
                 <form>
                     <ul className={`relative ${showList ? "hidden" : "flex flex-col"}`}>
@@ -84,11 +84,11 @@ function Aside() {
 
                     </ul>
                 </form>
-                <button className='flex items-center tablet:my-5' onClick={() => setFilterType("Complete")}>
+                <button className='flex bg-green-400 items-center custom-aside__button tablet:my-5' onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>
                 </button>
-                <button className='flex tablet:my-4'>
+                <button className='flex bg-teal-100 tablet:my-4 custom-aside__button '>
                     <img src={editIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Personalize</span>
                 </button>

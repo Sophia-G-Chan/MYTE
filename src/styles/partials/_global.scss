@@ -1,0 +1,53 @@
+
+html {
+    font-family: "Wotfard";
+    color: var(--text-color);
+}
+
+input{
+    border: none;
+    border-radius: .25rem;
+
+    &:hover{
+        background-color: var(--form-hover-color);
+        border-radius: .25rem;
+    }
+
+    &:active{
+        border: none ;
+        outline: none;
+        box-shadow: none;
+    }
+    &:focus{
+        //border: 2px solid blue !important ;
+        outline: none  !important;
+        box-shadow: none !important;
+        border-radius: .25rem;
+        background-color: var(--form-background);
+    }
+}
+
+form{
+    &:active{
+        border: none;
+        outline: none;
+    }
+    &:focus{
+        border: none;
+        outline: none;
+    }
+}
+
+.icon {
+    filter: var(--filter-effect);
+    margin: 0 0.5rem;
+}
+
+.animation-up {
+    transform: translateY(0);
+    transition: transform 0.3s ease-in-out;
+
+    &:hover{
+        transform: translateY(-0.5rem);
+    }
+}

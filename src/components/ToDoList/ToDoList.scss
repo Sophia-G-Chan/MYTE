@@ -33,3 +33,12 @@
     border: 2px solid var(--text-color) !important;
     border-radius: 2px;
 }
+
+.custom-button {
+    background-color: var(--button-color);
+    color: var(--text-color);
+
+    &:hover{
+        background-color: var(--button-color-hover);
+    }
+}

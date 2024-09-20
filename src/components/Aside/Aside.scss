@@ -2,19 +2,15 @@
 @use '../../styles/partials/variables' as *;
 
 .custom-aside{
-
-//     @include tablet {
-//         position: sticky;
-//         top: 0;
-//         height: 50vh;
-//     }
-
-//     &__section{
-//         @apply flex ;
-
     @include tablet {
         @apply flex ;
-
-    //}
     }
+    &__button{
+        padding: .5rem 0;
+        border-radius: 8px;
+        &:hover{
+            background-color: var(--aside-button-color);
+        }
+    }
+
 }

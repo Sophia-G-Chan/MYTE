@@ -5,6 +5,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import dayjs from "dayjs";
 import DeleteModal from "../DeleteModal/DeleteModal";
 import saveIcon from "../../assets/icons/save.svg"
+import addIcon from '../../assets/icons/add.svg'
 import './ToDoList.scss'
 
 function ToDoList() {
@@ -85,7 +86,7 @@ function ToDoList() {
 			description: taskToEdit.description,
 			start_date_and_time: startDate.toISOString(),
 			end_date_and_time: endDate.toISOString(),
-			status: taskToEdit.status ? "Complete" : "In Progress"
+			status: taskToEdit.status ? "In Progress" : "Complete"
 		}
 
 		try {
@@ -138,19 +139,9 @@ function ToDoList() {
 	return (
 		<div className="box-border mt-6 mb-20">
 			<form>
-
 				<input type="text" placeholder="List Name"></input>
 			</form>
-			<form className='custom-form mb-3' ref={formRef} key="form">
-				<label className='flex-col h-01 '>
-					Complete
-					<input
-						type='checkbox'
-						name="status"
-						checked={newTask.status}
-						onChange={handleCheck}>
-					</input>
-				</label>
+			<form className='custom-form ml-5 mb-3' ref={formRef} key="form">
 				<label className='flex-col h-01' >
 					Task
 					<input
@@ -180,7 +171,9 @@ function ToDoList() {
 						onChange={handleNewTaskInputChange}>
 					</input>
 				</label>
-				<button onClick={handleSubmit}>Add task</button>
+				<button onClick={handleSubmit} className="w-12 min-w-12 rounded-full h-12 px-2 mt-3 mr-1 custom-button animation-up">
+					<img className="w-12 h-12 " src={addIcon}/>
+				</button>
 			</form>
 			<ul>
 				{filteredTasks?.map((task) => {
@@ -203,7 +196,7 @@ function ToDoList() {
 									value={endDate}
 									onChange={(newValue) => setEndDate(newValue)}
 								/>
-								<input className="bg-inherit " type='text' name="description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+								<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
 								<div className="flex justify-center items-center w-28" key={`bottom_${task.task_id}`} >
 									<div className="w-full">
 										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id)} className="cursor-pointer filter save-effect save-icon w-8" />

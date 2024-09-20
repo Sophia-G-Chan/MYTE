@@ -1,48 +1,10 @@
 @use "./styles/partials/typography" as *;
+@use './styles/partials/global' as *;
+
 @import 'tailwindcss/base';
 @import 'tailwindcss/components';
 @import 'tailwindcss/utilities';
 
-
-html {
-    font-family: "Wotfard";
-    color: #3d4043;
-}
-
 #root{
-    @apply w-full;
-    box-sizing: border-box;
-}
-
-.icon {
-    filter: var(--filter-effect);
-    margin: 0 0.5rem;
-}
-
-input{
-    border: none;
-
-    &:active{
-        border: none ;
-        outline: none;
-        box-shadow: none;
-    }
-    &:focus{
-        //border: 2px solid blue !important ;
-        outline: none  !important;
-        box-shadow: none !important;
-        border-radius: .25rem;
-        background-color: grey;
-    }
-}
-
-form{
-    &:active{
-        border: none;
-        outline: none;
-    }
-    &:focus{
-        border: none;
-        outline: none;
-    }
+    @apply w-full box-border;
 }

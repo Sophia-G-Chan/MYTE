@@ -73,27 +73,27 @@ function Header() {
 	}
 	return (
 		<header className='custom-header '>
-			<Link to='/' className='flex items-center'>
+			<Link to='/' className='flex items-center '>
 				<img src="/assets/logos/journeytask-logo.svg" className='w-20 h-20' />
 				<h2 className=' text-3xl'>MYTE</h2>
 			</Link>
 			<nav className='flex'>
 				<ul className='flex gap-4 w-full items-end'>
 					<li className='p-2 flex '>
-						<Link to='/calendar' className='flex items-center justify-end'>
+						<Link to='/calendar' className='flex items-center justify-end animation-up custom-shadow'>
 							<img src={calendarIcon} alt="icon image of calendar" className='icon' />
 							<span className='hidden tablet:block'>Calendar</span>
 						</Link>
 					</li>
 					<li className='p-2 flex cursor-pointer'>
-						<a onClick={handleAllTasksClick} className='flex items-center justify-end'>
+						<a onClick={handleAllTasksClick} className='flex items-center justify-end animation-up custom-shadow'>
 							<img src={taskIcon} alt="icon image of calendar" className='icon' />
 							<span className='hidden tablet:block'>All Tasks</span>
 						</a>
 					</li>
 					<li className='p-2 flex justify-end '>
-						<Link to='/about' className='flex items-center justify-end'>
-							<img src={aboutIcon} alt="icon of i to signify information when clicking here" className='icon' />
+						<Link to='/about' className='flex items-center justify-end animation-up custom-shadow'>
+							<img src={aboutIcon} alt="icon of i to signify information when clicking here" className='icon custom-shadow' />
 							<span className='hidden tablet:block'>About</span>
 						</Link>
 					</li>
