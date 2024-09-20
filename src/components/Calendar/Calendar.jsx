@@ -64,7 +64,7 @@ function CalendarComponent() {
 		}
 	}, [allTasks])
 
-	const handleEventDrop = async ({ event, start, end }) => {
+	const handleEventChange = async ({ event, start, end }) => {
 		const updatedEvent = { ...event, start, end };
 		const updatedEvents = allEvents.map(item => {
 			if (item.id === event.id) {
@@ -87,11 +87,10 @@ function CalendarComponent() {
 				console.error("Error updating drag and drop event")
 			}
 		}
-
 	}
 
 	return (
-		<div className='rounded mt-5 mb-10'>
+		<div className='rounded m-5 mb-16 custom-calendar'>
 			<DnDCalendar
 				localizer={localizer}
 				events={allEvents}
@@ -99,8 +98,9 @@ function CalendarComponent() {
 				endAccessor="end"
 				view={defaultView}
 				onView={(newView) => setDefaultView(newView)}
-				style={{ height: 500, margin: "50px" }}
-				onEventDrop={handleEventDrop}
+				resizable
+				onEventDrop={handleEventChange}
+				onEventResize={handleEventChange}
 				eventPropGetter={(event) => {
 					let customStyle = {
 						backgroundColor: event.type === 'task' ? 'lightblue' : 'var(--button-color)',

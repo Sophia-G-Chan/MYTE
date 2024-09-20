@@ -5,6 +5,7 @@
     @apply flex flex-col justify-center w-full;
     align-items: center;
 
+
     @include tablet {
         @apply flex flex-row;
         align-items: flex-start;

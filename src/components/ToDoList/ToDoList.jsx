@@ -115,7 +115,14 @@ function ToDoList() {
 					onChange={handleNewTaskInputChange}
 					className="w-36 h-10 p-4">
 				</input>
-
+				<input
+					type='text'
+					name="description"
+					value={newTask.description}
+					placeholder="Description"
+					onChange={handleNewTaskInputChange}
+					className="w-full tablet:w-52 h-10 p-4">
+				</input>
 				<label className=' h-1 task__datetime'>
 					Start
 				</label>
@@ -127,14 +134,6 @@ function ToDoList() {
 				<label className='h-1 '>
 					Description
 				</label>
-					<input
-						type='text'
-						name="description"
-						value={newTask.description}
-						placeholder="Description"
-						onChange={handleNewTaskInputChange}
-						className="w-full tablet:w-52 h-10 p-4">
-					</input>
 				<button onClick={handleSubmit} className="w-12 min-w-12 rounded-full h-12 px-2 mt-3 mr-1 custom-button animation-up">
 					<img className="w-12 h-12 " src={addIcon} />
 				</button>
@@ -152,15 +151,19 @@ function ToDoList() {
 								<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
 									className="custom-check"></input>
 								<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
-								<DateTimePicker
-									value={startDate}
-									onChange={(newValue) => setStartDate(newValue)}
-								/>
-								<DateTimePicker
-									value={endDate}
-									onChange={(newValue) => setEndDate(newValue)}
-								/>
+
 								<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+								<div>
+									<DateTimePicker
+										value={startDate}
+										onChange={(newValue) => setStartDate(newValue)}
+									/>
+									<DateTimePicker
+										value={endDate}
+										onChange={(newValue) => setEndDate(newValue)}
+									/>
+								</div>
+
 								<div className="flex justify-center items-center w-28" key={`bottom_${task.task_id}`} >
 									<div className="w-full">
 										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id, allTasks, setAllTasks)} className="cursor-pointer filter save-effect save-icon w-8" />

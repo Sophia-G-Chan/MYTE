@@ -52,8 +52,8 @@ function Aside() {
     }, [filterType, allTasks])
 
     return (
-        <aside className='w-full h-auto p-4 flex flex-row items-center justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:w-3/12 tablet:items-start'>
-            <section className='flex flex-row tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
+        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-3/12 tablet:items-start'>
+            <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
                 <button className='flex custom-aside__button tablet:my-4' onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     <span className='hidden tablet:block'>Today</span>
@@ -63,7 +63,7 @@ function Aside() {
                     <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
             </section>
-            <section className='w-full flex flex-row  tablet:flex-col '>
+            <section className='w-1/2 flex flex-row justify-center gap-6 tablet:flex-col '>
                 <button className='flex items-center custom-aside__button' onClick={toggleList}>
                     <img src={listIcon} alt="list icon" className='icon' />
                     <span className='hidden tablet:block  '>Lists</span>

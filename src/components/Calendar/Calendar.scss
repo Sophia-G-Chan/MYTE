@@ -18,3 +18,16 @@
 .rbc-event{
     margin-left: 0 !important;
 }
+
+.custom-calendar{
+
+    height: 31.25rem;
+
+    @include tablet{
+        height: 37.5rem;
+    }
+
+    @include desktop {
+        height: 43.75rem;
+    }
+}

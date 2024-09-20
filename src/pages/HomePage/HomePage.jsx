@@ -12,7 +12,7 @@ function Home({ allTasks }) {
   return (
     <div className='custom-home'>
       <Aside />
-      <main className='p-2 h-full flex-col gap-16 justify-center content-center w-full'>
+      <main className='p-2 h-full flex-col gap-16 justify-center content-center w-8/12'>
         <ToDoList allTasks={allTasks} />
         <Calendar allTasks={allTasks} />
       </main>
