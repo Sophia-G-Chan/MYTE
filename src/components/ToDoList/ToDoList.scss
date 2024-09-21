@@ -23,6 +23,7 @@
 .custom-button {
     background-color: var(--button-color);
     color: var(--text-color);
+    padding:0 0.25rem !important;
 
     &:hover{
         background-color: var(--button-color-hover);
@@ -60,6 +61,17 @@
     outline: inherit;
 }
 
-#add-button{
-    padding:0 0.25rem !important;
+.custom-textarea{
+    @include tablet{
+        margin-top: 0 !important;
+        max-width: 400px;
+    }
+
+    &:focus , &:active{
+        box-shadow: none;
+        background-color: var(--form-hover-color);
+    }
+    &:hover{
+        background-color: var(--aside-button-color)
+    }
 }

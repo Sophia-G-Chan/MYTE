@@ -20,7 +20,6 @@
 }
 
 .custom-calendar{
-
     height: 31.25rem;
 
     @include tablet{
@@ -33,7 +32,8 @@
 }
 
 button{
-    padding: 0.5rem 0 !important;
+    padding: 0.5rem 0.25 !important;
+
 
     @include tablet{
         padding: 0.5rem !important;

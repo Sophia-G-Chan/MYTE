@@ -97,13 +97,13 @@ function ToDoList() {
 			<form>
 				<input type="text" placeholder="List Name"></input>
 			</form>
-			<div className="flex gap-32 ml-16 custom-title">
+			<div className="flex gap-28 ml-10 custom-title">
 				<h2>Task</h2>
 				<h2>Description</h2>
-				<h2>Start</h2>
+				<h2 className="ml-32">Start</h2>
 				<h2>End</h2>
 			</div>
-			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center' ref={formRef} key="form">
+			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center tablet:gap-2 tablet:mx-0' ref={formRef} key="form">
 				<input
 					type='text'
 					name="task_name"
@@ -112,14 +112,13 @@ function ToDoList() {
 					onChange={handleNewTaskInputChange}
 					className="w-36 h-10 p-4">
 				</input>
-				<input
-					type='text'
+				<textarea
 					name="description"
 					value={newTask.description}
 					placeholder="Description"
 					onChange={handleNewTaskInputChange}
-					className="w-full tablet:w-52 h-10 p-4 grow">
-				</input>
+					className="w-full tablet:w-52 p-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea">
+				</textarea>
 				<label className=' custom-label'>
 					Start
 				</label>
@@ -128,7 +127,7 @@ function ToDoList() {
 					End
 				</label>
 				<DateTimePicker selected={endDate || null} onChange={setEndDate} />
-				<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up" id="add-button">
+				<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
 					<img className="w-10 h-10 " src={addIcon} />
 				</button>
 			</form>
@@ -151,7 +150,7 @@ function ToDoList() {
 									<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 									<div className="flex flex-col my-2">
 										<label htmlFor="description" className="pl-2 custom-label">Description: </label>
-										<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+										<textarea className="bg-inherit border-0 resize-none custom-textarea " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></textarea>
 									</div>
 
 									{/* <div> */}
