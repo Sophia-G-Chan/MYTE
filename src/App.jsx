@@ -23,24 +23,28 @@ function App() {
   const [filterType, setFilterType] = useState('All')
   const [defaultView, setDefaultView] = useState('month');
   const [lists, setLists] = useState([]);
-  const [selectedListId, setSelectedListId] = useState(1);
+  const [selectedListId, setSelectedListId] = useState(null);
+  const [listTasks, setlistTasks] = useState([]);
 
   const getLists = async () => {
     const { data } = await api.getLists();
     setLists(data);
   }
 
-  useEffect(() => {
-    getLists()
-  }, [])
-
   const getAllTasks = async () => {
     const { data } = await api.getAllTasks();
     setAllTasks(data);
   }
 
+  const getListTasks = async () => {
+      const {data} = await api.getListTask();
+      setlistTasks(data);
+  }
+
   useEffect(() => {
-    getAllTasks()
+    getLists();
+    getAllTasks();
+    getListTasks();
   }, [])
 
   return (
@@ -51,7 +55,8 @@ function App() {
       filterType, setFilterType,
       defaultView, setDefaultView,
       lists, setLists,
-      selectedListId, setSelectedListId }}>
+      selectedListId, setSelectedListId,
+      listTasks, setlistTasks}}>
       <ThemeProvider theme={fontTheme}>
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

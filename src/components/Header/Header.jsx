@@ -12,7 +12,7 @@ import aboutIcon from '../../assets/icons/info.svg'
 function Header() {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const {setDefaultView} = useContext(TasksContext)
+	const {setDefaultView, setSelectedListId} = useContext(TasksContext)
 	const session = useSession();
 	const supabase = useSupabaseClient();
 	const { isLoading } = useSessionContext();
@@ -67,6 +67,7 @@ function Header() {
 
 	const handleAllTasksClick = () => {
 		setFilterType("All")
+		setSelectedListId(null)
 		setDefaultView("month")
 		navigate('/')
 	}

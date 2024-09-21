@@ -8,17 +8,19 @@ import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
-    const { allTasks, setFilteredTasks, filterType, setFilterType, setDefaultView, lists, selectedListId, setSelectedListId } = useContext(TasksContext);
+    const {
+        allTasks, setFilteredTasks, filterType, setFilterType, setDefaultView, lists,  selectedListId, setSelectedListId, listTasks } = useContext(TasksContext);
     const [showList, setShowList] = useState(true)
 
     const filterTasks = (allTasks, filterType, selectedListId) => {
         const today = new Date();
         const next7Days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
+        console.log(selectedListId)
         const filteredByList = selectedListId ?
             allTasks.filter(
                 task => listTasks.some(
-                    listTask => listTask.task_id === task.task_id && listTask.list_id === listTask.list_id === selectedListId))
+                    listTask => listTask.task_id === task.task_id && listTask.list_id === selectedListId))
             : allTasks;
 
         switch (filterType) {
@@ -40,8 +42,9 @@ function Aside() {
     }
 
     useEffect(() => {
-        setFilteredTasks(filterTasks(allTasks, filterType));
-    }, [filterType, allTasks])
+        console.log('selected List Id', selectedListId)
+        setFilteredTasks(filterTasks(allTasks, filterType, selectedListId));
+    }, [filterType, allTasks, selectedListId])
 
     return (
         <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
@@ -69,7 +72,7 @@ function Aside() {
                                         className='tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer'
                                         key={listItem.id} value={listItem.id}
                                         onClick={() => {
-                                            setSelectedListId(`${listItem.id}`)
+                                            setSelectedListId(listItem.id)
                                             setFilterType(`List`)
                                         }}
                                     >

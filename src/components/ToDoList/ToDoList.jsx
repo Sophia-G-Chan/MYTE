@@ -97,12 +97,7 @@ function ToDoList() {
 			<form>
 				<input type="text" placeholder="List Name"></input>
 			</form>
-			<div className="flex gap-28 ml-10 custom-title">
-				<h2>Task</h2>
-				<h2>Description</h2>
-				<h2 className="ml-32">Start</h2>
-				<h2>End</h2>
-			</div>
+
 			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center tablet:gap-2 tablet:mx-0' ref={formRef} key="form">
 				<input
 					type='text'
@@ -131,6 +126,12 @@ function ToDoList() {
 					<img className="w-10 h-10 " src={addIcon} />
 				</button>
 			</form>
+			<div className="flex gap-28 ml-10 custom-title">
+				<h2>Task</h2>
+				<h2>Description</h2>
+				<h2 className="ml-32">Start</h2>
+				<h2>End</h2>
+			</div>
 			<ul className="w-full">
 				{filteredTasks?.map((task) => {
 					if (!task) return null;
@@ -153,8 +154,6 @@ function ToDoList() {
 										<label htmlFor="description" className="pl-2 custom-label">Description: </label>
 										<textarea className="bg-inherit border-0 resize-none custom-textarea " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></textarea>
 									</div>
-
-									{/* <div> */}
 									<div className="pl-2 flex items-center w-9/12">
 										<label className="custom-label">Start:</label>
 										<DateTimePicker
@@ -168,7 +167,6 @@ function ToDoList() {
 											onChange={(newValue) => setEndDate(newValue)}
 										/>
 									</div>
-									{/* </div> */}
 								</div>
 
 								<div className="flex flex-col justify-start tablet:flex-row tablet:items-center tablet:justify-center gap-6 w-28" key={`bottom_${task.task_id}`} >
