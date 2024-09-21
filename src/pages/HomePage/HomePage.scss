@@ -2,12 +2,11 @@
 @use '../../styles/partials/variables' as *;
 
 .custom-home{
-    @apply flex flex-col justify-center w-full;
-    align-items: center;
-
+    @apply flex flex-col  w-full;
+    align-items: flex-start;
 
     @include tablet {
-        @apply flex flex-row;
+        @apply flex flex-row justify-center;
         align-items: flex-start;
     }
 }

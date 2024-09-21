@@ -31,3 +31,11 @@
         height: 43.75rem;
     }
 }
+
+button{
+    padding: 0.5rem 0 !important;
+
+    @include tablet{
+        padding: 0.5rem !important;
+    }
+}

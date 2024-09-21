@@ -90,7 +90,7 @@ function CalendarComponent() {
 	}
 
 	return (
-		<div className='rounded m-5 mb-16 custom-calendar'>
+		<div className='rounded m-5 mb-16 custom-calendar box-border'>
 			<DnDCalendar
 				localizer={localizer}
 				events={allEvents}

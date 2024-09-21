@@ -6,27 +6,13 @@
 }
 
 .custom-form {
-    @apply h-auto flex flex-col gap-2;
+    @apply h-auto ;
     min-width: 18.75rem;
-    width: 10rem;
-
-    @include tablet {
-        @apply flex flex-row;
-        width: auto;
-    }
+    width: 100%;
 }
 
 .save-icon{
     filter: var(--filter-save-effect);
-}
-
-.react-datetime-picker__inputGroup{
-    min-width: 0 !important;
-    border: none;
-}
-
-.MuiInputBase-input{
-    padding: 0.65rem !important;
 }
 
 .custom-check{
@@ -43,18 +29,37 @@
     }
 }
 
-.css-lc42l8-MuiInputBase-input-MuiOutlinedInput-input {
-    display: none !important;
+.custom-title{
+    display: none;
+
+    @include tablet{
+        display: flex;
+    }
 }
 
-.react-datetime-picker__wrapper {
-    border: 0px !important;
+.custom-label{
+    display: inline-block;
+
+    @include tablet{
+        display: none ;
+    }
+}
+
+.react-datetime-picker__inputGroup{
+    min-width: 0 !important;
+    padding: 0 !important;
+}
+
+.MuiInputBase-input{
+    padding: 0.65rem !important;
+    width: 100px !important;
+}
+
+.MuiOutlinedInput-notchedOutline {
     border: none !important;
-    outline: none !important;
-    width: 1px !important;
-    margin: none !important;
+    outline: inherit;
 }
 
-.MuiButtonBase-root{
-    padding: 0.5rem 0.5rem 0.5rem 0 !important;
+#add-button{
+    padding:0 0.25rem !important;
 }

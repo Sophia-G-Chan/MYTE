@@ -63,8 +63,8 @@ function Aside() {
                     <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
             </section>
-            <section className='w-1/2 flex flex-row justify-center gap-6 tablet:flex-col '>
-                <button className='flex items-center custom-aside__button' onClick={toggleList}>
+            <section className='w-1/2 flex flex-row justify-center gap-6 tablet:flex-col tablet:w-full'>
+                <button className='w-full flex items-center custom-aside__button' onClick={toggleList}>
                     <img src={listIcon} alt="list icon" className='icon' />
                     <span className='hidden tablet:block  '>Lists</span>
                 </button>
@@ -84,7 +84,7 @@ function Aside() {
 
                     </ul>
                 </form>
-                <button className='flex bg-green-400 items-center custom-aside__button tablet:my-5' onClick={() => setFilterType("Complete")}>
+                <button className=' flex bg-green-400 items-center custom-aside__button tablet:my-5 tablet: w-full' onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>
                 </button>

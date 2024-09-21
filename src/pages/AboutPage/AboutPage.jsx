@@ -8,7 +8,7 @@ function AboutPage() {
 
     return (
         <div className='flex flex-col items-center h-full w-full box-border'>
-            <section className='flex flex-col items-center m-10 h-full w-10/12 desktop:w-9/12'>
+            <section className='flex flex-col items-center m-10 h-svh w-10/12 desktop:w-9/12'>
                 <h1 className='text-6xl'>MYTE</h1>
                 <p className='text-base'> Manage Your Time Effectively</p>
                 <ul>

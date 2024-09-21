@@ -93,20 +93,17 @@ function ToDoList() {
 	}, [startDate, endDate])
 
 	return (
-		<div className="box-border mt-6 mb-20">
+		<div className="box-border mt-6 mb-20 w-full">
 			<form>
 				<input type="text" placeholder="List Name"></input>
 			</form>
-			<div className="flex gap-32 ml-16">
+			<div className="flex gap-32 ml-16 custom-title">
 				<h2>Task</h2>
+				<h2>Description</h2>
 				<h2>Start</h2>
 				<h2>End</h2>
-				<h2>Description</h2>
 			</div>
-			<form className='custom-form ml-5 mb-3' ref={formRef} key="form">
-				<label className='h-1' htmlFor="task_name">
-					Task
-				</label>
+			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center' ref={formRef} key="form">
 				<input
 					type='text'
 					name="task_name"
@@ -121,24 +118,21 @@ function ToDoList() {
 					value={newTask.description}
 					placeholder="Description"
 					onChange={handleNewTaskInputChange}
-					className="w-full tablet:w-52 h-10 p-4">
+					className="w-full tablet:w-52 h-10 p-4 grow">
 				</input>
-				<label className=' h-1 task__datetime'>
+				<label className=' custom-label'>
 					Start
 				</label>
 				<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
-				<label className='h-1'>
+				<label className='custom-label'>
 					End
 				</label>
 				<DateTimePicker selected={endDate || null} onChange={setEndDate} />
-				<label className='h-1 '>
-					Description
-				</label>
-				<button onClick={handleSubmit} className="w-12 min-w-12 rounded-full h-12 px-2 mt-3 mr-1 custom-button animation-up">
-					<img className="w-12 h-12 " src={addIcon} />
+				<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up" id="add-button">
+					<img className="w-10 h-10 " src={addIcon} />
 				</button>
 			</form>
-			<ul>
+			<ul className="w-full">
 				{filteredTasks?.map((task) => {
 					if (!task) return null;
 
@@ -146,25 +140,38 @@ function ToDoList() {
 					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
 
 					return (
-						<li key={`list_${task.task_id}`} className="flex items-center rounded mb-3 w-full odd:bg-slate-100  even:bg-white ">
-							<form className="flex items-center justify-center custom-form">
-								<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
-									className="custom-check"></input>
-								<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
-
-								<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+						<li key={`list_${task.task_id}`} className="flex items-start rounded p-2 mb-3 w-full odd:bg-slate-100  even:bg-white box-border tablet:p-0">
+							<form className="flex p-2 tablet:items-center tablet:p-0 custom-form">
 								<div>
-									<DateTimePicker
-										value={startDate}
-										onChange={(newValue) => setStartDate(newValue)}
-									/>
-									<DateTimePicker
-										value={endDate}
-										onChange={(newValue) => setEndDate(newValue)}
-									/>
+									<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
+										className="custom-check">
+									</input>
+								</div>
+								<div className="w-9/12 grow tablet:flex ">
+									<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+									<div className="flex flex-col my-2">
+										<label htmlFor="description" className="pl-2 custom-label">Description: </label>
+										<input className="bg-inherit " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></input>
+									</div>
+
+									{/* <div> */}
+									<div className="pl-2 flex items-center w-9/12">
+										<label className="custom-label">Start:</label>
+										<DateTimePicker
+											value={startDate}
+											onChange={(newValue) => setStartDate(newValue)}
+										/>
+
+										<label className="pl-4 custom-label">End:</label>
+										<DateTimePicker
+											value={endDate}
+											onChange={(newValue) => setEndDate(newValue)}
+										/>
+									</div>
+									{/* </div> */}
 								</div>
 
-								<div className="flex justify-center items-center w-28" key={`bottom_${task.task_id}`} >
+								<div className="flex flex-col justify-start tablet:flex-row tablet:items-center tablet:justify-center gap-6 w-28" key={`bottom_${task.task_id}`} >
 									<div className="w-full">
 										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id, allTasks, setAllTasks)} className="cursor-pointer filter save-effect save-icon w-8" />
 									</div>
