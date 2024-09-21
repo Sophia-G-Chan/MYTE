@@ -31,7 +31,7 @@ const localizer = dateFnsLocalizer({
 
 function CalendarComponent() {
 	const api = new Api();
-	const { defaultView, setDefaultView, allTasks, setAllTasks } = useContext(TasksContext)
+	const { defaultView, setDefaultView, allTasks } = useContext(TasksContext)
 	const [allEvents, setAllEvents] = useState([]);
 	const storedCalendarData = localStorage.getItem('calendarData');
 
@@ -42,11 +42,11 @@ function CalendarComponent() {
 			start: new Date(task.start_date_and_time),
 			end: new Date(task.end_date_and_time),
 			type: 'task',
+			status: task.status,
 		}));
 
 		if (storedCalendarData) {
 			const parsedData = JSON.parse(storedCalendarData);
-			console.log(parsedData)
 
 			const transformGoogleEvents = parsedData?.filter(event => event.status === 'confirmed').map(event => (
 				({
@@ -103,11 +103,16 @@ function CalendarComponent() {
 				onEventResize={handleEventChange}
 				eventPropGetter={(event) => {
 					let customStyle = {
-						backgroundColor: event.type === 'task' ? 'lightblue' : 'var(--button-color)',
-						color: "white",
+						backgroundColor: event.type === 'task' ?
+							event.status === 'Complete' ? 'var(--complete-color)' : 'lightblue '
+							: 'var(--button-color)' ,
+						color: event.type === 'task' ?
+						event.status === 'Complete' ? 'var(--text-color)' : "white"
+						: "white" ,
 						borderRadius: '.25rem',
 						border: 'none',
 						marginLeft: '0.25rem',
+						fontSize: '.875rem',
 					};
 					return {
 						className: '',

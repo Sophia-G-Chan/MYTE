@@ -2,12 +2,17 @@
 import { Api } from "../api/Api"
 const api = new Api();
 
-const handleCheck = async (taskId, allTasks, newStatus, setAllTasks) => {
-    setAllTasks((prevTasks) => {
-        return prevTasks.map(task => task.task_id === taskId ? { ...task, status: newStatus ? "Complete" : "In Progress" } : task)
-    });
+const handleCheck = async (taskId, newStatus, allTasks, setAllTasks) => {
+
+    const updatedTasks = allTasks.map(task =>
+        task.task_id === taskId ?
+            { ...task, status: newStatus ? "Complete" : "In Progress" }
+            : task)
+
+    setAllTasks(updatedTasks);
+
     try {
-        const taskToEdit = allTasks.find(task => task.task_id === taskId)
+        const taskToEdit = updatedTasks.find(task => task.task_id === taskId)
         if (!taskToEdit) {
             return;
         } else {
@@ -17,8 +22,7 @@ const handleCheck = async (taskId, allTasks, newStatus, setAllTasks) => {
             }
             await api.editATask(taskId, updatedTask)
         }
-
-    } catch (err) {
+    } catch (error) {
         console.error('Error updating task status', error)
     }
 }
@@ -49,7 +53,7 @@ const editTask = async (task_id, allTasks, setAllTasks) => {
     }
 }
 
-export{
+export {
     handleCheck,
     editTask
 }

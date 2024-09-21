@@ -50,6 +50,15 @@ class Api {
             console.log('Unable to get all tasks')
         }
     }
+
+    async getListTask () {
+        try {
+            const response = await axios.get(`${this.baseUrl}/lists/list-tasks`);
+            return response;
+        } catch (error) {
+            console.log('Unable to get all tasks')
+        }
+    }
 }
 
 export {

@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from 'react'
 import { TasksContext } from "../../App";
-import { Api } from "../../api/Api"
 import todayIcon from '../../assets/icons/calendar_today.svg'
 import sevenDayIcon from '../../assets/icons/date_range.svg'
 import listIcon from '../../assets/icons/list.svg'
@@ -9,50 +8,43 @@ import editIcon from '../../assets/icons/edit.svg'
 import './Aside.scss';
 
 function Aside() {
-    const { allTasks, setFilteredTasks, filterType, setFilterType, defaultView, setDefaultView } = useContext(TasksContext);
-    const [lists, setLists] = useState([]);
+    const { allTasks, setFilteredTasks, filterType, setFilterType, setDefaultView, lists, selectedListId, setSelectedListId } = useContext(TasksContext);
     const [showList, setShowList] = useState(true)
-    const api = new Api();
 
-    const filterTasks = (allTasks, filterType) => {
+    const filterTasks = (allTasks, filterType, selectedListId) => {
         const today = new Date();
         const next7Days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
+
+        const filteredByList = selectedListId ?
+            allTasks.filter(
+                task => listTasks.some(
+                    listTask => listTask.task_id === task.task_id && listTask.list_id === listTask.list_id === selectedListId))
+            : allTasks;
 
         switch (filterType) {
             case "Today":
                 setDefaultView("day")
-                console.log(defaultView)
-
-                return allTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString() && task.status !== "Complete")
+                return filteredByList.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString() && task.status !== "Complete")
             case "Next7Days":
                 setDefaultView("week")
-                console.log(defaultView)
-                return allTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today  && task.status !== "Complete");
+                return filteredByList.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today && task.status !== "Complete");
             case "Complete":
-                return allTasks.filter(task => task.status === "Complete")
+                return filteredByList.filter(task => task.status === "Complete")
             default:
-                return allTasks.filter(task => task.status !== "Complete");
+                return filteredByList.filter(task => task.status !== "Complete");
         }
     }
 
     const toggleList = () => {
         setShowList(!showList);
     }
-    const getLists = async () => {
-        const { data } = await api.getLists();
-        setLists(data);
-    }
-
-    useEffect(() => {
-        getLists()
-    }, [])
 
     useEffect(() => {
         setFilteredTasks(filterTasks(allTasks, filterType));
     }, [filterType, allTasks])
 
     return (
-        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-3/12 tablet:items-start'>
+        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
             <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
                 <button className='flex custom-aside__button tablet:my-4' onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
@@ -73,9 +65,15 @@ function Aside() {
                         <div className='absolute w-full h-full top-10 right-10 tablet:static'>
                             {lists.map((listItem) => {
                                 return (
-                                    <li className='tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button' key={listItem.id}>
+                                    <li
+                                        className='tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer'
+                                        key={listItem.id} value={listItem.id}
+                                        onClick={() => {
+                                            setSelectedListId(`${listItem.id}`)
+                                            setFilterType(`List`)
+                                        }}
+                                    >
                                         <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
-
                                         {listItem.list_name}
                                     </li>
                                 )

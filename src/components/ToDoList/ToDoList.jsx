@@ -21,7 +21,8 @@ function ToDoList() {
 		description: "",
 		start: startDate,
 		end: endDate,
-		status: false
+		status: false,
+		listId: null
 	})
 
 	const handleNewTaskInputChange = (event) => {
@@ -52,7 +53,6 @@ function ToDoList() {
 			})
 		})
 	}
-
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
@@ -141,6 +141,7 @@ function ToDoList() {
 					return (
 						<li key={`list_${task.task_id}`} className="flex items-start rounded p-2 mb-3 w-full odd:bg-slate-100  even:bg-white box-border tablet:p-0">
 							<form className="flex p-2 tablet:items-center tablet:p-0 custom-form">
+								<button>Priority</button>
 								<div>
 									<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
 										className="custom-check">

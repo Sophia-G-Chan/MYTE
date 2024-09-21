@@ -11,7 +11,6 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider/LocalizationProvider.js';
 import { fontTheme } from "./utils/utility";
 import { ThemeProvider } from "@mui/material";
-import axios from "axios"
 import { Api } from "./api/Api.js"
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
 
@@ -23,6 +22,17 @@ function App() {
   const [filteredTasks, setFilteredTasks] = useState([]);
   const [filterType, setFilterType] = useState('All')
   const [defaultView, setDefaultView] = useState('month');
+  const [lists, setLists] = useState([]);
+  const [selectedListId, setSelectedListId] = useState(1);
+
+  const getLists = async () => {
+    const { data } = await api.getLists();
+    setLists(data);
+  }
+
+  useEffect(() => {
+    getLists()
+  }, [])
 
   const getAllTasks = async () => {
     const { data } = await api.getAllTasks();
@@ -34,7 +44,14 @@ function App() {
   }, [])
 
   return (
-    <TasksContext.Provider value={{ allTasks, setAllTasks, getAllTasks, filteredTasks, setFilteredTasks, filterType, setFilterType, defaultView, setDefaultView }}>
+    <TasksContext.Provider value={{
+      allTasks, setAllTasks,
+      getAllTasks,
+      filteredTasks, setFilteredTasks,
+      filterType, setFilterType,
+      defaultView, setDefaultView,
+      lists, setLists,
+      selectedListId, setSelectedListId }}>
       <ThemeProvider theme={fontTheme}>
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
@@ -42,7 +59,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Home allTasks={allTasks} />} />
               <Route path="/calendar" element={<CalendarPage />} />
-              <Route path="/about" element={<AboutPage/>} />
+              <Route path="/about" element={<AboutPage />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
