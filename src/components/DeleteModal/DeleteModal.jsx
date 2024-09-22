@@ -8,7 +8,7 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root')
 
-function DeleteModal({ id, task_name, list_name, isTask  }) {
+function DeleteModal({ id, task_name, list_name, isTask }) {
     const [isOpen, setIsOpen] = useState(false);
     const { getAllTasks, getLists } = useContext(TasksContext);
     const api = new Api();
@@ -22,7 +22,6 @@ function DeleteModal({ id, task_name, list_name, isTask  }) {
                 await api.deleteATask(id);
                 await getAllTasks();
             } else {
-                console.log('else is getting there')
                 await api.deleteAList(id);
                 await getLists();
             }
@@ -47,16 +46,25 @@ function DeleteModal({ id, task_name, list_name, isTask  }) {
         <div className='w-full'>
             <img className='cursor-pointer delete-icon w-8' src={DeleteIcon} onClick={openModal} />
             <div className='delete-modal'>
-                <ReactModal isOpen={isOpen} onRequestClose={closeModal} contentLabel='Delete Task Modal' shouldCloseOnOverlayClick={true} shouldCloseOnEsc={true} >
+                <ReactModal
+                    isOpen={isOpen}
+                    onRequestClose={closeModal}
+                    contentLabel='Delete Task Modal'
+                    shouldCloseOnOverlayClick={true}
+                    shouldCloseOnEsc={true}
+                    className='delete-item'
+                    overlayClassName='delete-item__overlay ReactModal__Overlay ReactModal__Overlay--after-open'
+                >
                     <div className='delete-modal__top text-center'>
                         <img src={CloseIcon} alt='x to represent close' className='cursor-pointer' onClick={() => closeModal()} />
                     </div>
-                    <p className='delete-modal__title'>
-                        Please confirm that you'd like to delete {task_name ? task_name : list_name} from your task list. <span>You won't be able to undo this action.</span>
+                    <p className='delete-modal__title  pb-6 pt-8 text-lg'>
+                        Please confirm that you'd like to delete "{task_name ? task_name : list_name}" from your {task_name ? "tasks" : "lists"}.
                     </p>
-                    <div className='delete-modal__buttons'>
-                        <button className='delete-modal__cancel btn' onClick={closeModal}>Cancel</button>
-                        <button className='delete-modal__delete btn' onClick={deleteItem}>Delete</button>
+                    <p className='grow italic'>You won't be able to undo this action and this will be permanently deleted.</p>
+                    <div className='delete-modal__buttons flex justify-evenly w-full tablet:justify-end'>
+                        <button className='delete-item__cancel-btn btn' onClick={closeModal}>Cancel</button>
+                        <button className='delete-item__delete-btn btn tablet:ml-4' onClick={deleteItem}>Delete</button>
                     </div>
                 </ReactModal>
             </div>
