@@ -9,56 +9,77 @@ import './Aside.scss';
 
 function Aside() {
     const {
-        allTasks, setFilteredTasks, filterType, setFilterType, setDefaultView, lists,  selectedListId, setSelectedListId, listTasks } = useContext(TasksContext);
+        allTasks, setFilteredTasks, filterType, setFilterType, setDefaultView, lists, selectedListId, setSelectedListId, listTasks } = useContext(TasksContext);
     const [showList, setShowList] = useState(true)
 
     const filterTasks = (allTasks, filterType, selectedListId) => {
         const today = new Date();
         const next7Days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-        if(selectedListId){
+        let filteredTasks = allTasks;
+
+        if (selectedListId) {
             setShowList(false)
-        }
-
-            const filteredByList = selectedListId ?
-            allTasks.filter(
+            filteredTasks = filteredTasks.filter(
                 task => listTasks.some(
-                    listTask => listTask.task_id === task.task_id && listTask.list_id === selectedListId))
-            : allTasks;
-
-
+                    listTask => listTask.task_id === task.task_id && listTask.list_id === selectedListId
+                )
+            )
+        }
 
         switch (filterType) {
             case "Today":
                 setDefaultView("day")
-                return filteredByList.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString() && task.status !== "Complete")
+                return filteredTasks.filter((task) => new Date(task.start_date_and_time).toDateString() === today.toDateString() && task.status !== "Complete")
             case "Next7Days":
                 setDefaultView("week")
-                return filteredByList.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today && task.status !== "Complete");
+                return filteredTasks.filter((task) => new Date(task.start_date_and_time) <= next7Days && new Date(task.start_date_and_time) > today && task.status !== "Complete");
             case "Complete":
-                return filteredByList.filter(task => task.status === "Complete")
+                return filteredTasks.filter(task => task.status === "Complete")
             default:
-                return filteredByList.filter(task => task.status !== "Complete");
+                return filteredTasks.filter(task => task.status !== "Complete");
         }
+        return filteredTasks;
     }
 
     const toggleList = () => {
         setShowList(!showList);
     }
 
+    const toggleFilter = (type) => {
+        if (filterType === type){
+            setFilterType("All")
+        } else(
+            setFilterType(type)
+        )
+    }
+
+    const toggleIdFilter = (listId) => {
+        if (selectedListId === listId) {
+            setSelectedListId(null)
+        } else{
+            setSelectedListId(listId)
+        }
+    }
+
     useEffect(() => {
-        console.log('selected List Id', selectedListId)
         setFilteredTasks(filterTasks(allTasks, filterType, selectedListId));
     }, [filterType, allTasks, selectedListId, lists])
 
     return (
         <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
             <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
-                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Today' ? 'custom-aside__button--active' : ''}`} onClick={() => setFilterType("Today")}>
+                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Today' ? 'custom-aside__button--active' : ''}`} onClick={() => {
+                    toggleFilter("Today")
+
+                }}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     <span className='hidden tablet:block'>Today</span>
                 </button>
-                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Next7Days' ? 'custom-aside__button--active' : ''}`} onClick={() => setFilterType("Next7Days")}>
+                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Next7Days' ? 'custom-aside__button--active' : ''}`} onClick={() => {
+                    toggleFilter("Next7Days")
+
+                }}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
                     <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
@@ -78,8 +99,9 @@ function Aside() {
                                         key={listItem.id}
                                         value={listItem.id || ""}
                                         onClick={() => {
-                                            setSelectedListId(listItem.id)
-                                            setFilterType(`List`)
+                                            toggleIdFilter(listItem.id)
+                                            // setFilterType(`List`)
+                                            // toggleIdFilter()
                                         }}
                                     >
                                         {listItem.list_name}

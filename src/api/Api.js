@@ -61,6 +61,16 @@ class Api {
             console.log('Unable to edit List')
         }
     }
+    async addAList (listObject){
+        try{
+            console.log(listObject)
+            const response = await axios.post(`${this.baseUrl}/lists/`, listObject)
+            console.log(response.data)
+            return response;
+        } catch(error){
+            console.log('Unable to edit List')
+        }
+    }
 
     async getListTask () {
         try {
@@ -68,6 +78,14 @@ class Api {
             return response;
         } catch (error) {
             console.log('Unable to get all tasks')
+        }
+    }
+
+    async deleteAList(listId) {
+        try {
+            await axios.delete(`${this.baseUrl}/lists/${listId}`)
+        } catch (error) {
+            console.log(`Failed to delete task item with id: ${listId}`)
         }
     }
 }

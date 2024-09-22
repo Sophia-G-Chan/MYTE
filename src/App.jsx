@@ -47,10 +47,12 @@ function App() {
     getListTasks();
   }, [])
 
+
   return (
     <TasksContext.Provider value={{
       allTasks, setAllTasks,
       getAllTasks,
+      getLists,
       filteredTasks, setFilteredTasks,
       filterType, setFilterType,
       defaultView, setDefaultView,

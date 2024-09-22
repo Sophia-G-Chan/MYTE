@@ -8,27 +8,32 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root')
 
-function DeleteModal({ taskId, task_name }) {
+function DeleteModal({ id, task_name, list_name, isTask = true }) {
     const [isOpen, setIsOpen] = useState(false);
-    const { setAllTasks, getAllTasks } = useContext(TasksContext);
+    const { getAllTasks, getLists } = useContext(TasksContext);
     const api = new Api();
 
     const openModal = () => setIsOpen(true);
-
     const closeModal = () => setIsOpen(false);
 
-    const deleteTask = async () => {
+
+    const deleteItem = async () => {
         try {
-            await api.deleteATask(taskId);
+            if (taskId){
+            await api.deleteATask(id);
             await getAllTasks();
-            setIsOpen(false)
+        }else{
+            await api.deleteAList(id);
+            await getLists();
+        }
+        setIsOpen(false)
         } catch (error) {
             console.error("Failed to delete task")
         }
     }
 
     useEffect(() => {
-        if (isOpen){
+        if (isOpen) {
             document.body.style.overflow = 'hidden';
         } else {
             document.body.style.overflow = 'unset'
@@ -47,7 +52,7 @@ function DeleteModal({ taskId, task_name }) {
                         <img src={CloseIcon} alt='x to represent close' className='cursor-pointer' onClick={() => closeModal()} />
                     </div>
                     <p className='delete-modal__title'>
-                        Please confirm that you'd like to delete {task_name} from your task list. <span>You won't be able to undo this action.</span>
+                        Please confirm that you'd like to delete {task_name ? task_name : list_name} from your task list. <span>You won't be able to undo this action.</span>
                     </p>
                     <div className='delete-modal__buttons'>
                         <button className='delete-modal__cancel btn' onClick={() => closeModal()}>Cancel</button>
