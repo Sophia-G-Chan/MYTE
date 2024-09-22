@@ -179,7 +179,7 @@ function ToDoList() {
 									<div className="w-full">
 										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id, allTasks, setAllTasks)} className="cursor-pointer filter save-effect save-icon w-8" />
 									</div>
-									<DeleteModal taskId={task.task_id} task_name={task.task_name} />
+									<DeleteModal id={task.task_id} task_name={task.task_name} isTask={true}/>
 								</div>
 							</form>
 						</li>
