@@ -6,12 +6,14 @@
         @apply flex ;
     }
     &__button{
-        padding: .5rem 0;
+        padding: .5rem 1rem;
         border-radius: 8px;
         cursor: pointer;
         &:hover{
             background-color: var(--aside-button-color);
         }
+        &--active{
+            background-color: var(--aside-button-color);
+        }
     }
-
 }

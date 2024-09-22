@@ -12,7 +12,7 @@ import './ToDoList.scss'
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const { allTasks, setAllTasks, filteredTasks } = useContext(TasksContext);
+	const { allTasks, setAllTasks, filteredTasks, selectedListId, lists } = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -84,6 +84,10 @@ function ToDoList() {
 		}
 	}
 
+	const handleListNameChange = (event) => {
+		const newListName = event.target.value;
+		//need to add functionality here
+	}
 	useEffect(() => {
 		setNewTask((previousState) => ({
 			...previousState,
@@ -94,43 +98,50 @@ function ToDoList() {
 
 	return (
 		<div className="box-border mt-6 mb-20 w-full">
-			<form>
-				<input type="text" placeholder="List Name"></input>
+			<form className="mb-5">
+				<input type="text"
+						placeholder="List Name"
+						value={selectedListId ? lists.find(listItem =>
+							listItem.id === selectedListId)?.list_name || "" : ""}
+						onChange={handleListNameChange}>
+				</input>
 			</form>
 
 			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center tablet:gap-2 tablet:mx-0' ref={formRef} key="form">
 				<input
 					type='text'
 					name="task_name"
-					value={newTask.task_name}
+					value={newTask.task_name || ""}
 					placeholder="Task Name"
 					onChange={handleNewTaskInputChange}
 					className="w-36 h-10 p-4">
 				</input>
 				<textarea
 					name="description"
-					value={newTask.description}
+					value={newTask.description  || ""}
 					placeholder="Description"
 					onChange={handleNewTaskInputChange}
-					className="w-full tablet:w-52 p-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea">
+					className="w-full tablet:w-52 py-2.5 px-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea">
 				</textarea>
 				<label className=' custom-label'>
 					Start
 				</label>
-				<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate || null} onChange={setStartDate} />
+				<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate} onChange={setStartDate} />
 				<label className='custom-label'>
 					End
 				</label>
-				<DateTimePicker selected={endDate || null} onChange={setEndDate} />
+				<DateTimePicker selected={endDate} onChange={setEndDate} />
 				<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
 					<img className="w-10 h-10 " src={addIcon} />
 				</button>
 			</form>
-			<div className="flex gap-28 ml-10 custom-title">
+			<div className="flex justify-between ml-10 custom-title">
+				<h2>Filter</h2>
 				<h2>Task</h2>
 				<h2>Description</h2>
 				<h2 className="ml-32">Start</h2>
 				<h2>End</h2>
+				<div>Placeholder</div>
 			</div>
 			<ul className="w-full">
 				{filteredTasks?.map((task) => {
@@ -142,12 +153,16 @@ function ToDoList() {
 					return (
 						<li key={`list_${task.task_id}`} className="flex items-start rounded p-2 mb-3 w-full odd:bg-slate-100  even:bg-white box-border tablet:p-0">
 							<form className="flex p-2 tablet:items-center tablet:p-0 custom-form">
-								<button>Priority</button>
 								<div>
-									<input type='checkbox' name="status" checked={task.status === "Complete"} onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
+									<input
+										type='checkbox'
+										name="status"
+										checked={task.status === "Complete"}
+										onChange={(e) => handleCheck(task.task_id, e.target.checked, allTasks, setAllTasks)}
 										className="custom-check">
 									</input>
 								</div>
+								<button>Priority</button>
 								<div className="w-9/12 grow tablet:flex ">
 									<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 									<div className="flex flex-col my-2">

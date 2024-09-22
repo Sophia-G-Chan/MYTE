@@ -16,12 +16,17 @@ function Aside() {
         const today = new Date();
         const next7Days = new Date(today.getTime() + 7 * 24 * 60 * 60 * 1000);
 
-        console.log(selectedListId)
-        const filteredByList = selectedListId ?
+        if(selectedListId){
+            setShowList(false)
+        }
+
+            const filteredByList = selectedListId ?
             allTasks.filter(
                 task => listTasks.some(
                     listTask => listTask.task_id === task.task_id && listTask.list_id === selectedListId))
             : allTasks;
+
+
 
         switch (filterType) {
             case "Today":
@@ -49,11 +54,11 @@ function Aside() {
     return (
         <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
             <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
-                <button className='flex custom-aside__button tablet:my-4' onClick={() => setFilterType("Today")}>
+                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Today' ? 'custom-aside__button--active' : ''}`} onClick={() => setFilterType("Today")}>
                     <img src={todayIcon} alt="calendar icon for today" className='icon' />
                     <span className='hidden tablet:block'>Today</span>
                 </button>
-                <button className='flex items-center custom-aside__button  tablet:my-4' onClick={() => setFilterType("Next7Days")}>
+                <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Next7Days' ? 'custom-aside__button--active' : ''}`} onClick={() => setFilterType("Next7Days")}>
                     <img src={sevenDayIcon} alt="calendar icon for date range of 7 days" className='icon' />
                     <span className='hidden tablet:block'>Next 7 days</span>
                 </button>
@@ -69,14 +74,14 @@ function Aside() {
                             {lists.map((listItem) => {
                                 return (
                                     <li
-                                        className='tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer'
-                                        key={listItem.id} value={listItem.id}
+                                        className={` tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer ${selectedListId === listItem.id ? 'custom-aside__button--active' : ''}`}
+                                        key={listItem.id}
+                                        value={listItem.id || ""}
                                         onClick={() => {
                                             setSelectedListId(listItem.id)
                                             setFilterType(`List`)
                                         }}
                                     >
-                                        <input type="checkbox" className='border-solid border-2 border-border-grey rounded mx-2'></input>
                                         {listItem.list_name}
                                     </li>
                                 )
@@ -85,7 +90,9 @@ function Aside() {
 
                     </ul>
                 </form>
-                <button className=' flex bg-green-400 items-center custom-aside__button tablet:my-5 tablet: w-full' onClick={() => setFilterType("Complete")}>
+                <button
+                    className=' flex bg-green-400 items-center custom-aside__button tablet:my-5 tablet: w-full'
+                    onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>
                 </button>
