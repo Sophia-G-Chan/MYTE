@@ -49,7 +49,7 @@ function Aside() {
     useEffect(() => {
         console.log('selected List Id', selectedListId)
         setFilteredTasks(filterTasks(allTasks, filterType, selectedListId));
-    }, [filterType, allTasks, selectedListId])
+    }, [filterType, allTasks, selectedListId, lists])
 
     return (
         <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>

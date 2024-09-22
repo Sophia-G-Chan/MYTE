@@ -51,6 +51,17 @@ class Api {
         }
     }
 
+    async editAList (listId, listObject){
+        try{
+            console.log(listObject)
+            const response = await axios.put(`${this.baseUrl}/lists/${listId}`, listObject)
+            console.log(response.data)
+            return response;
+        } catch(error){
+            console.log('Unable to edit List')
+        }
+    }
+
     async getListTask () {
         try {
             const response = await axios.get(`${this.baseUrl}/lists/list-tasks`);

@@ -5,6 +5,7 @@ import { DateTimePicker } from '@mui/x-date-pickers/DateTimePicker';
 import { editTask, handleCheck } from "../../utils/taskUtils";
 import dayjs from "dayjs";
 import DeleteModal from "../DeleteModal/DeleteModal";
+import ListTitle from "../ListTitle/ListTitle";
 import saveIcon from "../../assets/icons/save.svg"
 import addIcon from '../../assets/icons/add.svg'
 import './ToDoList.scss'
@@ -84,10 +85,7 @@ function ToDoList() {
 		}
 	}
 
-	const handleListNameChange = (event) => {
-		const newListName = event.target.value;
-		//need to add functionality here
-	}
+
 	useEffect(() => {
 		setNewTask((previousState) => ({
 			...previousState,
@@ -98,14 +96,7 @@ function ToDoList() {
 
 	return (
 		<div className="box-border mt-6 mb-20 w-full">
-			<form className="mb-5">
-				<input type="text"
-						placeholder="List Name"
-						value={selectedListId ? lists.find(listItem =>
-							listItem.id === selectedListId)?.list_name || "" : ""}
-						onChange={handleListNameChange}>
-				</input>
-			</form>
+			<ListTitle/>
 
 			<form className='custom-form ml-5 mb-3 mr-5 tablet:flex tablet:item-between tablet:justify-center tablet:gap-2 tablet:mx-0' ref={formRef} key="form">
 				<input
