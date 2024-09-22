@@ -76,7 +76,7 @@ function ListTitle() {
                         onClick={handleSubmit}
                         className="cursor-pointer filter save-effect save-icon w-8" />
                 </div>
-                <DeleteModal id={selectedListId} list_name={newListName} />
+                <DeleteModal id={selectedListId} list_name={newListName.list_name} isTask={false}/>
             </div>
         </form>
     )

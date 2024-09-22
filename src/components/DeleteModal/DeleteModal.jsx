@@ -8,7 +8,7 @@ import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root')
 
-function DeleteModal({ id, task_name, list_name, isTask = true }) {
+function DeleteModal({ id, task_name, list_name, isTask  }) {
     const [isOpen, setIsOpen] = useState(false);
     const { getAllTasks, getLists } = useContext(TasksContext);
     const api = new Api();
@@ -16,17 +16,17 @@ function DeleteModal({ id, task_name, list_name, isTask = true }) {
     const openModal = () => setIsOpen(true);
     const closeModal = () => setIsOpen(false);
 
-
     const deleteItem = async () => {
         try {
-            if (taskId){
-            await api.deleteATask(id);
-            await getAllTasks();
-        }else{
-            await api.deleteAList(id);
-            await getLists();
-        }
-        setIsOpen(false)
+            if (isTask) {
+                await api.deleteATask(id);
+                await getAllTasks();
+            } else {
+                console.log('else is getting there')
+                await api.deleteAList(id);
+                await getLists();
+            }
+            setIsOpen(false)
         } catch (error) {
             console.error("Failed to delete task")
         }
@@ -55,8 +55,8 @@ function DeleteModal({ id, task_name, list_name, isTask = true }) {
                         Please confirm that you'd like to delete {task_name ? task_name : list_name} from your task list. <span>You won't be able to undo this action.</span>
                     </p>
                     <div className='delete-modal__buttons'>
-                        <button className='delete-modal__cancel btn' onClick={() => closeModal()}>Cancel</button>
-                        <button className='delete-modal__delete btn' onClick={() => deleteTask()}>Delete</button>
+                        <button className='delete-modal__cancel btn' onClick={closeModal}>Cancel</button>
+                        <button className='delete-modal__delete btn' onClick={deleteItem}>Delete</button>
                     </div>
                 </ReactModal>
             </div>
