@@ -1,5 +1,4 @@
 import { useEffect } from 'react'
-import logoInspo from '../../assets/images/logo_inspo2.png'
 
 function AboutPage() {
     useEffect(() => {
@@ -18,13 +17,9 @@ function AboutPage() {
 
                 <img src="/assets/logos/journeytask-logo.svg" className='w-28 h-28 ' />
                 <div className='m-10 text-lg flex '>
-                    <div>
-                        <div className='w-20 h-20 top-5 tablet:w-28 tablet:h-28 tablet:top-8 rounded-full relative'>
-                            <img src={logoInspo} className=' w-full rounded-full' />
-                        </div>
-                    </div>
+
                     <div className='flex flex-col gap-6 m-4'>
-                        <p>The logo is inspired from the Chinese characters for "Zhi Lu":</p>
+                        <p>The logo is inspired from the Chinese characters for "Zhi Lu", which symbolizes the idea of completing tasks with focus and intention:</p>
                         <ul className='list-disc ml-6'>
                             <li>
                                 "Zhi" (志): This character often means "will," "determination," or "aspiration," representing the focused intent to achieve something.
@@ -36,9 +31,7 @@ function AboutPage() {
 
                     </div>
                 </div>
-                <p className='text-lg mx-10'>
-                    Together, 志路 could imply a journey guided by determination and purpose, which symbolizes the idea of completing tasks with focus and intention.
-                </p>
+
             </section>
 
         </div>
