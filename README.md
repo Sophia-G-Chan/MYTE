@@ -119,13 +119,13 @@ The site will be built using a mobile first approach:
 
 | Mobile Home Page  | Mobile Calendar Page      |
 | :--------  | :-------- |
-| <img src='public/assets/mobile/MYTE-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/MYTE-calendar-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  | |
+| <img src='public/assets/mobile/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'> | <img src='public/assets/mobile/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 200px;'>  | |
 
 Then desktop will be designed:
 
 | Tablet/Desktop Home Page  | Tablet/Desktop Calendar Page  |
 | :--------  | :--------  |
-| <img src='public/assets/desktop/MYTE-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/MYTE-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> |
+| <img src='public/assets/desktop/journeytask-home-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> | <img src='public/assets/desktop/journeytask-calendar-month-mockup.png' alt='mock up mobile home page' style='margin-right: 10px; width: 100%;'> |
 
 ### Data
 ![image of a data map with three tables users, tasks, calendar_events](public/assets/sql-diagram.png)
@@ -227,6 +227,16 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
 ## Download & Run
+1. Download the front end
+2. Open your file in VS code and ensure you cchange directory into the root folder
+2. run two commands in your terminal
+```http
+  npm i run dev
+```
+```http
+  npm run start
+```
+3. Download the back end and see back end instructions to run the back end server
 
 ---
 
