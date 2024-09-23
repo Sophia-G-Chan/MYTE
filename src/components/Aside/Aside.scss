@@ -3,7 +3,7 @@
 
 .custom-aside{
     @include tablet {
-        @apply flex ;
+        display: flex;
     }
     &__button{
         padding: .5rem 1rem;

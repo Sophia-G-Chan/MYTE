@@ -93,7 +93,7 @@ function Aside() {
                 <form>
                     <ul className={`relative ${showList ? "hidden" : "flex flex-col"}`}>
                         <div className='absolute w-full h-full top-10 right-10 tablet:static'>
-                            {lists.map((listItem) => {
+                            {lists?.map((listItem) => {
                                 return (
                                     <li
                                         className={` tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer ${selectedListId === listItem.id ? 'custom-aside__button--active' : ''}`}
