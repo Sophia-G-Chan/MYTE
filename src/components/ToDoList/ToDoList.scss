@@ -70,11 +70,12 @@
         background-color: var(--form-background);
     }
     &:hover{
-        background-color: var(--aside-button-color)
+        background-color: var(--button-color-hover)
     }
 }
 
 .custom-list{
+    align-items: space-between;
     &:nth-child(odd){
         background-color: var(--list-background-color) ;
     }

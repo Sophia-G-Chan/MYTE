@@ -68,8 +68,8 @@ function Aside() {
     }, [filterType, allTasks, selectedListId, lists])
 
     return (
-        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-24 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
-            <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
+        <aside className='w-full h-auto p-4 flex flex-row place-content-center  justify-center gap-2 tablet:sticky tablet:top-24 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
+            <section className='flex flex-row justify-evenly w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
                 <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Today' ? 'custom-aside__button--active' : ''}`} onClick={() => {
                     toggleFilter("Today")
 
@@ -114,7 +114,7 @@ function Aside() {
                     </ul>
                 </form>
                 <button
-                    className=' flex  items-center custom-aside__button complete-btn tablet:my-5 tablet: w-full'
+                    className=' flex items-center justify-center h-full custom-aside__button complete-btn tablet:my-5 tablet:w-full'
                     onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>

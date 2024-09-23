@@ -1,8 +1,8 @@
 @use "../../styles/partials/mixins" as *;
 @use "../../styles/partials/variables" as *;
 footer{
-    position: fixed;
-    bottom: 0;
+    //position: fixed;
+    //bottom: 0;
     background-color: var(--background-color);
     padding: 1rem;
     z-index: 11;

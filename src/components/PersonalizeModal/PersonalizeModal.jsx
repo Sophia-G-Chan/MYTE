@@ -27,7 +27,7 @@ function PersonalizeModal() {
 
     return (
         <div className='w-full '>
-            <button className='tablet:w-full flex bg-teal-100 tablet:my-4 custom-aside__button personalize-btn'
+            <button className='mr-4 h-full justify-center items-center w-16 tablet:w-full flex bg-teal-100 tablet:my-4 custom-aside__button personalize-btn '
                 onClick={openModal}>
                 <img src={editIcon} alt="done icon" className='icon' />
                 <span className='hidden tablet:block'>Personalize</span>
