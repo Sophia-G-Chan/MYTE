@@ -15,7 +15,9 @@
     - [Data](#data)
     - [Endpoints](#endpoints)
 3. [Roadmap](#roadmap)
-4. [Future Implementations](#future-implementations)
+4. [Download & Run](#download-&-run)
+5. [Future Implementations](#future-implementations)
+
 
 ## Overview
 MYTE is a task management app that combines time planning with your to-do list. MYTE stands for manage your time effectively. Unlike regular to-do lists, MYTE allows you to assign time estimates for tasks and seamlessly adds them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
@@ -222,7 +224,9 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - Day 10 (Sept 19): further testing & refine UI
     - Day 11 (Sept 20): Fix bugs & testing again
     - Day 12 (Sept 21): Update README File for Back-End & Front-End
-- ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
+    - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
+
+## Download & Run
 
 ---
 
