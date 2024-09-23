@@ -48,7 +48,7 @@ MYTE is for:
 - As a user, I want to be able to read all my current tasks in my to-do list
 - As a user, I want to be able to delete a tasks in my to-do list.
 
-- As a user, I want to be able to see my scheduled tasks in a daily, weekly, or monthly calendar view
+- As a user, I want to be able to see scheduled tasks in a daily, weekly, or monthly calendar view
 
 ## Implementation
 1. Basic components
@@ -63,16 +63,8 @@ MYTE is for:
 
 3. Import Calendar APIs
     - Google Calendar (MVP)
-    - Outlook
 
 4. Create Express Server to save, read, delete to do list
-
-5. Accessibility pop up
-    - Theme
-    - Customize font size (toggle between small, medium, large)
-    - Font family switch to dyslexia
-    - Contrast view (black with neon font)
-    - Accessible button moves anywhere on the screen
 
 
 ### Tech Stack
@@ -108,17 +100,8 @@ MYTE is for:
 #### Google Calendar API
 | End Point   | Description              |
 | :-------- | :------------------------- |
-|GET| Returns an access control rule.|
-|POST| all my Creates an access control rule.|
-|DELETE | Deletes an access control rule. |
-|PATCH | Updates an access control rule. |
+|GET| Returns a users calendar event data.|
 
-#### Outlook Calendar API
-| End Point   | Description              |
-| :-------- | :------------------------- |
-|GET| all events in my calendar|
-|GET| all my calendars|
-|POST | schedule a meeting|
 ### Sitemap
 
 ![image of a sitemap with the home page at the top level and a 404 page, calendar, about, and status page flowing from the home page. Sign in flows into the home page](public/assets/MYTE-sitemap.png)
@@ -155,7 +138,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 | Parameter | Type | Description    |
 | :--------  | :-------- |  :------------------------ |
-| `api_key` | `string` |  **Required** Your API key |
+| `/tasks` | `return` |  This endpoint returns an array of objects |
 
 #### Adds a new task
 
@@ -165,7 +148,8 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 | Parameter | Type | Description    |
 | :--------  | :-------- |  :------------------------ |
-| `api_key` | `string` |  **Required** Your API key |
+| `task ` | `object` | This end point adds a new task. |
+
 #### Edits a task
 
 ```http
@@ -188,49 +172,18 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 ## Roadmap
 ### Milestone 1: create a minimum viable product
-- MVP = where a user can add a task, edit a task, delete task, and view this from a list or calendar.
+- MVP = where a user can add a task, edit a task, delete task, and view this from a list and a calendar.
 
 - Day 1 (Sept 10): Set-up Front-End & Back-End apps
-    - Set up the React front-end and create basic components.
-    - Create github repo for front-end and back-end
-    - install dependencies and libraries
-    - create empty folders
-    - update git ignore to include necessary files (.env, node_modules)
 - Day 2 (Sept 11): Import Calendar API, Set up Database & Back-End
-    - Research and gain understanding of google calendar API vs outlook calendar API. Choose one to create a MVP with.
-    - using knex create migration file, seed data
-    - create back end server
-    - create express routes
-    - create different endpoints with functionality (see [endpoints](#endpoints))
 - Day 3 - 5 (Sept 12-14): Develop core to-do list features
-    - create color variables, media mixins in tailwind
-    - task creation
-    - form
-        - the to-do list should be a form element where a user can create, edit, and delete an item in the list
-    - styling
 - Day 6 + 7 (Sept 15 + 16): Calendar feature
-    - load calendar data
-    - style calendar component
 - Day 8 (Sept 17): testing & About page
-    - testing for bugs
-    - Add information about the app, additional features the user can use
-- Day 9 (Sept 18): Add accessibility features
-    - Create a useContent for accessibility features
-    - create theme change functionality
+- Day 9 (Sept 18): Add personalization feature
 - Day 10 (Sept 19): further testing & refine UI
-    - further testing for bugs
-    - Create a list of items that needs to be fixed
 - Day 11 (Sept 20): Fix bugs & testing again
-    - leave time to fix bugs and testing again
 - Day 12 (Sept 21): Update README File for Back-End & Front-End
-    - include additional information for the user about how to access the app and use the code.
-    - if there is time and functionality Deploy app
-    - If there is extra time push to main and then crete further feature branches of future implementations.
 - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
-
-
-
-
 
 ---
 

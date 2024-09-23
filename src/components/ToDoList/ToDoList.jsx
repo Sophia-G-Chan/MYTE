@@ -15,8 +15,9 @@ function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
 	const { allTasks, setAllTasks, filteredTasks, theme } = useContext(TasksContext);
-	const [startDate, setStartDate] = useState(new Date())
-	const [endDate, setEndDate] = useState(new Date())
+	const [startDate, setStartDate] = useState(new Date());
+	const [endDate, setEndDate] = useState(new Date());
+	const [error, setError] = useState('');
 
 	const [newTask, setNewTask] = useState({
 		task_name: "",
@@ -59,6 +60,10 @@ function ToDoList() {
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
+		if (!newTask.task_name.trim()) {
+			setError('All forms fields are required');
+			return;
+		}
 		const taskData = {
 			user_id: 1,
 			task_name: newTask.task_name,
@@ -81,8 +86,10 @@ function ToDoList() {
 			setStartDate(null);
 			setEndDate(null);
 			formRef.current.reset()
+			setError('');
 		} catch (error) {
-			console.log('there is an error getting the POST api', error)
+			console.log('there is an error getting the POST api', error);
+			setError('There was an issue adding a task, please try again.')
 		}
 	}
 
@@ -106,33 +113,36 @@ function ToDoList() {
 					value={newTask.task_name || ""}
 					placeholder="Task Name"
 					onChange={handleNewTaskInputChange}
-					className="w-11/12 tablet:w-36 h-10 p-4 rounded">
+					className="w-11/12 tablet:w-36 h-10 p-4 rounded"
+					required>
 				</input>
 				<textarea
 					name="description"
 					value={newTask.description || ""}
 					placeholder="Description"
 					onChange={handleNewTaskInputChange}
-					className={`w-11/12 py-2.5 px-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea `}>
+					className={`w-11/12 py-2.5 px-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea `}
+					required>
 				</textarea>
 				<div className="w-full flex items-center gap-1 tablet:h-fit">
 					<label className=' custom-label'>
 						Start:
 					</label>
-					<DateTimePicker className='custom-date-picker' disableClock={false} selected={startDate} onChange={setStartDate} />
+					<DateTimePicker selected={startDate} onChange={setStartDate} required/>
 					<label className='custom-label ml-8'>
 						End:
 					</label>
-					<DateTimePicker selected={endDate} onChange={setEndDate} />
+					<DateTimePicker selected={endDate} onChange={setEndDate} required/>
 
 				</div>
 				<div className="flex justify-end mr-8 mb-8">
-					<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
+					<button onSubmit={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
 						<img className="w-10 h-10 " src={addIcon} />
 					</button>
 				</div>
 
 			</form>
+			{error && <p className="text-red-500 ml-5">{error}</p>}
 			<div className="flex ml-10 custom-title">
 				<h2 className="w-1/12">Filter</h2>
 				<h2 className="w-2/12">Task</h2>

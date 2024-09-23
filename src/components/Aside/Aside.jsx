@@ -92,17 +92,15 @@ function Aside() {
                 </button>
                 <form>
                     <ul className={`relative ${showList ? "hidden" : "flex flex-col"}`}>
-                        <div className='absolute w-full h-full top-10 right-10 tablet:static'>
+                        <div className='absolute w-full h-full top-10 bg-inherit right-40 tablet:static'>
                             {lists?.map((listItem) => {
                                 return (
                                     <li
-                                        className={` tablet:my-1.5 tablet:ml-4 flex items-center custom-aside__button cursor-pointer ${selectedListId === listItem.id ? 'custom-aside__button--active' : ''}`}
+                                        className={`w-80 tablet:w-11/12 tablet:my-1.5 z-30 bg-inherit tablet:ml-4 flex items-center custom-aside__button cursor-pointer ${selectedListId === listItem.id ? 'custom-aside__button--active' : ''}`}
                                         key={listItem.id}
                                         value={listItem.id || ""}
                                         onClick={() => {
                                             toggleIdFilter(listItem.id)
-                                            // setFilterType(`List`)
-                                            // toggleIdFilter()
                                         }}
                                     >
                                         {listItem.list_name}
@@ -114,16 +112,12 @@ function Aside() {
                     </ul>
                 </form>
                 <button
-                    className=' flex items-center justify-center h-full custom-aside__button complete-btn tablet:my-5 tablet:w-full'
+                    className=' flex items-center justify-center h-full custom-aside__button complete-btn tablet:my-5 tablet:w-full tablet:justify-start'
                     onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>
                 </button>
                 <PersonalizeModal/>
-                {/* <button className='flex bg-teal-100 tablet:my-4 custom-aside__button '>
-                    <img src={editIcon} alt="done icon" className='icon' />
-                    <span className='hidden tablet:block'>Personalize</span>
-                </button> */}
             </section>
         </aside>
     )
