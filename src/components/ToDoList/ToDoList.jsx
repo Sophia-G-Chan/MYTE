@@ -13,7 +13,7 @@ import './ToDoList.scss'
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const { allTasks, setAllTasks, filteredTasks, selectedListId, lists } = useContext(TasksContext);
+	const { allTasks, setAllTasks, filteredTasks, theme } = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date())
 	const [endDate, setEndDate] = useState(new Date())
 
@@ -105,14 +105,14 @@ function ToDoList() {
 					value={newTask.task_name || ""}
 					placeholder="Task Name"
 					onChange={handleNewTaskInputChange}
-					className="w-36 h-10 p-4">
+					className="w-36 h-10 p-4 rounded">
 				</input>
 				<textarea
 					name="description"
 					value={newTask.description  || ""}
 					placeholder="Description"
 					onChange={handleNewTaskInputChange}
-					className="w-full tablet:w-52 py-2.5 px-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea">
+					className={`w-full  py-2.5 px-4 grow border-0 rounded h-auto mt-2 resize-none custom-textarea tablet:w-52 `}>
 				</textarea>
 				<label className=' custom-label'>
 					Start
@@ -134,7 +134,7 @@ function ToDoList() {
 				<h2>End</h2>
 				<div>Placeholder</div>
 			</div>
-			<ul className="w-full">
+			<ul className="w-full custom=list">
 				{filteredTasks?.map((task) => {
 					if (!task) return null;
 
@@ -142,7 +142,7 @@ function ToDoList() {
 					const endDate = task.end_date_and_time ? dayjs(task.end_date_and_time) : null;
 
 					return (
-						<li key={`list_${task.task_id}`} className="flex items-start rounded p-2 mb-3 w-full odd:bg-slate-100  even:bg-white box-border tablet:p-0">
+						<li key={`list_${task.task_id}`} className="flex items-start rounded p-2 mb-3 w-full custom-list  tablet:p-0">
 							<form className="flex p-2 tablet:items-center tablet:p-0 custom-form">
 								<div>
 									<input
@@ -154,11 +154,11 @@ function ToDoList() {
 									</input>
 								</div>
 								<button>Priority</button>
-								<div className="w-9/12 grow tablet:flex ">
-									<input className="bg-inherit" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
+								<div className="w-9/12 h-auto tablet:h-fit grow tablet:flex tablet:items-center ">
+									<input className="bg-inherit tablet:h-10" type='text' name="task_name" value={task.task_name || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)} ></input>
 									<div className="flex flex-col my-2">
 										<label htmlFor="description" className="pl-2 custom-label">Description: </label>
-										<textarea className="bg-inherit border-0 resize-none custom-textarea " type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></textarea>
+										<textarea className="bg-inherit border-0 resize-none custom-textarea rounded tablet:-h-full" type='text' name="description" placeholder="Description" value={task.description || ""} onChange={(e) => handleExistingInputChange(e, task.task_id)}></textarea>
 									</div>
 									<div className="pl-2 flex items-center w-9/12">
 										<label className="custom-label">Start:</label>
@@ -175,7 +175,7 @@ function ToDoList() {
 									</div>
 								</div>
 
-								<div className="flex flex-col justify-start tablet:flex-row tablet:items-center tablet:justify-center gap-6 w-28" key={`bottom_${task.task_id}`} >
+								<div className="flex flex-col justify-start tablet:flex-row tablet:items-center tablet:justify-center w-20" key={`bottom_${task.task_id}`} >
 									<div className="w-full">
 										<img src={saveIcon} alt='save icon' onClick={() => editTask(task.task_id, allTasks, setAllTasks)} className="cursor-pointer filter save-effect save-icon w-8" />
 									</div>

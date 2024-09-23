@@ -33,8 +33,19 @@
 
 button{
     padding: 0.5rem 0.25 !important;
+    color: inherit !important;
 
     @include tablet{
         padding: 0.5rem !important;
     }
 }
+
+svg{
+    filter: var(--filter-react-datetime-picker);
+}
+
+path{
+    filter: var(--filter-react-datetime-picker);
+}
+//MuiSvgIcon-root MuiSvgIcon-fontSizeMedium css-20bmp1-MuiSvgIcon-root
+//  MuiIconButton-edgeEnd MuiIconButton-sizeMedium css-1a7z5rc-MuiButtonBase-root-MuiIconButton-root

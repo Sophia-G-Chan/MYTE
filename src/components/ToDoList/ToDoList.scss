@@ -6,7 +6,6 @@
 }
 
 .custom-form {
-    @apply h-auto ;
     min-width: 18.75rem;
     width: 100%;
 }
@@ -58,20 +57,31 @@
 }
 
 .custom-textarea{
+    background-color: var(--form-background);
+
     @include tablet{
         margin-top: 0 !important;
         max-width: 400px;
+        height: 2.5rem;
     }
 
     &:focus , &:active{
         box-shadow: none;
-        background-color: var(--form-hover-color);
+        background-color: var(--form-background);
     }
     &:hover{
         background-color: var(--aside-button-color)
     }
 }
 
+.custom-list{
+    &:nth-child(odd){
+        background-color: var(--list-background-color) ;
+    }
+    &:nth-child(even){
+        background-color: inherit;
+    }
+}
 .save-icon{
     filter: var(--filter-save-effect);
     &:hover{

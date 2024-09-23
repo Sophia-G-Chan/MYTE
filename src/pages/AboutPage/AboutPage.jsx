@@ -1,6 +1,9 @@
-import { useEffect } from 'react'
+import { useEffect, useContext } from 'react'
+import { TasksContext } from '../../App'
 
 function AboutPage() {
+    const { theme } = useContext(TasksContext)
+
     useEffect(() => {
         document.title = "MYTE - About"
     }, [])
@@ -14,8 +17,14 @@ function AboutPage() {
                     <li className='m-10 text-lg'>MYTE is a task management app that combines time planning with your to-do list. Unlike regular to-do lists, MYTE allows you to assign time estimates for tasks and seamlessly adds them to your calendar. The app emphasizes the importance of the process over the outcome, highlighting that every step is part of the journey.
                     </li>
                 </ul>
+                {
+                    theme === 'light' ?
+                        <img src="/assets/logos/MYTE-logo.svg" className='w-28 h-28 ' />
+                        :
+                        <img src="/assets/logos/MYTE-white-logo.svg" className='w-28 h-28 ' />
+                }
 
-                <img src="/assets/logos/journeytask-logo.svg" className='w-28 h-28 ' />
+
                 <div className='m-10 text-lg flex '>
 
                     <div className='flex flex-col gap-6 m-4'>

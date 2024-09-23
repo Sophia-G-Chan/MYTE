@@ -7,9 +7,11 @@ html {
 input{
     border: none;
     border-radius: .25rem;
+    background-color: var(--form-background) !important;
+    color: var(--text-color) !important;
 
     &:hover{
-        background-color: var(--aside-button-color);
+        background-color: var(--button-color-hover) !important;
         border-radius: .25rem;
     }
 

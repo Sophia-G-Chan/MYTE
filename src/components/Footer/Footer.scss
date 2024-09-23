@@ -3,5 +3,7 @@
 footer{
     position: fixed;
     bottom: 0;
-    background-color: $primary-light-color;
+    background-color: var(--background-color);
+    padding: 1rem;
+    z-index: 11;
 }

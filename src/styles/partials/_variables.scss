@@ -5,38 +5,42 @@ $primary-light-color: #FFFFFF;
 
 .theme-light {
     --background-color: #FFFFFF;
+    --list-background-color: #f1f5f9;
     --text-color: #3d4043;
     --button-color: #0095FF;
     --button-color-hover: #0065AD;
     --form-color: #AFAFAF;
     --form-hover-color: #FAFAFA;
     --line-color: #E1E1E1;
-    --form-background: #FAFAFA;
+    --form-background: inherit;
     --complete-color: #4ade80;
     --aside-button-color: #bbecfc;
     --personalize-button-color: #c5ffef;
     --delete-color: #Cd4515;
     --delete-color-hover: #541c08;
     --filter-effect: brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(321%) hue-rotate(161deg) brightness(90%) contrast(83%);
+    --filter-react-datetime-picker: brightness(0) saturate(100%) invert(31%) sepia(6%) saturate(321%) hue-rotate(161deg) brightness(90%) contrast(83%);
     --filter-save-effect: brightness(0) saturate(100%) invert(39%) sepia(69%) saturate(5923%) hue-rotate(137deg) brightness(106%) contrast(87%);
     --filter-delete-effect: brightness(0) saturate(100%) invert(8%) sepia(98%) saturate(7428%) hue-rotate(6deg) brightness(91%) contrast(108%);
 }
 
 .theme-dark {
     --background-color: #323232;
+    --list-background-color:  rgb(36, 36, 36);
     --text-color: #FFFFFF;
     --button-color: #0065AD;
     --button-color-hover: #0095FF;
-    --form-color: #FAFAFA;
+    --form-color: #323232;
     --form-hover-color: #f9f9f9;
     --line-color: #AFAFAF;
-    --form-background: rgb(36, 36, 36);
+    --form-background: inherit;
     --complete-color: #317249;
     --aside-button-color: #8cdbf5;
     --personalize-button-color: #51be9f;
     --delete-color: #541c08;
     --delete-color-hover: #Cd4515;
     --filter-effect: none;
+    --filter-react-datetime-picker: brightness(0) saturate(100%) invert(90%) sepia(49%) saturate(2628%) hue-rotate(169deg) brightness(99%) contrast(94%);
     --filter-save-effect: brightness(0) saturate(100%) invert(71%) sepia(15%) saturate(1403%) hue-rotate(93deg) brightness(98%) contrast(94%);
     --filter-delete-effect: brightness(0) saturate(100%) invert(28%) sepia(44%) saturate(6736%) hue-rotate(348deg) brightness(86%) contrast(141%);
 }

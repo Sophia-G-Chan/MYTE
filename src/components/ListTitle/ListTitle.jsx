@@ -62,7 +62,7 @@ function ListTitle() {
                 value={newListName.list_name || ""}
                 onChange={handleListNameChange}>
             </input>
-            <div className='flex '>
+            <div className='flex w-20'>
                 <div className="w-full" >
                     <img
                         title='save list name'
