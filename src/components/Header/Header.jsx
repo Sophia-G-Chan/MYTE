@@ -12,7 +12,7 @@ import aboutIcon from '../../assets/icons/info.svg'
 function Header() {
 	const navigate = useNavigate();
 	const location = useLocation();
-	const {setDefaultView, setSelectedListId} = useContext(TasksContext)
+	const {setDefaultView, setSelectedListId, theme} = useContext(TasksContext)
 	const session = useSession();
 	const supabase = useSupabaseClient();
 	const { isLoading } = useSessionContext();
@@ -84,7 +84,12 @@ function Header() {
 	return (
 		<header className='custom-header '>
 			<Link to='/' className='flex items-center '>
-				<img src="/assets/logos/journeytask-logo.svg" className='w-20 h-20' />
+			{ theme === 'light'?
+				<img src="/assets/logos/MYTE-logo.svg" className='w-20 h-20' />
+				:
+				<img src="/assets/logos/MYTE-white-logo.svg" className='w-20 h-20' />
+			}
+
 				<h2 className=' text-3xl'>MYTE</h2>
 			</Link>
 			<nav className='flex'>

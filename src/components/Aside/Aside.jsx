@@ -114,7 +114,7 @@ function Aside() {
                     </ul>
                 </form>
                 <button
-                    className=' flex bg-green-400 items-center custom-aside__button tablet:my-5 tablet: w-full'
+                    className=' flex  items-center custom-aside__button complete-btn tablet:my-5 tablet: w-full'
                     onClick={() => setFilterType("Complete")}>
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>

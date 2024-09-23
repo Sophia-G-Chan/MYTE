@@ -13,6 +13,7 @@ import { fontTheme } from "./utils/utility";
 import { ThemeProvider } from "@mui/material";
 import { Api } from "./api/Api.js"
 import AboutPage from './pages/AboutPage/AboutPage.jsx';
+import { themeChange } from './utils/utility';
 
 export const TasksContext = createContext();
 
@@ -25,6 +26,7 @@ function App() {
   const [lists, setLists] = useState([]);
   const [selectedListId, setSelectedListId] = useState(null);
   const [listTasks, setlistTasks] = useState([]);
+  const [theme, setTheme] = useState(themeChange())
 
   const getLists = async () => {
     const { data } = await api.getLists();
@@ -47,6 +49,10 @@ function App() {
     getListTasks();
   }, [])
 
+  useEffect(() => {
+    document.body.className = `theme-${theme}`;
+    localStorage.setItem('theme', theme);
+  }, [theme])
 
   return (
     <TasksContext.Provider value={{
@@ -58,7 +64,9 @@ function App() {
       defaultView, setDefaultView,
       lists, setLists,
       selectedListId, setSelectedListId,
-      listTasks, setlistTasks}}>
+      listTasks, setlistTasks,
+      theme, setTheme
+      }}>
       <ThemeProvider theme={fontTheme}>
         <BrowserRouter>
           <LocalizationProvider dateAdapter={AdapterDayjs}>

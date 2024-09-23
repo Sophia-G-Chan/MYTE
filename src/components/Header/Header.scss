@@ -5,8 +5,9 @@ header {
     border-bottom: rgb(218, 220, 224) 1px solid;
     position: sticky;
     top: 0;
-    background-color: $primary-light-color;
     z-index: 11;
+    background-color: var(--background-color);
+    color: var(--text-color);
 }
 
 .custom-header {

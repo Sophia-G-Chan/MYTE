@@ -8,3 +8,8 @@
 #root{
     @apply w-full box-border;
 }
+
+body{
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
