@@ -148,7 +148,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 | Parameter | Type | Description    |
 | :--------  | :-------- |  :------------------------ |
-| `task ` | `object` | This end point adds a new task. |
+| `tasks ` | `object` | This end point adds a new task. |
 
 #### Edits a task
 
@@ -158,31 +158,70 @@ List endpoints that your server will implement, including HTTP methods, paramete
 
 | Parameter | Type | Description    |
 | :--------  | :-------- |  :------------------------ |
-| `id` | `number` |  **Required** Id of a task is needed to edit a task |
+| `taskId` | `number` |  **Required** Id of a task is needed to edit a task |
 
 #### Removes a task from the task list
 
 ```http
-  DELETE /tasks/:id
+  DELETE /tasks/:taskId
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `taskId` | `number` |  **Required** Id of a task is needed to delete a task |
+
+#### Get all lists
+
+```http
+  GET /lists
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `/lists` | `return` |  This endpoint returns an array of objects |
+
+#### Adds a new list
+
+```http
+  POST /lists
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `lists ` | `object` | This end point adds a new task. |
+
+#### Edits a list
+
+```http
+  PUT /lists/:listId
+```
+
+| Parameter | Type | Description    |
+| :--------  | :-------- |  :------------------------ |
+| `listId` | `number` |  **Required** Id of a task is needed to edit a task |
+
+#### Removes a task from the task list
+
+```http
+  DELETE /lists/:listId
 ```
 
 | Parameter | Type | Description    |
 | :--------  | :-------- |  :------------------------ |
 | `id` | `number` |  **Required** Id of a task is needed to delete a task |
-
 ## Roadmap
 ### Milestone 1: create a minimum viable product
 - MVP = where a user can add a task, edit a task, delete task, and view this from a list and a calendar.
 
-- Day 1 (Sept 10): Set-up Front-End & Back-End apps
-- Day 2 (Sept 11): Import Calendar API, Set up Database & Back-End
-- Day 3 - 5 (Sept 12-14): Develop core to-do list features
-- Day 6 + 7 (Sept 15 + 16): Calendar feature
-- Day 8 (Sept 17): testing & About page
-- Day 9 (Sept 18): Add personalization feature
-- Day 10 (Sept 19): further testing & refine UI
-- Day 11 (Sept 20): Fix bugs & testing again
-- Day 12 (Sept 21): Update README File for Back-End & Front-End
+    - Day 1 (Sept 10): Set-up Front-End & Back-End apps
+    - Day 2 (Sept 11): Import Calendar API, Set up Database & Back-End
+    - Day 3 - 5 (Sept 12-14): Develop core to-do list features
+    - Day 6 + 7 (Sept 15 + 16): Calendar feature
+    - Day 8 (Sept 17): testing & About page
+    - Day 9 (Sept 18): Add personalization feature
+    - Day 10 (Sept 19): further testing & refine UI
+    - Day 11 (Sept 20): Fix bugs & testing again
+    - Day 12 (Sept 21): Update README File for Back-End & Front-End
 - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
 ---
