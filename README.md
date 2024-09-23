@@ -230,7 +230,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
 2. Open your file in VS code and ensure you cchange directory into the root folder
 2. run two commands in your terminal
 ```http
-  npm i run dev
+  npm i
 ```
 ```http
   npm run start
