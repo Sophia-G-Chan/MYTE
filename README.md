@@ -9,13 +9,12 @@
     - [Tech Stack](#tech-stack)
     - [APIs](#apis)
         - [Google Calendar API](#google-calendar-api)
-        - [Outlook Calendar API](#outlook-calendar-api)
     - [Sitemap](#sitemap)
     - [Mockups](#mockups)
     - [Data](#data)
     - [Endpoints](#endpoints)
 3. [Roadmap](#roadmap)
-4. [Download & Run](#download-&-run)
+4. [Download & Run](#download-and-run)
 5. [Future Implementations](#future-implementations)
 
 
@@ -226,7 +225,7 @@ List endpoints that your server will implement, including HTTP methods, paramete
     - Day 12 (Sept 21): Update README File for Back-End & Front-End
     - ### Day 13 (Sept 22) **DEADLINE**: Scheduling cushion for last minute bug fixes
 
-## Download & Run
+## Download And Run
 1. Download the front end
 2. Open your file in VS code and ensure you cchange directory into the root folder
 2. run two commands in your terminal
