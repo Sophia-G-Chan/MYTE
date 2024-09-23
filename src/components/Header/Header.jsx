@@ -38,7 +38,6 @@ function Header() {
 			}
 		);
 		localStorage.setItem('calendarData',JSON.stringify(response.data.items))
-		console.log(response);
 	};
 
 	const googleSignIn = async () => {

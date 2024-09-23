@@ -29,9 +29,8 @@ function App() {
   const [theme, setTheme] = useState(themeChange())
 
   const getLists = async () => {
-    const response = await api.getLists();
-    console.log(response)
-    setLists(response || []);
+    const {data} = await api.getLists();
+    setLists(data || []);
   }
 
   const getAllTasks = async () => {
