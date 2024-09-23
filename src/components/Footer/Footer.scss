@@ -1,0 +1,7 @@
+@use "../../styles/partials/mixins" as *;
+@use "../../styles/partials/variables" as *;
+footer{
+    position: fixed;
+    bottom: 0;
+    background-color: $primary-light-color;
+}

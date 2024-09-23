@@ -22,10 +22,7 @@ function ListTitle() {
 
         if (selectedListId) {
             try {
-                console.log(selectedListId)
-                console.log(newListName)
-                const response = await api.editAList(selectedListId, newListName);
-                console.log(response.data)
+                await api.editAList(selectedListId, newListName);
                 setLists(previousLists =>
                     previousLists.map((list) =>
                         list.id === selectedListId ? { ...list, ...newListName } : list)
@@ -36,7 +33,6 @@ function ListTitle() {
         } else {
             try {
                 const { data } = await api.addAList(newListName);
-                console.log(data)
                 setLists(previousList => [...previousList, data])
                 setSelectedListId(data.id)
                 setNewListName({ list_name: data.list_name })
@@ -47,10 +43,8 @@ function ListTitle() {
     }
 
     useEffect(() => {
-        console.log(selectedListId)
         if (selectedListId) {
             const selectedList = lists.find(listItem => listItem.id === selectedListId);
-                console.log(selectedList)
             if (selectedList) {
                     setNewListName({ list_name: selectedList.list_name })
             }
@@ -60,14 +54,15 @@ function ListTitle() {
     }, [selectedListId, lists])
 
     return (
-        <form className="mb-5 flex">
+        <form className="mb-5 flex tablet:justify-between tablet:mr-2">
             <input type="text"
+                className='rounded py-2 px-4 w-full tablet:w-1/2'
                 placeholder="List Name"
                 name='list_name'
                 value={newListName.list_name || ""}
                 onChange={handleListNameChange}>
             </input>
-            <div className='flex'>
+            <div className='flex '>
                 <div className="w-full" >
                     <img
                         title='save list name'

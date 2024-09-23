@@ -2,9 +2,9 @@ import './Footer.scss'
 
 function Footer() {
   return (
-    <div className='border-t-2'>
+    <footer className='border-t-2 sticky'>
       <p>This is a footer</p>
-    </div>
+    </footer>
   )
 }
 

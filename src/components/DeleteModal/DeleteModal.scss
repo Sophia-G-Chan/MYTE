@@ -1,10 +1,6 @@
 @use '../../styles/partials/variables' as *;
 @use '../../styles/partials/mixins' as *;
 
-.delete-icon{
-    filter: var(--filter-delete-effect)
-}
-
 .delete-item{
     display: flex;
     flex-direction: column;

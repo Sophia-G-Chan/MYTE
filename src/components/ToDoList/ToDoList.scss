@@ -11,10 +11,6 @@
     width: 100%;
 }
 
-.save-icon{
-    filter: var(--filter-save-effect);
-}
-
 .custom-check{
     border: 2px solid var(--text-color) !important;
     border-radius: 2px;
@@ -73,5 +69,12 @@
     }
     &:hover{
         background-color: var(--aside-button-color)
+    }
+}
+
+.save-icon{
+    filter: var(--filter-save-effect);
+    &:hover{
+        filter: var(--filter-effect);
     }
 }

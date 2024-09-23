@@ -6,6 +6,21 @@ const fontTheme = createTheme({
     }
 });
 
+function themeChange () {
+    let usersTheme = "";
+
+    if(localStorage.getItem('theme')){
+        usersTheme = localStorage.getItem('theme');
+    } else if(window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        usersTheme = 'dark';
+    } else {
+        usersTheme = 'light';
+    }
+
+    return usersTheme;
+}
+
 export {
-    fontTheme
+    fontTheme,
+    themeChange
 }

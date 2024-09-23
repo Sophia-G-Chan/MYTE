@@ -4,8 +4,9 @@ import todayIcon from '../../assets/icons/calendar_today.svg'
 import sevenDayIcon from '../../assets/icons/date_range.svg'
 import listIcon from '../../assets/icons/list.svg'
 import doneIcon from '../../assets/icons/done_all.svg'
-import editIcon from '../../assets/icons/edit.svg'
+
 import './Aside.scss';
+import PersonalizeModal from '../PersonalizeModal/PersonalizeModal';
 
 function Aside() {
     const {
@@ -67,7 +68,7 @@ function Aside() {
     }, [filterType, allTasks, selectedListId, lists])
 
     return (
-        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-0 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
+        <aside className='w-full h-auto p-4 flex flex-row place-content-center sticky top-full justify-center gap-2 tablet:sticky tablet:top-24 tablet:flex-col tablet:min-w-44 tablet:w-72 tablet:items-start'>
             <section className='flex flex-row w-1/2 tablet:flex-col tablet:mb-3 tablet:w-full tablet:border-solid tablet:border-b-2 tablet:border-border-grey'>
                 <button className={`flex items-center custom-aside__button tablet:my-4 ${filterType === 'Today' ? 'custom-aside__button--active' : ''}`} onClick={() => {
                     toggleFilter("Today")
@@ -118,10 +119,11 @@ function Aside() {
                     <img src={doneIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Completed</span>
                 </button>
-                <button className='flex bg-teal-100 tablet:my-4 custom-aside__button '>
+                <PersonalizeModal/>
+                {/* <button className='flex bg-teal-100 tablet:my-4 custom-aside__button '>
                     <img src={editIcon} alt="done icon" className='icon' />
                     <span className='hidden tablet:block'>Personalize</span>
-                </button>
+                </button> */}
             </section>
         </aside>
     )

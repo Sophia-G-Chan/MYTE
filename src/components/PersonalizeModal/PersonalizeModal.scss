@@ -1,0 +1,51 @@
+@use '../../styles/partials/variables' as *;
+@use '../../styles/partials/mixins' as *;
+
+
+.personalize-modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    background-color: white;
+    height: 100%;
+    padding: 2rem 1.5rem;
+    position: relative;
+    animation: slideFromLeft 0.5s ease-in-out;
+
+    @include tablet {
+        height: calc(100% - 1.6rem);
+        width: 28%;
+        border: 0.1rem solid var(--line-color);
+        border-radius: .5rem;
+    }
+
+    &__overlay {
+        position: fixed;
+        inset: 0px;
+        top: 80px;
+        box-sizing: border-box;
+        //background-color: rgba(255, 255, 255, 0.75);
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+
+    &:focus {
+        box-shadow: none;
+        outline: none;
+    }
+
+}
+
+@keyframes slideFromLeft{
+    0%{
+        left: -100%;
+    }
+    25%{
+        left:-50%;
+    }
+    100%{
+        left: 0;
+    }
+}

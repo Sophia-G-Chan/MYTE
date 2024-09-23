@@ -48,16 +48,23 @@ form{
     }
 }
 
-.icon {
-    filter: var(--filter-effect);
-    margin: 0 0.5rem;
-}
-
 .animation-up {
     transform: translateY(0);
     transition: transform 0.3s ease-in-out;
 
     &:hover{
         transform: translateY(-0.5rem);
+    }
+}
+
+.icon {
+    filter: var(--filter-effect);
+    margin: 0 0.5rem;
+}
+
+.delete-icon{
+    filter: var(--filter-delete-effect);
+    &:hover{
+        filter: var(--filter-effect);
     }
 }
