@@ -75,20 +75,25 @@ MYTE is for:
 - <a href="https://www.mysql.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/mysql/mysql-original-wordmark.svg" alt="mysql" width="40" height="40"/> </a>
 - Client libraries used are:
     - [react-router-dom](https://www.npmjs.com/package/react-router-dom) which uses [react-router](https://www.npmjs.com/package/react-router)
-    - [axios](https://www.npmjs.com/package/axios
-    )
-    - [react-google-calendar](https://www.npmjs.com/package/react-google-calendar-api)
-    - [react-week-calendar](https://www.npmjs.com/package/react-week-calendar)
-    - [react-calendar](https://www.npmjs.com/package/react-calendar)
+    - [axios](https://www.npmjs.com/package/axios)
+    - [react-big-calendar](https://www.npmjs.com/package/react-big-calendar)
+    - [date-fns](https://www.npmjs.com/package/date-fns)
+    - [Supabase-JS](https://www.npmjs.com/package/@supabase/supabase-js)
+    - [React Modal](https://www.npmjs.com/package/react-modal)
+    - [Dotenv](https://www.npmjs.com/package/dotenv)
+    - [SASS](https://www.npmjs.com/package/sass)
+    - [Material UI](https://www.npmjs.com/package/@mui/material)
+    - [Material UI Date Pickers](https://www.npmjs.com/package/@mui/x-date-pickers)
     - tailwindscss <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a>
 
 - servers libraries
     - [knex](https://www.npmjs.com/package/knex)
+    - [googleapis](https://www.npmjs.com/package/googleapis)
     - node.js<a href="https://nodejs.org" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40"/> </a>
     - Future Implementation: [bycrypt for password hashing](https://www.npmjs.com/package/bookshelf-bcryptjs)
 
 - Google Calendar API
-- Outlook Calendar API
+- Outlook Calendar API (future implementation)
 
 - Limitations for Calendar APIs
     - Both are limited by rate limits
