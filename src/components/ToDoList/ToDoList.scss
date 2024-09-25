@@ -58,6 +58,7 @@
 
 .custom-textarea{
     background-color: var(--form-background);
+    scrollbar-width: none;
 
     @include tablet{
         margin-top: 0 !important;
@@ -70,7 +71,7 @@
         background-color: var(--form-background);
     }
     &:hover{
-        background-color: var(--button-color-hover)
+        background-color: var(--aside-button-color)
     }
 }
 
