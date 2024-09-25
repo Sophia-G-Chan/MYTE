@@ -19,6 +19,7 @@ class Api {
     async addATask(task) {
         try {
             const response = await axios.post(`${this.baseUrl}/tasks`, task, { headers: { 'Content-Type': 'application/json' } });
+            console.log(response)
             return response.data
         } catch (error) {
             console.log('Unable to add task', error)

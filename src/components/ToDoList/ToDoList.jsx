@@ -14,7 +14,7 @@ import './ToDoList.scss';
 function ToDoList() {
 	const formRef = useRef();
 	const api = new Api();
-	const { allTasks, setAllTasks, filteredTasks, theme } = useContext(TasksContext);
+	const { allTasks, setAllTasks, filteredTasks } = useContext(TasksContext);
 	const [startDate, setStartDate] = useState(new Date());
 	const [endDate, setEndDate] = useState(new Date());
 	const [error, setError] = useState('');
@@ -73,7 +73,9 @@ function ToDoList() {
 			status: "In Progress"
 		}
 		try {
+			console.log("trying to add")
 			const response = await api.addATask(taskData);
+			console.log(response)
 			setAllTasks(prevTasks => [...prevTasks, response]);
 			setNewTask({
 				task_name: "",
@@ -136,7 +138,7 @@ function ToDoList() {
 
 				</div>
 				<div className="flex justify-end mr-8 mb-8">
-					<button onSubmit={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
+					<button onClick={handleSubmit} className="w-10 min-w-10 rounded-full h-10  mx-2 custom-button animation-up">
 						<img className="w-10 h-10 " src={addIcon} />
 					</button>
 				</div>
