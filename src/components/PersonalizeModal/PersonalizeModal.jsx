@@ -45,6 +45,13 @@ function PersonalizeModal() {
                     <div className='delete-modal__top text-center ' onClick={() => closeModal()}>
                         <img src={backIcon} alt='x to represent close' className='cursor-pointer' />
                     </div>
+                    <div>
+                        <label htmlFor='bg-color' className='flex justify-between p-4' >
+                            Background color:
+                            <input type='color' id="bg-color" name="bg-color"></input>
+                        </label>
+                    </div>
+
                     <div className='dark-light-toggle grow p-4'>
                         <div className={`dark-light-toggle__container${theme === 'light' ? '' : '--hide'}`}>
                             <p>Dark mode:</p>

@@ -73,9 +73,7 @@ function ToDoList() {
 			status: "In Progress"
 		}
 		try {
-			console.log("trying to add")
 			const response = await api.addATask(taskData);
-			console.log(response)
 			setAllTasks(prevTasks => [...prevTasks, response]);
 			setNewTask({
 				task_name: "",
