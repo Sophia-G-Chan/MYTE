@@ -25,7 +25,7 @@ function App() {
   const [defaultView, setDefaultView] = useState('month');
   const [lists, setLists] = useState([]);
   const [selectedListId, setSelectedListId] = useState(null);
-  const [listTasks, setlistTasks] = useState([]);
+  const [listTasks, setListTasks] = useState([]);
   const [theme, setTheme] = useState(themeChange())
 
   const getLists = async () => {
@@ -40,7 +40,7 @@ function App() {
 
   const getListTasks = async () => {
       const {data} = await api.getListTask();
-      setlistTasks(data);
+      setListTasks(data);
   }
 
   useEffect(() => {
@@ -64,7 +64,7 @@ function App() {
       defaultView, setDefaultView,
       lists, setLists,
       selectedListId, setSelectedListId,
-      listTasks, setlistTasks,
+      listTasks, setListTasks,
       theme, setTheme
       }}>
       <ThemeProvider theme={fontTheme}>
