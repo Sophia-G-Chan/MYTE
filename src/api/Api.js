@@ -4,7 +4,7 @@ const baseUrl = import.meta.env.VITE_API_URL;
 
 class Api {
     constructor() {
-        this.baseUrl = baseUrl; 1
+        this.baseUrl = baseUrl;
     }
 
     async getAllTasks() {
